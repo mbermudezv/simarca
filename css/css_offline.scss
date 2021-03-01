@@ -1,3 +1,27 @@
+@viewport {
+  width: device-width;
+}
+  
+html {
+overflow-y: auto;
+}
+
+img
+{
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0%;
+  display: flex;
+  flex-direction: column;
+  background-color: #303030;   
+}
+
 @mixin sm {
     @media (max-width: 576px) { @content; }
 }
