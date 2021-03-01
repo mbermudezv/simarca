@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="SiMarca">
+    <meta name="theme-color" content="#499bea" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <title>SiMarca</title>        
+</head>
+<body>
+    <script src="js/jquery-3.5.1.min.js"></script> 
+    <script src="js/bootstrap.min.js"></script> 
+    <script>
+
+        if ('serviceWorker' in navigator) {
+            
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then((reg) => {
+                    console.log('Registrando el Service worker.', reg);
+                    }, function(err) {
+                            // registration failed :(
+                            console.log('Error al registrar el ServiceWorker: ', err);
+                        });
+            });
+
+        }
+
+    </script> 
+</body>
+</html>
