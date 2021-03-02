@@ -31,7 +31,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #303030;
 }
 
 @media (max-width: 576px) {
