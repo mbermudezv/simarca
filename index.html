@@ -7,56 +7,61 @@
     <meta name="description" content="SiMarca">
     <meta name="theme-color" content="#499bea" />
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css_index.css">    
     <title>SiMarca</title>        
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">        
-        
-        <span class="navbar-brand">SiMarca</span>
+    <nav class="navbar py-3 
+                navbar-expand-sm py-sm-4
+                navbar-expand-md py-md-4
+                navbar-expand-lg py-lg-3
+                navbar-expand-xl py-xl-4
+                navbar-dark bg-info">                
+        <span class="navbar-brand">SiMarca</span>       
+    </nav>
 
-        <button class="navbar-toggler" type="button" 
-            data-toggle="collapse" data-target="#menu" 
-            aria-controls="menu" aria-expanded="true" 
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="mainArea" class="container-fluid 
+                pt-2 
+                pt-sm-3 pb-sm-3
+                pt-md-3 pb-md-3
+                pt-lg-1 pb-lg-1
+                pt-xl-1 pb-xl-1" style="border-style: dashed;">
 
-        <div class="collapse navbar-collapse" id="menu">
+        <div class="row flex-column align-items-center">
 
-            <ul class="navbar-nav mr-auto">
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" 
-                    id="marca" role="button" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" aria-expanded="false">
-                    Marcar usando...
-                </a>
-                <div class="dropdown-menu" aria-labelledby="marca">
-                    <a class="dropdown-item" href="#">Código de Barras</a>
-                    <a class="dropdown-item" href="#">Cámara</a>
-                </div>
-               </li>
-                            
-    
-            </ul>    
+            <div class="col-10 col-sm-8 col-md-8 
+                        col-lg-4 col-xl-4">
+
+                <nav class="nav nav-pills flex-column 
+                            nav-justified bg-primary 
+                            py-4 py-sm-5 py-md-5 py-lg-0">
+                    <a class="nav-item nav-link 
+                              py-5 py-sm-5 py-md-5 py-lg-5" 
+                              href="#">Marcar</a>
+                    <a class="nav-item nav-link 
+                              py-5 py-sm-5 py-md-5 py-lg-5" 
+                              href="#">Reportes</a>
+                    <a class="nav-item nav-link 
+                              py-5 py-sm-5 py-md-5 py-lg-5" 
+                              href="#">Carnets</a>
+                    <a class="nav-item nav-link 
+                              py-5 py-sm-5 py-md-5 py-lg-5" 
+                              href="#">Mantenimiento</a>
+                </nav>
+            
+            </div> 
 
         </div>
 
-    </nav>
-    
+    </div>
+
     <div class="navbar fixed-bottom bg-info"></div>
     
     <script src="js/jquery-3.5.1.min.js"></script> 
     <script src="js/bootstrap.min.js"></script> 
     
-    <script>
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
-    </script>
-
     <script>       
 
         if ('serviceWorker' in navigator) {
