@@ -46,27 +46,79 @@ body {
           flex-flow: column nowrap;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.item {
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px;
+  border-style: groove;
+  border-bottom: 0.5vw solid #707070;
+}
+
+#tituloMarca {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: bold;
+}
+
+#statusBar {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+#linkHogar, #linkWappcom {
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+}
+
 @media (max-width: 576px) {
-  html {
-    font-size: 1.2rem;
+  .item, #tituloMarca {
+    font-size: 1.4rem;
   }
 }
 
+#statusBar {
+  font-size: 1.1rem;
+}
+
 @media (min-width: 768px) {
-  html {
+  .item, #tituloMarca {
     font-size: 1.2rem;
+  }
+  #statusBar {
+    font-size: 1.1rem;
   }
 }
 
 @media (min-width: 992px) {
-  html {
+  .item, #tituloMarca {
+    font-size: 1.2rem;
+  }
+  #statusBar {
     font-size: 1.2rem;
   }
 }
 
 @media (min-width: 1200px) {
-  html {
-    font-size: 1.2rem;
+  .item, #tituloMarca {
+    font-size: 1.5rem;
+  }
+  #statusBar {
+    font-size: 1.5rem;
   }
 }
 /*# sourceMappingURL=css_index.css.map */
