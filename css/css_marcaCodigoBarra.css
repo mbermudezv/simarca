@@ -14,12 +14,28 @@ html {
   overflow-y: auto;
 }
 
+html, body {
+  height: 100%;
+}
+
 img {
   max-width: 100%;
 }
 
-html, body {
-  height: 100%;
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
 }
 
 body {
@@ -46,33 +62,11 @@ body {
           flex-flow: column nowrap;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:active {
-  text-decoration: underline;
-}
-
-.item {
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
-  border-radius: 5px;
-  border-style: groove;
-  border-bottom: 0.5vw solid #707070;
-}
-
-#tituloMarca {
-  font-family: "Lucida Console", Monaco, monospace;
-  font-weight: bold;
+#encabezadoBar * {
+  width: 3em;
+  height: 3em;
+  background: white;
+  border-radius: 50%;
 }
 
 #statusBar {
@@ -86,7 +80,7 @@ a:active {
 }
 
 @media (max-width: 576px) {
-  .item, #tituloMarca {
+  #tituloMarca {
     font-size: 1.4rem;
   }
   #statusBar {
@@ -95,7 +89,7 @@ a:active {
 }
 
 @media (min-width: 768px) {
-  .item, #tituloMarca {
+  #tituloMarca {
     font-size: 1.4rem;
   }
   #statusBar {
@@ -104,7 +98,7 @@ a:active {
 }
 
 @media (min-width: 992px) {
-  .item, #tituloMarca {
+  #tituloMarca {
     font-size: 1.2rem;
   }
   #statusBar {
@@ -113,11 +107,11 @@ a:active {
 }
 
 @media (min-width: 1200px) {
-  .item, #tituloMarca {
+  #tituloMarca {
     font-size: 1.5rem;
   }
   #statusBar {
     font-size: 1.5rem;
   }
 }
-/*# sourceMappingURL=css_index.css.map */
+/*# sourceMappingURL=css_marcaCodigoBarra.css.map */
