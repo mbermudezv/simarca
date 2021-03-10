@@ -47,8 +47,24 @@
   #encabezadoBar * {
     width: 3em;
     height: 3em;    
-    background: white;
-    border-radius: 50%;	
+	background: white;
+	border-radius: 50%;	
+  }
+
+  #divTitulo {
+    
+    font-family: "Lucida Console", Monaco, monospace;
+
+  }
+
+  .item {
+    
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 5px;
+    border-style:groove;
+    border-bottom: 0.5vw solid #707070;
+    
   }
 
   #statusBar {          
@@ -82,7 +98,7 @@
   
   @include sm {
 
-    #tituloMarca {
+      #divTitulo, .item {
         font-size: 1.4rem;
       }     
 
@@ -97,7 +113,7 @@
   
     @include md {
 
-    #tituloMarca {
+      #divTitulo, .item {
         font-size: 1.4rem;
       }
 
@@ -109,7 +125,7 @@
   
     @include lg {
 
-      #tituloMarca {
+      #divTitulo, .item {
         font-size: 1.2rem;
       }
       #statusBar {
@@ -120,7 +136,7 @@
   
     @include xl {
 
-      #tituloMarca{
+      #divTitulo, .item {
         font-size: 1.5rem;
       }
 

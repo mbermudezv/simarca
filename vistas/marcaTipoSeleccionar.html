@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="SiMarca">
+    <meta name="theme-color" content="#499bea" />
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css_marcaTipoSeleccionar.css">    
+    <title>SiMarca</title>
+</head>
+<body>
+
+    <div id="encabezadoBar" class="d-flex flex-row
+                            justify-content-between bg-info">
+
+        <a href="../index.html" class="m-1">
+            <img src="../img/salir.png">
+        </a>
+
+        <a href="#" class="m-1">
+            <img src="../img/add.png">
+        </a>
+                                        
+    </div>
+
+    <div id="divTitulo" class="mt-1 text-center">
+        Seleccione el tipo de marca ...
+    </div>
+
+    <div id="mainArea" class="container-fluid mt-2">
+        
+        <div class="row flex-column align-items-center">
+
+            <div class="col-10 col-sm-6 col-md-6 
+                        col-lg-4 col-xl-4">
+ 
+                <nav class="nav nav-pills flex-column 
+                            nav-justified bg-dark">
+
+                    <!-- Plantilla cargada de js -->
+
+                    <!-- <a class="item nav-item nav-link" 
+                              href="#">Almuerzo
+                    </a>
+                                        
+                    <a class="item nav-item nav-link" 
+                              href="#">Transporte
+                    </a> -->
+
+                </nav>
+            
+            </div> 
+
+        </div>                 
+        
+    </div>
+
+    <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
+
+        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
+        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
+
+    </div>
+
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/marcaTipoSeleccionar.js"></script>
+
+    <script>       
+
+    if ('serviceWorker' in navigator) {
+
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../service-worker.js')
+        .then((reg) => {
+            console.log('Registrando el Service worker.', reg);
+            }, function(err) {
+                // registration failed :(
+                console.log('Error al registrar el ServiceWorker: ', err);
+                });
+        });
+
+    }
+
+    </script> 
+
+</body>
+
+</html>
