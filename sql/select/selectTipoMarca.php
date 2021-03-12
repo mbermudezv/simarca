@@ -22,7 +22,7 @@ class SelectSQL
 
         if ($this->pdo != null) {		
 			
-			$consultaSQL = "SELECT tipoMarca_Descripcion FROM tipoMarca 
+			$consultaSQL = "SELECT tipoMarca_Id, tipoMarca_Descripcion FROM tipoMarca 
                             ORDER BY tipoMarca_Descripcion";
 
 			$sql = $this->pdo->query($consultaSQL);
@@ -31,7 +31,8 @@ class SelectSQL
 
 			while ($row = $sql->fetch(\PDO::FETCH_ASSOC)) {
 					$rs[] = [						
-						'tipoMarca_Descripcion' => $row['tipoMarca_Descripcion']						
+						'tipoMarca_Descripcion' => $row['tipoMarca_Descripcion'],
+						'tipoMarca_Id' => $row['tipoMarca_Id']						
 					];	
 			}
 

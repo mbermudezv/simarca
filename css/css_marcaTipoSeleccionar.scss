@@ -40,15 +40,19 @@
   #mainArea {
     flex-grow: 1;
     display: flex;
-    flex-flow: column nowrap;      
+    flex-flow: column nowrap;         
   }
 
-  
-  #encabezadoBar * {
+  #add {
     width: 3em;
-    height: 3em;    
-	background: white;
-	border-radius: 50%;	
+    height: 3em; 
+  }
+
+  #salir {
+    width: 3em;
+    height: 3em;
+    background: white;
+    border-radius: 50%; 
   }
 
   #divTitulo {
@@ -98,7 +102,7 @@
   
   @include sm {
 
-      #divTitulo, .item {
+      #divTitulo, .item, #tituloMarca  {
         font-size: 1.4rem;
       }     
 
@@ -113,7 +117,7 @@
   
     @include md {
 
-      #divTitulo, .item {
+      #divTitulo, .item, #tituloMarca  {
         font-size: 1.4rem;
       }
 
@@ -125,7 +129,7 @@
   
     @include lg {
 
-      #divTitulo, .item {
+      #divTitulo, .item, #tituloMarca  {
         font-size: 1.2rem;
       }
       #statusBar {
@@ -136,7 +140,7 @@
   
     @include xl {
 
-      #divTitulo, .item {
+      #divTitulo, .item, #tituloMarca  {
         font-size: 1.5rem;
       }
 

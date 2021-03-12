@@ -20,6 +20,7 @@ catch (PDOException $e)
 
         $rs = null;
         $db = null;
+        echo json_encode(array("error" => $e->getMessage()));
         exit;
 
     }

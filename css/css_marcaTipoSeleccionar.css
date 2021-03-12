@@ -62,7 +62,12 @@ body {
           flex-flow: column nowrap;
 }
 
-#encabezadoBar * {
+#add {
+  width: 3em;
+  height: 3em;
+}
+
+#salir {
   width: 3em;
   height: 3em;
   background: white;
@@ -92,7 +97,7 @@ body {
 }
 
 @media (max-width: 576px) {
-  #divTitulo, .item {
+  #divTitulo, .item, #tituloMarca {
     font-size: 1.4rem;
   }
   #statusBar {
@@ -101,7 +106,7 @@ body {
 }
 
 @media (min-width: 768px) {
-  #divTitulo, .item {
+  #divTitulo, .item, #tituloMarca {
     font-size: 1.4rem;
   }
   #statusBar {
@@ -110,7 +115,7 @@ body {
 }
 
 @media (min-width: 992px) {
-  #divTitulo, .item {
+  #divTitulo, .item, #tituloMarca {
     font-size: 1.2rem;
   }
   #statusBar {
@@ -119,7 +124,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-  #divTitulo, .item {
+  #divTitulo, .item, #tituloMarca {
     font-size: 1.5rem;
   }
   #statusBar {
