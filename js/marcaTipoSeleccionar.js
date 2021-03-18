@@ -1,3 +1,20 @@
+$(document).ready(function() {    
+  
+    $("#plantilla").on("click", "a", function(event) {
+          
+          event.preventDefault();        
+          //console.log( $(this).data('id'));
+          //console.log( $(this).data('nombre'));
+          let tipoMarca_Id = $(this).data('id');
+          let tipoMarca_Descripcion = $(this).data('nombre');
+
+          enviar_a_FormularioMarca(tipoMarca_Id,tipoMarca_Descripcion)
+
+          return true;
+        });
+  
+});    
+
 window.onload = function() {
 
     cargaDatos_BD();
@@ -12,7 +29,7 @@ function cargaDatos_BD() {
          
         response.json().then(function(data) {
                                
-            //console.log(data);
+            //console.log(data);            
             cargaDatos_en_Pantalla(data);
 
         }).catch(function(error) {
@@ -46,17 +63,30 @@ function cargaDatos_en_Pantalla(rs) {
         let plantilla = document.getElementById("plantilla");
       
         let item = document.createElement('a');
-        item.className = "item nav-item nav-link";
+        item.className = "item nav-item nav-link";        
 
         let itemText = document.createTextNode(obj.tipoMarca_Descripcion);
         item.appendChild(itemText);
 
-        item.setAttribute('href', '../vistas/marcaCodigoBarra.html' + "?tipoMarca_Id =" + obj.tipoMarca_Id);
+        //item.setAttribute('href', '../vistas/marcaCodigoBarra.html' + "?tipoMarca_Id =" + obj.tipoMarca_Id);
+        item.setAttribute("data-id",obj.tipoMarca_Id);
+        item.setAttribute("data-nombre",obj.tipoMarca_Descripcion);
 
         plantilla.appendChild(item);
 
     }); 
 
+    return true;   
+}
+
+function enviar_a_FormularioMarca(tipoMarca_Id,tipoMarca_Descripcion) {
+
+    let arrayTipoMArca = {tipoMarca_Id:tipoMarca_Id,
+                        tipoMarca_Descripcion:tipoMarca_Descripcion};
+
+    let jsonTipoMArca = JSON.stringify(arrayTipoMArca);
+
+    console.log(jsonTipoMArca);
+
     return true;
-    
 }
