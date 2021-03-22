@@ -49,6 +49,13 @@ body {
           flex-direction: column;
 }
 
+#encabezadoBar * {
+  width: 3em;
+  height: 3em;
+  background: white;
+  border-radius: 50%;
+}
+
 #mainArea {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -62,11 +69,16 @@ body {
           flex-flow: column nowrap;
 }
 
-#encabezadoBar * {
-  width: 3em;
-  height: 3em;
-  background: white;
-  border-radius: 50%;
+#tipoMarca_Descripcion {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 1.5em;
+  color: yellow;
+  font-weight: bold;
+  background-color: gray;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 #statusBar {

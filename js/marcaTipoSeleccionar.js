@@ -3,8 +3,6 @@ $(document).ready(function() {
     $("#plantilla").on("click", "a", function(event) {
           
           event.preventDefault();        
-          //console.log( $(this).data('id'));
-          //console.log( $(this).data('nombre'));
           let tipoMarca_Id = $(this).data('id');
           let tipoMarca_Descripcion = $(this).data('nombre');
 
@@ -18,6 +16,7 @@ $(document).ready(function() {
 window.onload = function() {
 
     cargaDatos_BD();
+
     return true;
 }
 
@@ -29,7 +28,6 @@ function cargaDatos_BD() {
          
         response.json().then(function(data) {
                                
-            //console.log(data);            
             cargaDatos_en_Pantalla(data);
 
         }).catch(function(error) {
@@ -56,8 +54,6 @@ function cargaDatos_BD() {
 
 function cargaDatos_en_Pantalla(rs) {
 
-    //console.log(rs);
-
     rs.forEach(obj => {
 
         let plantilla = document.getElementById("plantilla");
@@ -68,7 +64,6 @@ function cargaDatos_en_Pantalla(rs) {
         let itemText = document.createTextNode(obj.tipoMarca_Descripcion);
         item.appendChild(itemText);
 
-        //item.setAttribute('href', '../vistas/marcaCodigoBarra.html' + "?tipoMarca_Id =" + obj.tipoMarca_Id);
         item.setAttribute("data-id",obj.tipoMarca_Id);
         item.setAttribute("data-nombre",obj.tipoMarca_Descripcion);
 
@@ -86,7 +81,9 @@ function enviar_a_FormularioMarca(tipoMarca_Id,tipoMarca_Descripcion) {
 
     let jsonTipoMArca = JSON.stringify(arrayTipoMArca);
 
-    console.log(jsonTipoMArca);
+    window.sessionStorage.setItem('sessionTipoMArca',jsonTipoMArca);
+
+    window.location.replace('marcaCodigoBarra.html');
 
     return true;
 }
