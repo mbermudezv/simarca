@@ -7,7 +7,7 @@ window.onload = function() {
     if (boologin === false) {
 
       
-      let contenedorError = document.getElementById("mensaje");
+      let contenedorError = document.getElementById("tipoMarca_Descripcion");
       
       contenedorError.innerHTML='<div class="alert alert-danger">' +
                                       '<strong>Error! </strong>' +
@@ -22,8 +22,7 @@ window.onload = function() {
 function login() {
 
     arrayTipoMArca = window.sessionStorage.getItem('sessionTipoMArca');    
-
-    console.log(arrayTipoMArca);
+    
     if (arrayTipoMArca && arrayTipoMArca.length>0) {
         
         let jsonTipoMArca = [];
@@ -41,5 +40,15 @@ function login() {
     }
             
     return true;
+    
+}
+
+function transformTypedChar(charStr) {
+
+	return charStr == "'" ? "-" : charStr;
+
+}
+
+function remplazaCaracter(params) {
     
 }

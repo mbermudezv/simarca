@@ -28,8 +28,17 @@
                                                                     
     </div>
 
-    <div id="mainArea" class="container-fluid">
-        <div id="tipoMarca_Descripcion"></div>
+    <div id="mainArea" class="container-fluid">               
+
+        <div id="tipoMarca_Descripcion" class="m-1 p-1"></div>
+
+        <div id="divNombre" class="m-1 p-1"></div>
+
+        <div id="containerTxt">
+
+            <input type="text" id="txtMarca" maxlength="20">
+
+        </div>
 
     </div>
 
@@ -42,7 +51,19 @@
     
     <script src="../js/marcaCodigoBarra.js"></script>
 
-    <script>       
+    <script>
+    
+        document.getElementById("txtMarca").onkeydown = 
+        function(evt) {
+            
+            var charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
+            if (charCode == 13) {
+                
+            }
+            
+            evt.preventDefault();
+
+        };
 
         if ('serviceWorker' in navigator) {
             
