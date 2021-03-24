@@ -32,34 +32,58 @@
   }
 
   body {
+
     margin: 0%;
     display: flex;
     flex-direction: column;    
+    
   }
 
   #encabezadoBar * {
+
     width: 3em;
     height: 3em;    
     background: white;
     border-radius: 50%;	
+
   }
   
   #mainArea {
+
     flex-grow: 1;
     display: flex;
     flex-flow: column nowrap;      
+
   }  
 
-  #tipoMarca_Descripcion{
+  #tipoMarca_Descripcion  {
+
     font-family: "Lucida Console", Monaco, monospace;	
     font-size: 1.5em;
     color: yellow;
     font-weight: bold;
-    background-color: gray;
-    padding: 5px;
-    margin: 5px;
+    background-color: gray;   
     text-align: center;
     border-radius: 5px;
+
+  }
+
+  #divNombre  {
+
+    font-family: "Lucida Console", Monaco, monospace;	
+    font-size: 2em;	
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+
+  }
+
+  #containerTxt {
+
+    display: flex;
+    flex-flow: column wrap;
+	  padding: 10px;
+
   }
 
   #statusBar {          
