@@ -21,16 +21,15 @@ window.onload = function() {
 
 document.getElementById("txtMarca").onkeypress = 
 function(evt) {
-
-    let val = this.value;
-    evt = evt || window.event;
-
-    // Ensure we only handle printable keys, excluding enter and space
-    let charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
     
-    if (charCode && charCode > 32) {
+    evt = evt || window.event;
+        
+    let val = this.value;
+    let isPrintableKey = evt.key.length === 1;
 
-        const convertir = new remplazaCaracter(charCode, this, val);
+    if (isPrintableKey) {
+
+        const convertir = new remplazaCaracter(evt.key, this, val);
         
         return false;
     }
@@ -90,7 +89,11 @@ function selectEstudianteGestor(strCedula) {
           cargaDatosPantalla(data);
 
         } else {
-                    
+
+            let contenedorError = document.getElementById("divNombre");
+            contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                    '<strong>Error! </strong>' +
+                                    'No se encontró el estudiante </div>';
           
         }
          
@@ -145,10 +148,8 @@ function transformTypedChar(charStr) {
 
 class remplazaCaracter {
 
-    constructor(charCode, obj, val) {
-
-        let keyChar = String.fromCharCode(charCode);
-
+    constructor(keyChar, obj, val) {
+       
         // Transform typed character
         let mappedChar = transformTypedChar(keyChar);
 
@@ -158,13 +159,13 @@ class remplazaCaracter {
             
             start = obj.selectionStart;
             end = obj.selectionEnd;
+            
             obj.value = val.slice(0, start) + mappedChar + val.slice(end);
 
             // Move the caret
             obj.selectionStart = obj.selectionEnd = start + 1;
 
         }
-
 
         return true;
 

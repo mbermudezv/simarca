@@ -1,19 +1,33 @@
 <?php
 
-require '../sql/select/selectEstudiante_por_Cedula.php';	
+require '../sql/select/selectEstudiante_por_Cedula.php';
+require '../sql/insert/insertMarca.php';	
 
 try {
 
 	$cedula=$_GET['cedula'];
+    $intSeleccion=$_POST['seleccion'];
 
-	$db = new SelectSQL();		
-	$rs = $db->selectEstudiante_por_Cedula($cedula);			
+	$dbSelect = new SelectSQL();
+    $dbInsert = new InsertSQL();
+
+	$rs = $dbSelect->selectEstudiante_por_Cedula($cedula);
+    
+    if (count($rs)>0) {
+
+        $intId = $rs['Estudiante_Id'];
+         	
+        $dbInsert-> insertMarca($intId, $intSeleccion);
+
+        $dbInsert = null;
+        
+    }
 	
     echo json_encode($rs);
 
+    $dbSelect = null;
     $rs = null;
-    $db = null;
-
+    
 } 
 
 catch (PDOException $e) 
