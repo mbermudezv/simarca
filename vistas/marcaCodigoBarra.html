@@ -51,87 +51,8 @@
     
     <script src="../js/marcaCodigoBarra.js"></script>
 
-    <script>
-    
-        // document.getElementById("txtMarca").onkeydown = 
-        // function(evt) {
-            
-        //     let charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
-
-        //     if (charCode == 13) {
-
-        //         let strCedula = document.getElementById("txtMarca").value;
-
-        //         selectEstudianteGestor(strCedula);
-
-        //     }
-            
-        //     evt.preventDefault();
-
-        // };
-
-        function transformTypedChar(charStr) {
-
-            return charStr == "'" ? "-" : charStr;
-
-        }   
-
-        document.getElementById("txtMarca").onkeypress = 
-        function(evt) {
-            
-            let val = this.value;
-
-            evt = evt || window.event;
-
-            // Ensure we only handle printable keys, excluding enter and space
-            let charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
-
-            if (charCode && charCode > 32) {
-                
-                let keyChar = String.fromCharCode(charCode);
-                
-                //remplazaCaracter(keyChar, this, val);
-
-                // Transform typed character
-                let mappedChar = transformTypedChar(keyChar);
-                
-                let start, end;
-                
-                if (typeof this.selectionStart == "number" && typeof this.selectionEnd == "number") {
-                    // Non-IE browsers and IE 9
-                    start = this.selectionStart;
-                    end = this.selectionEnd;
-                    this.value = val.slice(0, start) + mappedChar + val.slice(end);
-                
-                    // Move the caret
-                    this.selectionStart = this.selectionEnd = start + 1;
-                
-                } else if (document.selection && document.selection.createRange) {
-                    
-                    // For IE up to version 8
-                    let selectionRange = document.selection.createRange();
-                    let textInputRange = this.createTextRange();
-                    let precedingRange = this.createTextRange();
-                    let bookmark = selectionRange.getBookmark();
-                    textInputRange.moveToBookmark(bookmark);
-                    precedingRange.setEndPoint("EndToStart", textInputRange);
-                    start = precedingRange.text.length;
-                    end = start + selectionRange.text.length;
-                
-                    this.value = val.slice(0, start) + mappedChar + val.slice(end);
-                    start++;
-                
-                    // Move the caret
-                    textInputRange = this.createTextRange();
-                    textInputRange.collapse(true);
-                    textInputRange.move("character", start - (this.value.slice(0, start).split("\r\n").length - 1));
-                    textInputRange.select();
-
-            }
-        };
-
-    }
-
+    <script>           
+       
         if ('serviceWorker' in navigator) {
             
             window.addEventListener('load', () => {

@@ -19,6 +19,37 @@ window.onload = function() {
     return true;
 }
 
+document.getElementById("txtMarca").onkeypress = 
+function(evt) {
+
+    let val = this.value;
+    evt = evt || window.event;
+
+    // Ensure we only handle printable keys, excluding enter and space
+    let charCode = typeof evt.which == "number" ? evt.which : evt.keyCode;
+    
+    if (charCode && charCode > 32) {
+
+        const convertir = new remplazaCaracter(charCode, this, val);
+        
+        return false;
+    }
+};
+
+document.getElementById("txtMarca").onkeydown = 
+function(evt) {
+    
+    if (evt.key == "Enter") {
+
+        let strCedula = document.getElementById("txtMarca").value;
+
+        selectEstudianteGestor(strCedula);
+
+    }
+                
+
+};
+
 function login() {
 
     arrayTipoMArca = window.sessionStorage.getItem('sessionTipoMArca');    
@@ -42,8 +73,6 @@ function login() {
     return true;
     
 }
-
-
 
 function selectEstudianteGestor(strCedula) {
 
@@ -97,6 +126,7 @@ function selectEstudianteGestor(strCedula) {
 
     
 }
+
 function cargaDatosPantalla(data) {
     
     //console.log(data[0].Estudiante_Nombre);
@@ -107,50 +137,36 @@ function cargaDatosPantalla(data) {
 
 }
 
-// function transformTypedChar(charStr) {
+function transformTypedChar(charStr) {
 
-//     return charStr == "'" ? "-" : charStr;
-    
-//     }
-    
-function remplazaCaracter(keyChar, obj, val) {
-    
-    // Transform typed character
-    let mappedChar = transformTypedChar(keyChar);
-    
-    let start, end;
-    
-    if (typeof obj.selectionStart == "number" && typeof obj.selectionEnd == "number") {
-        // Non-IE browsers and IE 9
-        start = obj.selectionStart;
-        end = obj.selectionEnd;
-        obj.value = val.slice(0, start) + mappedChar + val.slice(end);
-    
-        // Move the caret
-        obj.selectionStart = obj.selectionEnd = start + 1;
-    
-    } else if (document.selection && document.selection.createRange) {
-        
-        // For IE up to version 8
-        let selectionRange = document.selection.createRange();
-        let textInputRange = obj.createTextRange();
-        let precedingRange = obj.createTextRange();
-        let bookmark = selectionRange.getBookmark();
-        textInputRange.moveToBookmark(bookmark);
-        precedingRange.setEndPoint("EndToStart", textInputRange);
-        start = precedingRange.text.length;
-        end = start + selectionRange.text.length;
-    
-        obj.value = val.slice(0, start) + mappedChar + val.slice(end);
-        start++;
-    
-        // Move the caret
-        textInputRange = obj.createTextRange();
-        textInputRange.collapse(true);
-        textInputRange.move("character", start - (obj.value.slice(0, start).split("\r\n").length - 1));
-        textInputRange.select();
+    return charStr == "'" ? "-" : charStr;
+
+}   
+
+class remplazaCaracter {
+
+    constructor(charCode, obj, val) {
+
+        let keyChar = String.fromCharCode(charCode);
+
+        // Transform typed character
+        let mappedChar = transformTypedChar(keyChar);
+
+        let start, end;
+
+        if (typeof obj.selectionStart == "number" && typeof obj.selectionEnd == "number") {
+            
+            start = obj.selectionStart;
+            end = obj.selectionEnd;
+            obj.value = val.slice(0, start) + mappedChar + val.slice(end);
+
+            // Move the caret
+            obj.selectionStart = obj.selectionEnd = start + 1;
+
+        }
+
+
+        return true;
+
     }
-    
-    return true;
-
 }
