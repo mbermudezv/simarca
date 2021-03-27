@@ -13,38 +13,30 @@ class InsertSQL
 		$this->pdo = $pdo;
 	}
 
-	public function insertMarca($intEstudianteId, $intSeleccion){
+	function insertMarca($intEstudianteId, $intSeleccion)
+	{
 		
 		date_default_timezone_set('America/Costa_Rica');
 
-		//$fecha = date_create('now')->format('Y-m-d H:i:s');
-		$fecha = date_create('now')->format('Y-m-d');		
+		$fecha = date_create('now')->format('Y-m-d H:i:s');
+		//$fecha = date_create('now')->format('Y-m-d');		
 		
 		$sql = 'INSERT INTO Marca (Estudiante_Id, Marca_Tipo, Marca_Fecha) VALUES (:Estudiante_Id, :Marca_Tipo, :Marca_Fecha)';
 
-		try {
+		$stmt = $this->pdo->prepare($sql);
 		
-            $stmt = $this->pdo->prepare($sql);
-            
-            $stmt->execute([
-            ':Estudiante_Id' => $intEstudianteId,
-            ':Marca_Tipo' => $intSeleccion,
-            ':Marca_Fecha' => $fecha
-            ]);
-                
-            $stmt = null;
+		$stmt->execute([
+		':Estudiante_Id' => $intEstudianteId,
+		':Marca_Tipo' => $intSeleccion,
+		':Marca_Fecha' => $fecha
+		]);
+			
+		$stmt = null;
 
-            $this->pdo = null;
+		$this->pdo = null;
 
-            return true;
-
-        } catch (Exception $e) 
-            {
-
-		    echo "Error al conectar con la base de datos: " . $e->getMessage() . "\n";
-		    exit;				
-
-	        }	
+		return true;
+      
 	}
 
 }

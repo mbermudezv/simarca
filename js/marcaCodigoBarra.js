@@ -30,10 +30,47 @@ function(evt) {
     if (isPrintableKey) {
 
         const convertir = new remplazaCaracter(evt.key, this, val);
-        
+        convertir.transformar();
+
         return false;
     }
+
+    return true;
 };
+
+class remplazaCaracter {
+    
+    constructor(tecla, objeto, valor){
+        
+        this.tecla = tecla;
+        this.objeto = objeto;
+        this.valor = valor;
+
+    }
+
+    transformar(){
+
+        let mappedChar = this.tecla == "'" ? "-" : this.tecla;
+        
+        let start, end;
+
+        if (typeof this.objeto.selectionStart == "number" && typeof this.objeto.selectionEnd == "number") {
+            
+            start = this.objeto.selectionStart;
+            end = this.objeto.selectionEnd;
+            
+            this.objeto.value = this.valor.slice(0, start) + mappedChar + this.valor.slice(end);
+
+            // Move the caret
+            this.objeto.selectionStart = this.objeto.selectionEnd = start + 1;
+
+        }
+        
+        return this.objeto.value
+      
+    }
+
+}
 
 document.getElementById("txtMarca").onkeydown = 
 function(evt) {
@@ -75,29 +112,40 @@ function login() {
 
 function selectEstudianteGestor(strCedula) {
 
+   
+    let jsonTipoMArca = [];    
+    jsonTipoMArca = JSON.parse(arrayTipoMArca);
+
+    let tipoMarca_Id = jsonTipoMArca["tipoMarca_Id"];    
+    
     fetch('../gestor/gestorEstudiante.php?'
-      + new URLSearchParams({cedula: strCedula}))
+      + new URLSearchParams({cedula: strCedula, seleccion: tipoMarca_Id}))
       .then(function(response) {
 
     if(response.ok) {
 
-      response.json().then(function(data) {
+        let contenedorError = document.getElementById("divNombre");
+        contenedorError.innerHTML='';
+
+        response.json().then(
+            function(data) 
+            {
         
-       //console.log(data);
-        if (Object.keys(data).length>0) {
+                //console.log(data);
+                if (Object.keys(data).length>0) {
 
-          cargaDatosPantalla(data);
+                    cargaDatosPantalla(data);
 
-        } else {
+                } else {
 
-            let contenedorError = document.getElementById("divNombre");
-            contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                    '<strong>Error! </strong>' +
-                                    'No se encontró el estudiante </div>';
-          
-        }
+                    let contenedorError = document.getElementById("divNombre");
+                    contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                            '<strong>Error! </strong>' +
+                                            'No se encontró el estudiante </div>';
+                
+                }
          
-        }).catch(function(error) {
+            }).catch(function(error) {
 
                   let contenedorError = document.getElementById("tipoMarca_Descripcion");
                   contenedorError.innerHTML='<div class="alert alert-danger">' +
@@ -138,36 +186,4 @@ function cargaDatosPantalla(data) {
 
     return true;
 
-}
-
-function transformTypedChar(charStr) {
-
-    return charStr == "'" ? "-" : charStr;
-
-}   
-
-class remplazaCaracter {
-
-    constructor(keyChar, obj, val) {
-       
-        // Transform typed character
-        let mappedChar = transformTypedChar(keyChar);
-
-        let start, end;
-
-        if (typeof obj.selectionStart == "number" && typeof obj.selectionEnd == "number") {
-            
-            start = obj.selectionStart;
-            end = obj.selectionEnd;
-            
-            obj.value = val.slice(0, start) + mappedChar + val.slice(end);
-
-            // Move the caret
-            obj.selectionStart = obj.selectionEnd = start + 1;
-
-        }
-
-        return true;
-
-    }
 }

@@ -5,27 +5,27 @@ require '../sql/insert/insertMarca.php';
 
 try {
 
-	$cedula=$_GET['cedula'];
-    $intSeleccion=$_POST['seleccion'];
+	$cedula = $_GET['cedula'];
+    $intSeleccion = $_GET['seleccion'];
 
-	$dbSelect = new SelectSQL();
-    $dbInsert = new InsertSQL();
-
-	$rs = $dbSelect->selectEstudiante_por_Cedula($cedula);
+	$Select = new SelectSQL();
+	$rs = $Select->selectEstudiante_por_Cedula($cedula);
     
     if (count($rs)>0) {
 
-        $intId = $rs['Estudiante_Id'];
-         	
-        $dbInsert-> insertMarca($intId, $intSeleccion);
+        $intId = $rs[0]["Estudiante_Id"];
 
-        $dbInsert = null;
+        $Insert = new InsertSQL(); 	
+        $insert = $Insert-> insertMarca($intId, $intSeleccion);
+        
+        $Insert = null;
+        $insert = null;
         
     }
 	
     echo json_encode($rs);
-
-    $dbSelect = null;
+    
+    $Select = null;
     $rs = null;
     
 } 
