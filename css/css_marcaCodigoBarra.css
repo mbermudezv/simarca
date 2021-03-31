@@ -57,9 +57,6 @@ body {
 }
 
 #mainArea {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -88,29 +85,6 @@ body {
   color: black;
 }
 
-#containerTxt {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
-}
-
-#mainAreaInput {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-}
-
 #txtMarca {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -136,60 +110,28 @@ body {
 }
 
 #fila {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-top: 0.25em;
-}
-
-#Col1 {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  background-color: transparent;
-  font-family: "Lucida Console", Monaco, monospace;
-  color: white;
-}
-
-#Col2 {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: transparent;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.txtDescripcion {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#Col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: transparent;
-  color: white;
-  font-family: "Lucida Console", Monaco, monospace;
-  font-size: 1.5em;
-  border-radius: 5px;
-  margin-left: 1vw;
-  margin-right: 1vw;
-  padding: 5px;
-}
-
-.cut-text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.overflowInput {
-  overflow: scroll;
-  white-space: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #statusBar {
@@ -234,7 +176,7 @@ body {
     font-size: 1.5rem;
   }
   #statusBar {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 /*# sourceMappingURL=css_marcaCodigoBarra.css.map */

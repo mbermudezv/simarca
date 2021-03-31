@@ -49,10 +49,9 @@
   }
   
   #mainArea {
-
-    flex-grow: 1;
+    
     display: flex;
-    flex-flow: column nowrap;      
+    flex-flow: column nowrap;
 
   }  
 
@@ -78,20 +77,6 @@
     color:black;
   }
 
-  #containerTxt {
-
-    display: flex;
-    flex-flow: column wrap;
-	  //padding: 10px;
-
-  }
-
-  #mainAreaInput {
-    flex-grow: 1;
-    display: flex;    
-    flex-flow: column;
-  }
-
   #txtMarca {
     flex-grow: 1;
     background-color: transparent;
@@ -109,52 +94,19 @@
     display: flex;
     flex-direction: column;
    
-}
+  }
+
   #fila{   
-      display: flex;
-      justify-content: center;    
-    padding-top: 0.25em;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;       
   }
-
-  #Col1{    
+  
+  #Col{       
     flex: 1;
-    background-color: transparent;
-    font-family: "Lucida Console", Monaco, monospace;	
-    color: white;
-    
-  }
-
-  #Col2{       
-    flex: 2;
     display: flex; 
     background-color: transparent;
     justify-content: center;
-    
-  }
-
-  .txtDescripcion {
-    flex-grow: 1;
-    background-color: transparent;
-    color: white;	
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 1.5em;
-    border-radius: 5px;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    padding: 5px;    
-  }
-
-  .cut-text { 
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .overflowInput {
-
-    overflow: scroll;
-    white-space: nowrap;
-
   }
 
   #statusBar {          
@@ -231,7 +183,7 @@
       }
 
       #statusBar {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
   
     }

@@ -1,5 +1,5 @@
 const CACHE_NAME = 'static-cache';
-const FILES_TO_CACHE = ['./', './offline.html'];
+const FILES_TO_CACHE = ['./', './offline.html', './img/sinconexion.png'];
   
 self.addEventListener('install', function(evt) {
     console.log('Intentando instalar la aplicación!');
