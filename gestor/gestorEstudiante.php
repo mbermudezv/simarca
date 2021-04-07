@@ -1,6 +1,7 @@
 <?php
 
 require '../sql/select/selectEstudiante_por_Cedula.php';
+require '../sql/select/selectMarcaRegistrada.php';
 require '../sql/insert/insertMarca.php';	
 
 try {
@@ -14,12 +15,20 @@ try {
     if (count($rs)>0) {
 
         $intId = $rs[0]["Estudiante_Id"];
+        $rsMarcaRegistrada = [];
 
-        $Insert = new InsertSQL(); 	
-        $insert = $Insert-> insertMarca($intId, $intSeleccion);
-        
-        $Insert = null;
-        $insert = null;
+        $selectMarcaRegistrada = new SelectSQLMarcaRegistrada();
+        $rsMarcaRegistrada = $selectMarcaRegistrada->selectMarcaRegistrada($intId, $intSeleccion);
+
+        if (count($rsMarcaRegistrada)==0) {
+
+            $Insert = new InsertSQL(); 	
+            $insert = $Insert-> insertMarca($intId, $intSeleccion);
+            
+            $Insert = null;
+            $insert = null;
+    
+        }
         
     }
 	

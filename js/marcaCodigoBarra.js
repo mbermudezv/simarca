@@ -1,11 +1,11 @@
 window.arrayTipoMArca = [];
 
-window.onload = function() {
-
+window.onload = function() 
+{
+    
     let boologin = login();
 
     if (boologin === false) {
-
       
       let contenedorError = document.getElementById("tipoMarca_Descripcion");
       
@@ -13,10 +13,12 @@ window.onload = function() {
                                       '<strong>Error! </strong>' +
                                           'No ha seleccionado el Tipo de Marca' +
                                       '</div>';
+      
+        return 0
   
     }
-
-    return true;
+   
+    return 1;
 }
 
 document.getElementById("txtMarca").onkeypress = 
@@ -86,19 +88,23 @@ function(evt) {
 
 };
 
-function login() {
-
+function login() 
+{
     arrayTipoMArca = window.sessionStorage.getItem('sessionTipoMArca');    
     
     if (arrayTipoMArca && arrayTipoMArca.length>0) {
+
+        document.getElementById("txtMarca").focus();
         
         let jsonTipoMArca = [];
 
         jsonTipoMArca = JSON.parse(arrayTipoMArca);
 
-        let tipoMarca_Descripcion = document.getElementById("tipoMarca_Descripcion");
+        let tipoMarca_Descripcion = document.getElementById("tipoMarca");
         tipoMarca_Descripcion.innerText = jsonTipoMArca["tipoMarca_Descripcion"];
 
+        mostrarMarcaContador();
+        mostrarImagen();        
 
     } else {
 
@@ -106,13 +112,12 @@ function login() {
 
     }
             
-    return true;
-    
+    return true;    
 }
 
-function selectEstudianteGestor(strCedula) {
+function selectEstudianteGestor(strCedula) 
+{
 
-   
     let jsonTipoMArca = [];    
     jsonTipoMArca = JSON.parse(arrayTipoMArca);
 
@@ -135,6 +140,9 @@ function selectEstudianteGestor(strCedula) {
                 if (Object.keys(data).length>0) {
 
                     cargaDatosPantalla(data);
+                    mostrarMarcaContador();
+                    mostrarImagen();
+                    document.getElementById('txtMarca').value = '';
 
                 } else {
 
@@ -175,15 +183,79 @@ function selectEstudianteGestor(strCedula) {
 
   return true;
 
-    
 }
 
-function cargaDatosPantalla(data) {
-    
+function cargaDatosPantalla(data) 
+{    
     //console.log(data[0].Estudiante_Nombre);
     document.getElementById("divNombre").innerHTML = 
                 data[0].Estudiante_Nombre + " " + data[0].Estudiante_Apellido1 + " " + data[0].Estudiante_Apellido2;
 
     return true;
 
+}
+
+function mostrarMarcaContador() 
+{
+    let jsonTipoMArca = [];    
+    jsonTipoMArca = JSON.parse(arrayTipoMArca);
+
+    let tipoMarca_Id = jsonTipoMArca["tipoMarca_Id"];    
+
+    fetch('../gestor/gestorMarcaContador.php?'
+            + new URLSearchParams({seleccion: tipoMarca_Id}))
+    .then(function(response) 
+    {
+
+        if(response.ok) {                    
+
+            response.text().then(
+                function(data) 
+                {      
+                    //console.log(data);
+                    if (Object.keys(data).length>0) {
+
+                        document.getElementById("contador").innerHTML = data;
+
+                    } else {
+
+                        document.getElementById("contador").innerHTML ='0';
+                    
+                    }
+       
+                });
+
+        } 
+
+    }).then();
+
+    return 1;
+
+}
+
+function mostrarImagen() {
+
+    fetch('../php/selectImg.php').then(
+        function(response) 
+        {
+
+            if(response.ok) {                    
+
+                response.text().then(
+                    function(data) 
+                    {      
+                        console.log(data);
+                        if (Object.keys(data).length>0) {
+
+                            document.getElementById("imagenMarca").src = "../img/marca/" + data;
+
+                        }
+
+                    });
+            } 
+
+        }).then();
+
+    return true;
+    
 }
