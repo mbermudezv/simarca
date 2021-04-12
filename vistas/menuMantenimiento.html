@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="SiMarca">
     <meta name="theme-color" content="#499bea" />
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css_index.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css_marcaTipoSeleccionar.css">    
     <title>SiMarca</title>        
 </head>
 <body>
       
-    <div id="encabezadoBar" class="d-flex flex-row justify-content-around bg-info
+    <div id="encabezadoBar" class="d-flex flex-row justify-content-between bg-info
                                    py-3 py-sm-4 py-md-4 py-lg-3
                                    py-xl-2">
         
-        <span id="tituloMarca">SiMarca</span>
+        <a id="salir" href="../index.html" class="d-flex align-self-start m-0">
+            <img src="../img/salir.png">
+        </a>
 
     </div>
 
@@ -32,13 +33,13 @@
                             nav-justified bg-dark">
                     <a class="item nav-item nav-link 
                               py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
-                              href="vistas/marcaTipoSeleccionar.html">Marcar</a>
+                              href="cargar_Excel.html">Cargar Estudiantes</a>
                     <a class="item nav-item nav-link 
                               py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
-                              href="#">Reportes</a>
+                              href="#">Agregar un Estudiante</a>
                     <a class="item nav-item nav-link 
                               py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
-                              href="vistas/menuMantenimiento.html">Mantenimiento</a>
+                              href="#">Configuración de SiMarca</a>
                 </nav>
             
             </div> 
@@ -54,23 +55,5 @@
 
     </div>
         
-    <script>       
-
-        if ('serviceWorker' in navigator) {
-            
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./service-worker.js')
-                    .then((reg) => {
-                    console.log('Registrando el Service worker.', reg);
-                    }, function(err) {
-                            // registration failed :(
-                            console.log('Error al registrar el ServiceWorker: ', err);
-                        });
-            });
-
-        }
-
-    </script> 
-
 </body>
 </html>
