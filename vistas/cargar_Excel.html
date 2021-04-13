@@ -1,16 +1,15 @@
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="autor" content="Mauricio Bermúdez Vargas" />
-<meta name="viewport" content="width=device-width" />
-<link rel="stylesheet" type="text/css" href="css/css_cargar_Excel.css">
-<title>Cargar archivo</title>
-<script type="text/javascript" src="jq/jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="autor" content="Mauricio Bermúdez Vargas" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="../css/css_cargar_Excel.css">
+    <title>Cargar archivo</title>    
 </head> 
 <body>
     <div id="mainArea">
         <div id="menu">
-            <a id="salir" class="menuBoton" href="seleccion.php"></a>            
+            <a id="salir" class="menuBoton" href="menuMantenimiento.html"></a>            
         </div>
         <div id="fila">             
             <div id="Col1">Seleccione el archivo Excel</div>
@@ -31,53 +30,59 @@
         <a id="linkWappcom" href="https://www.wappcom.net">wappcom.net</a>                                         
     </div>
 
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/cargaExcel.js"></script>
+
 <script>
 
-function guardar() {
-    
-    var excel = $('#upexcel')[0].files[0];
-
-    var data = new FormData(); 
-    data.append('upexcel', excel);
-
-    $('#guardar').html('<img src="img/cargando.gif">');
-    
-    $.post("sql/deleteExcelGestor.php")
-	.done(function(data) {
-
-        }).fail(function(jqXHR, textStatus, error) {
-		    console.log("Error de la aplicación: " + error);    			
-		    $(body).append("Error al conectar con la base de datos: " + error);			
-	        });
-
-    var xhr=new XMLHttpRequest();
-    xhr.open('POST','sql/insertExcelGestor.php',true);          
-    xhr.onload=function(e) {
-        if (xhr.readyState === xhr.DONE) {
-            if (xhr.status === 200) {
-                console.log(xhr.response);
-                if (xhr.response == "error") {
-                    alert("Tipo de archivo inválido");    
-                } else {
-                    $.post("sql/callExcelGestor.php")
-                    .done(function(data) {
-
-                        }).fail(function(jqXHR, textStatus, error) {
-                            console.log("Error de la aplicación: " + error);    			
-                            $(body).append("Error al conectar con la base de datos: " + error);			
-                            });
-                }                
-                $('#guardar').html('<img src="img/guardar.png">');                                                 
-            }  
-        }                   
-    };          
-    xhr.send(data);                   
-       
-}
+    function guardar1() {
         
-$('#salir').html('<img src="img/salir.png">'); 
-$('#guardar').html('<img src="img/guardar.png">');    
+        var excel = $('#upexcel')[0].files[0];
+
+        var data = new FormData(); 
+        data.append('upexcel', excel);
+
+        $('#guardar').html('<img src="../img/cargando.gif">');
+        
+        $.post("../gestor/deleteExcelGestor.php")
+        .done(function(data) {}).fail(function(jqXHR, textStatus, error) {
+        console.log("Error de la aplicación: " + error);    			
+        $(body).append("Error al conectar con la base de datos: " + error);			
+        });
+
+        var xhr=new XMLHttpRequest();
+
+        xhr.open('POST','../gestor/insertExcelGestor.php',true);
+
+        xhr.onload=function(e) {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    console.log(xhr.response);
+                    if (xhr.response == "error") {
+                        alert("Tipo de archivo inválido");    
+                    } else {
+                        $.post("../gestor/callExcelGestor.php")
+                        .done(function(data) {
+
+                            }).fail(function(jqXHR, textStatus, error) {
+                                console.log("Error de la aplicación: " + error);    			
+                                $(body).append("Error al conectar con la base de datos: " + error);			
+                                });
+                    }                
+                    $('#guardar').html('<img src="../img/guardar.png">');                                                 
+                }  
+            }                   
+        };
+                  
+        xhr.send(data);                   
+        
+    }
+        
+    $('#salir').html('<img src="../img/salir.png">'); 
+    $('#guardar').html('<img src="../img/guardar.png">');    
+
 </script>
 
 </body>
+
 </html>
