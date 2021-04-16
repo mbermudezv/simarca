@@ -23,29 +23,43 @@ if (!isset($_FILES['upexcel']['tmp_name']) || !in_array($_FILES['upexcel']['type
     die("error");
   }	
 
-  require '../vendor/autoload.php';
+  require '../vendor/autoload.php';  
   require '../sql/insert/insertExcel.php';
 
+  use PhpOffice\PhpSpreadsheet\IOFactory;
+  use PhpOffice\PhpSpreadsheet\Spreadsheet;
   try 
   {
 
-    if (pathinfo($_FILES['upexcel']['name'], PATHINFO_EXTENSION) == 'csv') 
-    {
 
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+    $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $spreadsheet->getProperties();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'Hello');
+    $sheet->setCellValue('B1', 'World');
 
-    } else     
-      {
+    $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('../../HelloWorld.xlsx');
+   
+    
 
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    // if (pathinfo($_FILES['upexcel']['name'], PATHINFO_EXTENSION) == 'csv') 
+    // {
 
-      }
+    //     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+
+    // } else     
+    //   {
+
+    //     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+
+    //   }
     
     
 
-    $spreadsheet = $reader->load($_FILES['upexcel']['tmp_name']);
-    $worksheet = $spreadsheet->getActiveSheet();   
-    $highestRow = $worksheet->getHighestRow();
+    // $spreadsheet = $reader->load($_FILES['upexcel']['tmp_name']);
+    // $worksheet = $spreadsheet->getActiveSheet();   
+    // $highestRow = $worksheet->getHighestRow();
       
     // /*for ($row = 7; $row <= $highestRow; ++$row) {*/
     // for ($row = 1; $row <= $highestRow; ++$row) 
