@@ -3,7 +3,7 @@
 * Mauricio Bermudez Vargas 24/03/2018 11:38 p.m.
 */
 
-require '../sql/conexion.php';
+// require '../sql/conexion.php';
 
 class deleteExcel
 {

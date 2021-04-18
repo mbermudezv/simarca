@@ -2,7 +2,9 @@
 /**
 * Mauricio Bermudez Vargas 28/12/2019 11:17 p.m.
 */
-require '../sql/conexion.php';
+
+//require '../sql/conexion.php';
+//require '../sql/insert/callExcel.php';
 
 class insertExcel
 {
@@ -44,6 +46,25 @@ class insertExcel
 		echo "Error al conectar con la base de datos: " . $e->getMessage() . "\n";
 		exit;				
 	    }	
+	}
+
+    public function callExcel(){
+        		
+        $sql = 'CALL estudianteExcel();';
+                                        
+        try {
+            
+            $stmt = $this->pdo->prepare($sql);				        			
+            $stmt->execute();				
+            $stmt = null;
+            $this->pdo = null;
+
+            return 0;
+
+        } catch (Exception $e) {
+            echo "Error al conectar con la base de datos: " . $e->getMessage() . "\n";
+            exit;				
+        }	
 	}
 }
 
