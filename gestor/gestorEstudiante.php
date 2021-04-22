@@ -1,5 +1,6 @@
 <?php
 
+require '../sql/conexion.php';
 require '../sql/select/selectEstudiante_por_Cedula.php';
 require '../sql/select/selectMarcaRegistrada.php';
 require '../sql/insert/insertMarca.php';	

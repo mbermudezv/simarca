@@ -1,6 +1,6 @@
 <?php
 
-require '../sql/conexion.php';
+// require '../sql/conexion.php';
 
 class SelectSQLMarcaRegistrada 
 {
