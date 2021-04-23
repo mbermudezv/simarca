@@ -141,8 +141,7 @@ function selectEstudianteGestor(strCedula)
 
                     cargaDatosPantalla(data);
                     mostrarMarcaContador();
-                    mostrarImagen();
-                    document.getElementById('txtMarca').value = '';
+                    mostrarImagen();                    
 
                 } else {
 
@@ -180,6 +179,8 @@ function selectEstudianteGestor(strCedula)
                                       'Hubo un problema al conectar con el servidor: ' + error.message +
                                   '</div>';        
   }).then();
+
+  document.getElementById('txtMarca').value = '';
 
   return true;
 
@@ -244,7 +245,7 @@ function mostrarImagen() {
                 response.text().then(
                     function(data) 
                     {      
-                        console.log(data);
+                        //console.log(data);
                         if (Object.keys(data).length>0) {
 
                             document.getElementById("imagenMarca").src = "../img/marca/" + data;
