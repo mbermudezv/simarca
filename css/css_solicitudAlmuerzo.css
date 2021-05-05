@@ -1,0 +1,178 @@
+@-ms-viewport {
+  width: device-width;
+}
+
+@-o-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+html {
+  overflow-y: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+body {
+  margin: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#encabezadoBar * {
+  width: 3em;
+  height: 3em;
+  background: white;
+  border-radius: 50%;
+}
+
+#mainArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+#tipoMarca_Descripcion {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 1.5em;
+  color: yellow;
+  font-weight: bold;
+  background-color: gray;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.txtDescripcionCombo {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background-color: black;
+  color: white;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 1.2em;
+}
+
+#cboSeccion {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  text-align-last: center;
+}
+
+#tabla {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#fila {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#Col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#statusBar {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+#linkHogar, #linkWappcom {
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  #tituloMarca {
+    font-size: 1.4rem;
+  }
+  #statusBar {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #tituloMarca {
+    font-size: 1.4rem;
+  }
+  #statusBar {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  #tituloMarca {
+    font-size: 1.2rem;
+  }
+  #statusBar {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  #tituloMarca {
+    font-size: 1.5rem;
+  }
+  #statusBar {
+    font-size: 1rem;
+  }
+}
+/*# sourceMappingURL=css_solicitudAlmuerzo.css.map */
