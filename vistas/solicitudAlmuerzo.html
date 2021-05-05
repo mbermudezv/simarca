@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#499bea" />
     <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css_marcaCodigoBarra.css">    
+    <link rel="stylesheet" href="../css/css_solicitudAlmuerzo.css">    
     <title>SiMarca</title>  
 </head>
 
@@ -18,12 +18,12 @@
     <div id="encabezadoBar" class="d-flex flex-row 
                                     justify-content-between bg-info">
 
-        <a href="marcaTipoSeleccionar.html" class="m-1">
+        <a href="../index.html" class="m-1">
             <img src="../img/salir.png">
         </a>
 
         <a href="#" class="m-1">
-            <img src="../img/buscar.png">
+            <img src="../img/add.png">
         </a>
                                                                     
     </div>
@@ -34,7 +34,7 @@
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 pt-1">                 
                 <div id="tipoMarca_Descripcion" class="m-1 p-1">
-                    <span id="tipoMarca" class="font-weight-bold"></span>
+                    <span id="tipoMarca" class="font-weight-bold">Solicitudes:</span>
                     <span id="contador" class="badge badge-pill badge-primary"></span>
                 </div>
                               
@@ -44,7 +44,9 @@
 
         <div class="row flex-column align-items-center">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pt-2">
-                <div id="divNombre" class="m-1 p-1"></div>
+                <select id="cboSeccion" class="txtDescripcionCombo m-1 p-1" 
+                        onchange="getvalSeccion(this.value);">
+                </select>                
             </div>          
         </div>
 
@@ -53,7 +55,7 @@
             <div id="tabla" class="pt-2 pt-lg-3 pt-xl-3">
                 <div id="fila">                              
                     <div id="Col">
-                        <input type="text" id="txtMarca" maxlength="50">
+                        <!-- <input type="text" id="txtMarca" maxlength="50"> -->
                     </div>                               
                 </div>
             </div>         
@@ -66,7 +68,7 @@
         
         <div class="row flex-column align-items-center">
             <div class="col-11 col-sm-7 col-md-7 col-lg-7 col-xl-5">
-                <img id="imagenMarca">
+                <!-- <img id="imagenMarca"> -->
             </div>
         </div>                   
         

@@ -9,6 +9,7 @@ $(document).ready(function() {
           enviar_a_FormularioMarca(tipoMarca_Id,tipoMarca_Descripcion)
 
           return true;
+          
         });
   
 });    
