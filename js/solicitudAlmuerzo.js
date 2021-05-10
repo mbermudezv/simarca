@@ -1,119 +1,53 @@
-window.arrayTipoMArca = [];
 
 window.onload = function() 
 {
     
-    let boologin = login();
-
-    if (boologin === false) {
-      
-      let contenedorError = document.getElementById("tipoMarca_Descripcion");
-      
-      contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                      '<strong>Error! </strong>' +
-                                          'No ha seleccionado el Tipo de Marca' +
-                                      '</div>';
-      
-        return 0
-  
-    }
+    cargaComboSeccion();
    
-    return 1;
-}
-
-document.getElementById("txtMarca").onkeypress = 
-function(evt) {
-    
-    evt = evt || window.event;
-        
-    let val = this.value;
-    let isPrintableKey = evt.key.length === 1;
-
-    if (isPrintableKey) {
-
-        const convertir = new remplazaCaracter(evt.key, this, val);
-        convertir.transformar();
-
-        return false;
-    }
-
     return true;
-};
-
-class remplazaCaracter {
-    
-    constructor(tecla, objeto, valor){
-        
-        this.tecla = tecla;
-        this.objeto = objeto;
-        this.valor = valor;
-
-    }
-
-    transformar(){
-
-        let mappedChar = this.tecla == "'" ? "-" : this.tecla;
-        
-        let start, end;
-
-        if (typeof this.objeto.selectionStart == "number" && typeof this.objeto.selectionEnd == "number") {
-            
-            start = this.objeto.selectionStart;
-            end = this.objeto.selectionEnd;
-            
-            this.objeto.value = this.valor.slice(0, start) + mappedChar + this.valor.slice(end);
-
-            // Move the caret
-            this.objeto.selectionStart = this.objeto.selectionEnd = start + 1;
-
-        }
-        
-        return this.objeto.value
-      
-    }
-
 }
 
-document.getElementById("txtMarca").onkeydown = 
-function(evt) {
-    
-    if (evt.key == "Enter") {
-
-        let strCedula = document.getElementById("txtMarca").value;
-
-        selectEstudianteGestor(strCedula);
-
-    }
+function cargaComboSeccion() {
+ 
+    fetch('../gestor/gestorSeccion.php')
+    .then(function(response) 
+    {
+            
+        if(response.ok) 
+        {
+  
+            response.json().then(function(data) 
+            {
+          
+                //console.log(data);
                 
+                let cboSeccion = document.getElementById("cboSeccion");
+                
+                data.forEach(element => {
+                    //console.log(element.seccion_Id)
+                    let opt = document.createElement("option");
+                    opt.value = element.seccion_Id;
+                    opt.innerHTML = element.seccion_Descripcion; 
+                    cboSeccion.append(opt);
 
-};
+                });
+                // for (let i = 0; i < disponible; i++) {
+                //   valor = i+1;
+                //   let opt = document.createElement("option");
+                //   opt.value = valor;
+                //   opt.innerHTML = valor; 
+                //   selectCantidadsolicitud.append(opt);
+                // }
+      
+            });
+  
+        }
 
-function login() 
-{
-    arrayTipoMArca = window.sessionStorage.getItem('sessionTipoMArca');    
+    }).then(function(data){});
+  
     
-    if (arrayTipoMArca && arrayTipoMArca.length>0) {
-
-        document.getElementById("txtMarca").focus();
-        
-        let jsonTipoMArca = [];
-
-        jsonTipoMArca = JSON.parse(arrayTipoMArca);
-
-        let tipoMarca_Descripcion = document.getElementById("tipoMarca");
-        tipoMarca_Descripcion.innerText = jsonTipoMArca["tipoMarca_Descripcion"];
-
-        mostrarMarcaContador();
-        mostrarImagen();        
-
-    } else {
-
-        return false;
-
-    }
-            
-    return true;    
 }
+
 
 function selectEstudianteGestor(strCedula) 
 {
