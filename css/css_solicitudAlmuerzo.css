@@ -95,6 +95,19 @@ body {
   text-align-last: center;
 }
 
+.contenedor_Fila {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 #tabla {
   display: -webkit-box;
   display: -ms-flexbox;

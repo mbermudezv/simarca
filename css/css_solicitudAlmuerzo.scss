@@ -49,7 +49,7 @@
   }
   
   #mainArea {
-    
+    //flex-grow: 1;
     display: flex;
     flex-flow: column nowrap;
 
@@ -67,19 +67,29 @@
 
   }
 
-  .txtDescripcionCombo {
+  .txtDescripcionCombo 
+  {
     flex-grow: 0;
     align-self: center;
     background-color: black;
     color: white;	
     font-family: "Lucida Console", Monaco, monospace;
     font-size: 1.2em;    
-    }
+  }
 
-    #cboSeccion {    
-        flex-basis: 50%;
-        text-align-last:center;
-    }
+  #cboSeccion 
+  {    
+      flex-basis: 50%;
+      text-align-last:center;
+  }
+
+  .contenedor_Fila 
+  {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;    
+      
+  }
 
   #tabla{    
     display: flex;

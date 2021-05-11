@@ -30,15 +30,8 @@ function cargaComboSeccion() {
                     opt.innerHTML = element.seccion_Descripcion; 
                     cboSeccion.append(opt);
 
-                });
-                // for (let i = 0; i < disponible; i++) {
-                //   valor = i+1;
-                //   let opt = document.createElement("option");
-                //   opt.value = valor;
-                //   opt.innerHTML = valor; 
-                //   selectCantidadsolicitud.append(opt);
-                // }
-      
+                });                
+                      
             });
   
         }
@@ -49,72 +42,70 @@ function cargaComboSeccion() {
 }
 
 
-function selectEstudianteGestor(strCedula) 
+function selectEstudianteGestor(seccion_Id) 
 {
-
-    let jsonTipoMArca = [];    
-    jsonTipoMArca = JSON.parse(arrayTipoMArca);
-
-    let tipoMarca_Id = jsonTipoMArca["tipoMarca_Id"];    
     
-    fetch('../gestor/gestorEstudiante.php?'
-      + new URLSearchParams({cedula: strCedula, seleccion: tipoMarca_Id}))
-      .then(function(response) {
+    if (seccion_Id > 0) 
+    {
+    
+            fetch('../gestor/gestorEstudianteSeccion.php?'
+            + new URLSearchParams({seccion_Id: seccion_Id}))
+            .then(function(response) {
 
-    if(response.ok) {
+            if(response.ok) {
 
-        let contenedorError = document.getElementById("divNombre");
-        contenedorError.innerHTML='';
+                //let contenedorError = document.getElementById("divNombre");
+                //contenedorError.innerHTML='';
 
-        response.json().then(
-            function(data) 
-            {
-        
-                //console.log(data);
-                if (Object.keys(data).length>0) {
+                response.json().then(
+                    function(data) 
+                    {
+                
+                        console.log(data);
+                        if (Object.keys(data).length>0) {
 
-                    cargaDatosPantalla(data);
-                    mostrarMarcaContador();
-                    mostrarImagen();                    
+                            //cargaDatosPantalla(data);
+                            //mostrarMarcaContador();                    
 
-                } else {
+                        } else {
 
-                    let contenedorError = document.getElementById("divNombre");
+                            let contenedorError = document.getElementById("tipoMarca_Descripcion");
+                            contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                                    '<strong>Error! </strong>' +
+                                                    'No se encontraron datos </div>';
+                        
+                        }
+                
+                    }).catch(function(error) {
+
+                        let contenedorError = document.getElementById("tipoMarca_Descripcion");
+                        contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                                '<strong>Error! </strong>' +
+                                                'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
+                                                '</div>';
+                    });              
+
+
+            } else {
+                    
+                    let contenedorError = document.getElementById("tipoMarca_Descripcion");           
                     contenedorError.innerHTML='<div class="alert alert-danger">' +
                                             '<strong>Error! </strong>' +
-                                            'No se encontró el estudiante </div>';
-                
-                }
-         
-            }).catch(function(error) {
+                                                'No se pudo conectar con el servidor. Intente de nuevo.' +
+                                            '</div>';
+            }
 
-                  let contenedorError = document.getElementById("tipoMarca_Descripcion");
-                  contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                          '<strong>Error! </strong>' +
-                                          'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
-                                          '</div>';
-            });              
-
-
-    } else {
+        }).catch(function(error) {
             
-            let contenedorError = document.getElementById("tipoMarca_Descripcion");           
-            contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                    '<strong>Error! </strong>' +
-                                        'No se pudo conectar con el servidor. Intente de nuevo.' +
-                                    '</div>';
+                let contenedorError = document.getElementById("tipoMarca_Descripcion");         
+                contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                        '<strong>Error! </strong>' +
+                                            'Hubo un problema al conectar con el servidor: ' + error.message +
+                                        '</div>';        
+        }).then();
+
     }
-
-  }).catch(function(error) {
-    
-          let contenedorError = document.getElementById("tipoMarca_Descripcion");         
-          contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                  '<strong>Error! </strong>' +
-                                      'Hubo un problema al conectar con el servidor: ' + error.message +
-                                  '</div>';        
-  }).then();
-
-  document.getElementById('txtMarca').value = '';
+  //document.getElementById('txtMarca').value = '';
 
   return true;
 
