@@ -53,23 +53,22 @@ function selectEstudianteGestor(seccion_Id)
             .then(function(response) {
 
             if(response.ok) {
-
-                //let contenedorError = document.getElementById("divNombre");
-                //contenedorError.innerHTML='';
-
+                
                 response.json().then(
                     function(data) 
                     {
+                        let contenedorError = document.getElementById("mensaje");
+                            contenedorError.innerHTML='';
                 
-                        console.log(data);
+                        //console.log(data);
                         if (Object.keys(data).length>0) {
 
-                            //cargaDatosPantalla(data);
+                            cargaDatosPantalla(data);
                             //mostrarMarcaContador();                    
 
                         } else {
 
-                            let contenedorError = document.getElementById("tipoMarca_Descripcion");
+                            let contenedorError = document.getElementById("mensaje");
                             contenedorError.innerHTML='<div class="alert alert-danger">' +
                                                     '<strong>Error! </strong>' +
                                                     'No se encontraron datos </div>';
@@ -78,7 +77,7 @@ function selectEstudianteGestor(seccion_Id)
                 
                     }).catch(function(error) {
 
-                        let contenedorError = document.getElementById("tipoMarca_Descripcion");
+                        let contenedorError = document.getElementById("mensaje");
                         contenedorError.innerHTML='<div class="alert alert-danger">' +
                                                 '<strong>Error! </strong>' +
                                                 'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
@@ -88,7 +87,7 @@ function selectEstudianteGestor(seccion_Id)
 
             } else {
                     
-                    let contenedorError = document.getElementById("tipoMarca_Descripcion");           
+                    let contenedorError = document.getElementById("mensaje");           
                     contenedorError.innerHTML='<div class="alert alert-danger">' +
                                             '<strong>Error! </strong>' +
                                                 'No se pudo conectar con el servidor. Intente de nuevo.' +
@@ -97,7 +96,7 @@ function selectEstudianteGestor(seccion_Id)
 
         }).catch(function(error) {
             
-                let contenedorError = document.getElementById("tipoMarca_Descripcion");         
+                let contenedorError = document.getElementById("mensaje");         
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
                                         '<strong>Error! </strong>' +
                                             'Hubo un problema al conectar con el servidor: ' + error.message +
@@ -105,7 +104,7 @@ function selectEstudianteGestor(seccion_Id)
         }).then();
 
     }
-  //document.getElementById('txtMarca').value = '';
+  
 
   return true;
 
@@ -113,9 +112,31 @@ function selectEstudianteGestor(seccion_Id)
 
 function cargaDatosPantalla(data) 
 {    
-    //console.log(data[0].Estudiante_Nombre);
-    document.getElementById("divNombre").innerHTML = 
-                data[0].Estudiante_Nombre + " " + data[0].Estudiante_Apellido1 + " " + data[0].Estudiante_Apellido2;
+    $('#check').remove();
+    $('#nombre').remove();
+    
+    data.forEach(obj => {
+
+        let plantilla = document.getElementById("plantilla");
+
+        let nombre = obj.Estudiante_Nombre + " " + obj.Estudiante_Apellido1 + " " + obj.Estudiante_Apellido2;
+        
+        let colCheck = document.createElement('div');
+        colCheck.id = "check";
+        colCheck.className = "col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 form-check d-flex align-items-center justify-content-center";
+        colCheck.innerHTML='<input class="form-check-input position-static" ' +
+                            'type="checkbox" data-id="' + obj.seccion_Id +'">';
+              
+        let colNombre = document.createElement('div');
+        colNombre.id = "nombre";
+        colNombre.className = "col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4";
+        let createATextNombre = document.createTextNode(nombre);
+        colNombre.appendChild(createATextNombre);
+
+        plantilla.appendChild(colCheck);
+        plantilla.appendChild(colNombre);
+
+    }); 
 
     return true;
 

@@ -1,12 +1,12 @@
 <?php
 
-require '../sql/select/selectSeccion.php';
+require '../sql/select/selectTipoMarca.php';
 
 try 
     {
 
-        $db = new SelectSeccion();		
-        $rs = $db->selectSeccion();
+        $db = new SelectTipoMarca();		
+        $rs = $db->selectTipoMarca();
         
         echo json_encode($rs);                
 

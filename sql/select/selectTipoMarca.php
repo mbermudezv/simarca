@@ -2,7 +2,7 @@
 
 require '../sql/conexion.php';
 
-class SelectSQL 
+class SelectTipoMarca 
 {
 
     private $pdo;
@@ -17,7 +17,7 @@ class SelectSQL
         
     }
 
-    function TipoMarca()
+    function selectTipoMarca()
     {        
 
         if ($this->pdo != null) {		
