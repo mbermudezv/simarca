@@ -44,22 +44,25 @@ function cargaComboSeccion() {
 
 function selectEstudianteGestor(seccion_Id) 
 {
-    
+        
     if (seccion_Id > 0) 
     {
-    
-            fetch('../gestor/gestorEstudianteSeccion.php?'
-            + new URLSearchParams({seccion_Id: seccion_Id}))
-            .then(function(response) {
+        
+        $('#lista').empty(); 
+
+        fetch('../gestor/gestorEstudianteSeccion.php?'
+        + new URLSearchParams({seccion_Id: seccion_Id}))
+        .then(function(response) {
 
             if(response.ok) {
                 
                 response.json().then(
                     function(data) 
                     {
+
                         let contenedorError = document.getElementById("mensaje");
-                            contenedorError.innerHTML='';
-                
+                        contenedorError.innerHTML='';
+                                                       
                         //console.log(data);
                         if (Object.keys(data).length>0) {
 
@@ -71,7 +74,7 @@ function selectEstudianteGestor(seccion_Id)
                             let contenedorError = document.getElementById("mensaje");
                             contenedorError.innerHTML='<div class="alert alert-danger">' +
                                                     '<strong>Error! </strong>' +
-                                                    'No se encontraron datos </div>';
+                                                    'No se encontraron datos </div>';                                                        
                         
                         }
                 
@@ -103,6 +106,10 @@ function selectEstudianteGestor(seccion_Id)
                                         '</div>';        
         }).then();
 
+    } else {
+
+        $('#lista').empty();
+
     }
   
 
@@ -112,13 +119,13 @@ function selectEstudianteGestor(seccion_Id)
 
 function cargaDatosPantalla(data) 
 {    
-    $('#check').remove();
-    $('#nombre').remove();
-    
-    data.forEach(obj => {
+        
+    data.forEach(obj => {       
 
-        let plantilla = document.getElementById("plantilla");
-
+        let fila = document.createElement('div');
+        fila.id = "fila";
+        fila.className = "form-group row justify-content-center";
+        
         let nombre = obj.Estudiante_Nombre + " " + obj.Estudiante_Apellido1 + " " + obj.Estudiante_Apellido2;
         
         let colCheck = document.createElement('div');
@@ -133,8 +140,10 @@ function cargaDatosPantalla(data)
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
 
-        plantilla.appendChild(colCheck);
-        plantilla.appendChild(colNombre);
+        fila.appendChild(colCheck);
+        fila.appendChild(colNombre);
+
+        document.getElementById('lista').appendChild(fila);        
 
     }); 
 
