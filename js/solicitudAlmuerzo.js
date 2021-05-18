@@ -132,7 +132,7 @@ function cargaDatosPantalla(data)
         colCheck.id = "check";
         colCheck.className = "col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 form-check d-flex align-items-center justify-content-center";
         colCheck.innerHTML='<input class="form-check-input position-static" ' +
-                            'type="checkbox" data-id="' + obj.seccion_Id +'">';
+                            'type="checkbox" data-id="' + obj.Estudiante_Id +'">';
               
         let colNombre = document.createElement('div');
         colNombre.id = "nombre";
@@ -149,6 +149,55 @@ function cargaDatosPantalla(data)
 
     return true;
 
+}
+
+function guardar() 
+{
+    let btnIngresar = document.getElementById("btnGuardar");
+    btnIngresar.disabled = true;
+    btnIngresar.innerHTML = '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+
+    let arrayEstudiantes = [];
+    let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+    for (let i = 0; i < checkboxes.length; i++) 
+    {    
+        arrayEstudiantes.push(checkboxes[i].getAttribute('data-id'));
+        
+    }
+
+    if (arrayEstudiantes && arrayEstudiantes.length>0) 
+    {
+        console.log(arrayEstudiantes);
+
+    } else {
+
+        spinner.style.visibility = 'hidden';
+        btnIngresar.innerText="Registrar Solicitud";
+        btnIngresar.disabled = false;
+    
+        
+        let tituloMensaje = document.getElementById("tituloMensaje");
+        tituloMensaje.innerText='';
+    
+        let contenedorError = document.getElementById("mensajeModal");
+        contenedorError.innerText='';
+    
+        let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+        mensajeModalParrafo.innerText='';
+    
+        tituloMensaje.innerText = 'Hubo un inconveniente!';
+        contenedorError.innerText ='Al parecer no hay estudiantes seleccionados!';
+        mensajeModalParrafo.innerText = 'Marca los estudiantes que solicitan almuerzo ' + 
+                                        'haciendo click en el cuadro pequeño junto al nombre del estudiante';
+        
+        $('#modalMensaje').modal('show');
+        
+    
+        return false;   
+      }
+
+      return true;
 }
 
 function mostrarMarcaContador() 
@@ -189,29 +238,3 @@ function mostrarMarcaContador()
 
 }
 
-function mostrarImagen() {
-
-    fetch('../php/selectImg.php').then(
-        function(response) 
-        {
-
-            if(response.ok) {                    
-
-                response.text().then(
-                    function(data) 
-                    {      
-                        //console.log(data);
-                        if (Object.keys(data).length>0) {
-
-                            document.getElementById("imagenMarca").src = "../img/marca/" + data;
-
-                        }
-
-                    });
-            } 
-
-        }).then();
-
-    return true;
-    
-}
