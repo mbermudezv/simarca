@@ -156,6 +156,7 @@ function guardar()
     let btnIngresar = document.getElementById("btnGuardar");
     btnIngresar.disabled = true;
     btnIngresar.innerHTML = '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    let spinner = document.getElementById("spinner");
 
     let arrayEstudiantes = [];
     let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
@@ -168,15 +169,77 @@ function guardar()
 
     if (arrayEstudiantes && arrayEstudiantes.length>0) 
     {
-        console.log(arrayEstudiantes);
+        //console.log(arrayEstudiantes);
+
+        const formData = new FormData();    
+        const jsonEstudiantes = JSON.stringify(arrayEstudiantes);
+
+        formData.append('arrayEstudiantes', jsonEstudiantes);
+        formData.append('seleccion', 4); //seleccion: 4 es Solicitud de Almuerzo
+          
+        fetch('../gestor/gestorEstudiante_Solicitud.php',{
+        method: 'POST', 
+        body: formData,})
+        .then(function(response) {
+
+        if(response.ok) {
+
+            let contenedorError = document.getElementById("mensaje");
+            contenedorError.innerHTML='';
+
+            response.json()
+            .then(function(data) 
+            {
+            
+                console.log(data);
+                                                    
+            }).catch(function(error) {
+
+                let contenedorError = document.getElementById("mensaje");
+                contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                        '<strong>Error! </strong>' +
+                                        'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
+                                        '</div>';
+
+                spinner.style.visibility = 'hidden';
+                btnIngresar.innerText="Registrar Solicitud";
+                btnIngresar.disabled = false;
+
+            });              
+
+
+        } else {
+                
+            let contenedorError = document.getElementById("mensaje");           
+            contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                    '<strong>Error! </strong>' +
+                                        'No se pudo conectar con el servidor. Intente de nuevo.' +
+                                    '</div>';
+
+            spinner.style.visibility = 'hidden';
+            btnIngresar.innerText="Registrar Solicitud";
+            btnIngresar.disabled = false;                                        
+        }
+
+        }).catch(function(error) {
+
+            spinner.style.visibility = 'hidden';
+            btnIngresar.innerText="Registrar Solicitud";
+            btnIngresar.disabled = false;
+    
+            let contenedorError = document.getElementById("mensaje");         
+            contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                    '<strong>Error! </strong>' +
+                                        'Hubo un problema al conectar con el servidor: ' + error.message +
+                                    '</div>';        
+        }).then();
 
     } else {
 
         spinner.style.visibility = 'hidden';
         btnIngresar.innerText="Registrar Solicitud";
         btnIngresar.disabled = false;
-    
-        
+            
         let tituloMensaje = document.getElementById("tituloMensaje");
         tituloMensaje.innerText='';
     
@@ -196,8 +259,26 @@ function guardar()
     
         return false;   
       }
+    
+      spinner.style.visibility = 'hidden';
+      btnIngresar.innerText="Registrar Solicitud";
+      btnIngresar.disabled = false;
 
-      return true;
+      let tituloMensaje = document.getElementById("tituloMensaje");
+      tituloMensaje.innerText='';
+  
+      let contenedorError = document.getElementById("mensajeModal");
+      contenedorError.innerText='';
+
+      let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+      mensajeModalParrafo.innerText='';
+
+      tituloMensaje.innerText = 'Ok!';
+      contenedorError.innerText ='Se Registró la Solicitud de Almuerzo!';      
+      
+      $('#modalMensaje').modal('show');
+
+    return true;
 }
 
 function mostrarMarcaContador() 
