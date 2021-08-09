@@ -169,8 +169,7 @@ function guardar()
 
     if (arrayEstudiantes && arrayEstudiantes.length>0) 
     {
-        //console.log(arrayEstudiantes);
-
+        
         const formData = new FormData();    
         const jsonEstudiantes = JSON.stringify(arrayEstudiantes);
 
@@ -187,7 +186,7 @@ function guardar()
             let contenedorError = document.getElementById("mensaje");
             contenedorError.innerHTML='';
 
-            response.json()
+            response.text()
             .then(function(data) 
             {
             
@@ -280,6 +279,15 @@ function guardar()
 
     return true;
 }
+
+function cargar_de_nuevo() {    
+
+    if(!window.location.hash) {
+        window.location = window.location + 'solicitudAlmuerzo.html';
+        window.location.reload();
+    }
+
+  }
 
 function mostrarMarcaContador() 
 {

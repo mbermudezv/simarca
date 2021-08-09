@@ -1,7 +1,5 @@
 <?php
 
-// require '../sql/conexion.php';
-
 class SelectSQLMarcaRegistrada 
 {
 

@@ -27,18 +27,26 @@ class InsertSolicitud
                 
                 $intEstudianteId = $arrayEstudiantesId;                
 
-                $sql = 'INSERT INTO Marca 
-                (Estudiante_Id, Marca_Tipo, Marca_Fecha) 
-                VALUES 
-                (:Estudiante_Id, :Marca_Tipo, :Marca_Fecha)';
+                $selectMarcaRegistrada = new SelectSQLMarcaRegistrada();
+                $rsMarcaRegistrada = $selectMarcaRegistrada
+                                        ->selectMarcaRegistrada($intEstudianteId, $intSeleccion);
+            
+                if (count($rsMarcaRegistrada)==0) {
+            
+                    $sql = 'INSERT INTO Marca 
+                    (Estudiante_Id, Marca_Tipo, Marca_Fecha) 
+                    VALUES 
+                    (:Estudiante_Id, :Marca_Tipo, :Marca_Fecha)';
 
-                $stmt = $this->pdo->prepare($sql);
+                    $stmt = $this->pdo->prepare($sql);
 
-                $stmt->execute([
-                    ':Estudiante_Id' => $intEstudianteId,
-                    ':Marca_Tipo' => $intSeleccion,
-                    ':Marca_Fecha' => $fecha
-                    ]);
+                    $stmt->execute([
+                        ':Estudiante_Id' => $intEstudianteId,
+                        ':Marca_Tipo' => $intSeleccion,
+                        ':Marca_Fecha' => $fecha
+                        ]);
+
+                }        
 
             }
 
