@@ -1,7 +1,8 @@
 
 window.onload = function() 
 {
-    
+
+    mostrarMarcaContador();
     cargaComboSeccion();
    
     return true;
@@ -291,13 +292,10 @@ function cargar_de_nuevo() {
 
 function mostrarMarcaContador() 
 {
-    let jsonTipoMArca = [];    
-    jsonTipoMArca = JSON.parse(arrayTipoMArca);
-
-    let tipoMarca_Id = jsonTipoMArca["tipoMarca_Id"];    
-
+      
+    //seleccion: 4 es Solicitud de Almuerzo
     fetch('../gestor/gestorMarcaContador.php?'
-            + new URLSearchParams({seleccion: tipoMarca_Id}))
+            + new URLSearchParams({seleccion: 4}))
     .then(function(response) 
     {
 
