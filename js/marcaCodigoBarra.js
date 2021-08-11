@@ -104,7 +104,8 @@ function login()
         tipoMarca_Descripcion.innerText = jsonTipoMArca["tipoMarca_Descripcion"];
 
         mostrarMarcaContador();
-        mostrarImagen();        
+        mostrarMarcaContadorSolicitud();
+        //mostrarImagen();        
 
     } else {
 
@@ -141,7 +142,7 @@ function selectEstudianteGestor(strCedula)
 
                     cargaDatosPantalla(data);
                     mostrarMarcaContador();
-                    mostrarImagen();                    
+                    //mostrarImagen();                    
 
                 } else {
 
@@ -230,7 +231,42 @@ function mostrarMarcaContador()
 
     }).then();
 
-    return 1;
+    return true;
+
+}
+
+function mostrarMarcaContadorSolicitud() 
+{
+
+    //seleccion: 4 es Solicitud de Almuerzo
+    fetch('../gestor/gestorMarcaContador.php?'
+            + new URLSearchParams({seleccion: 4}))
+    .then(function(response) 
+    {
+
+        if(response.ok) {                    
+
+            response.text().then(
+                function(data) 
+                {      
+                    //console.log(data);
+                    if (Object.keys(data).length>0) {
+
+                        document.getElementById("contadorSolicitud").innerHTML = data;
+
+                    } else {
+
+                        document.getElementById("contadorSolicitud").innerHTML ='0';
+                    
+                    }
+       
+                });
+
+        } 
+
+    }).then();
+
+    return true;
 
 }
 
