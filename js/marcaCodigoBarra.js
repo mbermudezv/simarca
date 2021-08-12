@@ -2,6 +2,15 @@ window.arrayTipoMArca = [];
 
 window.onload = function() 
 {
+    //Para birncarse la pantalla de seleccionar tipo de marca
+    arrayTipoMArca = {tipoMarca_Id:3,
+        tipoMarca_Descripcion:"Almuerzo"}; 
+
+    let jsonTipoMArca = JSON.stringify(arrayTipoMArca);
+
+    window.sessionStorage.setItem('sessionTipoMArca',jsonTipoMArca);
+        
+    //**
     
     let boologin = login();
 
@@ -90,6 +99,7 @@ function(evt) {
 
 function login() 
 {
+    
     arrayTipoMArca = window.sessionStorage.getItem('sessionTipoMArca');    
     
     if (arrayTipoMArca && arrayTipoMArca.length>0) {
@@ -105,7 +115,7 @@ function login()
 
         mostrarMarcaContador();
         mostrarMarcaContadorSolicitud();
-        //mostrarImagen();        
+        //mostrarImagen();                 
 
     } else {
 
