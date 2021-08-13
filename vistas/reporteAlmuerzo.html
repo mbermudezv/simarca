@@ -25,16 +25,23 @@
     </div>
 
     <div id="mainArea" class="container-fluid"> 
-    
-                
+                    
         <div class="row pt-2 flex-column align-items-center">
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2">            
-                <input class="form-control" id="fechaRetiro"/>                          
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
+                <input id="inp1" type="text"  
+                    maxlength="10" autocomplete="off" 
+                    class="datepicker" placeholder="Seleccione la Fecha" 
+                    readonly="readonly">
             </div>
         </div>
 
-        <div class="row flex-column align-items-center">
-
+        <div class="row pt-2 flex-column align-items-center">
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2"> 
+                <button id="btnGuardar" onclick="guardar();" 
+                        type="button" class="btn btn-primary">
+                        Mostrar Información
+                </button>
+            </div>
         </div>
 
         <div class="row flex-column align-items-center">
@@ -51,24 +58,64 @@
             </div>         
             
         </div>
-                       
+                             
     </div>
 
-    <div id="fila" class="pt-2">         
-        
-    </div>
- 
+    <span class="navbar justify-content-center" style="padding-bottom: 1em;"> 
+        <div class="form-group row">
+            <div class="col">  
+                <button id="btnGuardar" onclick="guardar();" 
+                        type="button" class="btn btn-primary">
+                        Enviar por Correo
+                </button>
+            </div>                   
+        </div>        
+    </span>   
+
     <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
-
         <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
         <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
-
     </div>
     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS     -->
-    <script src="../js/jquery-3.5.1.min.js"></script>    
-    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+    <script>
+               
+       $.datepicker.regional['es'] = {
+           closeText: 'Cerrar',
+           prevText: '< Anterior',
+           nextText: '  Siguiente >',
+           currentText: 'Hoy',
+           monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+           monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+           dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+           dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+           dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+           weekHeader: 'Sm',
+           dateFormat: 'dd-mm-yy',
+           firstDay: 1,
+           isRTL: false,
+           showMonthAfterYear: false,
+           yearSuffix: ''
+        };
+       
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+       
+       $(function() {
+           $('.datepicker').datepicker();
+       });
+
+    </script>
+
+    <style type="text/css">
+        .ui-datepicker {
+            background: #333;
+            border: 1px solid #555;
+            color: #EEE;
+        }
+    </style>
+
     <!-- js del formulario -->         
     <script src="../js/reporteAlmuerzo.js"></script>
 
