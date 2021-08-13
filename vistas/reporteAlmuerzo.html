@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#499bea" />
     <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css_marcaCodigoBarra.css">    
+    <link rel="stylesheet" href="../css/css_reporteAlmuerzo.css">        
     <title>SiMarca</title>  
 </head>
 
@@ -24,10 +24,13 @@
                                                                     
     </div>
 
-    <div id="mainArea" class="container-fluid">               
+    <div id="mainArea" class="container-fluid"> 
+    
                 
-        <div class="row flex-column align-items-center">
-
+        <div class="row pt-2 flex-column align-items-center">
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2">            
+                <input class="form-control" id="fechaRetiro"/>                          
+            </div>
         </div>
 
         <div class="row flex-column align-items-center">
@@ -38,9 +41,12 @@
 
             <div id="tabla" class="pt-2 pt-lg-3 pt-xl-3">
                 <div id="fila">                              
-                    <div id="Col">
+                    <div id="ColNombre">
                         
-                    </div>                               
+                    </div>
+                    <div id="ColSeccion">
+                        
+                    </div>                                   
                 </div>
             </div>         
             
@@ -59,6 +65,11 @@
 
     </div>
     
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS     -->
+    <script src="../js/jquery-3.5.1.min.js"></script>    
+    
+    <!-- js del formulario -->         
     <script src="../js/reporteAlmuerzo.js"></script>
 
     <script>           
