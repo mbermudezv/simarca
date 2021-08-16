@@ -18,12 +18,12 @@ class insertExcel
     
     public function insertExcel($estudiante_Cedula, $estudiante_Nombre, 
                                         $estudiante_PrimerApellido, $estudiante_SegundoApellido, 
-                                        $estudiante_Seccion){
+                                        $seccion_Id){
         		
         $sql = 'INSERT INTO Estudiante_Excel (Estudiante_Cedula, 
-                Estudiante_Nombre, Estudiante_Apellido1, Estudiante_Apellido2, Estudiante_Seccion) 
+                Estudiante_Nombre, Estudiante_Apellido1, Estudiante_Apellido2, seccion_Id) 
                 VALUES (:estudiante_Cedula, :estudiante_Nombre, 
-                :estudiante_PrimerApellido, :estudiante_SegundoApellido, :estudiante_Seccion)';
+                :estudiante_PrimerApellido, :estudiante_SegundoApellido, :seccion_Id)';
 									
 		try {
 		
@@ -34,7 +34,7 @@ class insertExcel
             ':estudiante_Nombre' => $estudiante_Nombre,
             ':estudiante_PrimerApellido' => $estudiante_PrimerApellido,
             ':estudiante_SegundoApellido' => $estudiante_SegundoApellido,
-            ':estudiante_Seccion' => $estudiante_Seccion           
+            ':seccion_Id' => $seccion_Id           
                   
             ]);				
         $stmt = null;

@@ -52,18 +52,18 @@ if (!isset($_FILES['upexcel']['tmp_name']) || !in_array($_FILES['upexcel']['type
     $worksheet = $spreadsheet->getActiveSheet();   
     $highestRow = $worksheet->getHighestRow();    
 
-    for ($row = 7; $row <= $highestRow; ++$row) 
+    for ($row = 1; $row <= $highestRow; ++$row) 
     {
 
       $estudiante_Cedula = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
       $estudiante_PrimerApellido = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
       $estudiante_SegundoApellido = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
       $estudiante_Nombre = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-      $estudiante_Seccion = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+      $seccion_Id = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
 
       $db = new insertExcel();
       $db-> insertExcel($estudiante_Cedula, $estudiante_Nombre, 
-      $estudiante_PrimerApellido, $estudiante_SegundoApellido, $estudiante_Seccion);
+      $estudiante_PrimerApellido, $estudiante_SegundoApellido, $seccion_Id);
 
       $db = null;	
           
@@ -74,7 +74,7 @@ if (!isset($_FILES['upexcel']['tmp_name']) || !in_array($_FILES['upexcel']['type
 
       $dbinsertExcel = null;
       
-      echo "ok";
+      echo "Ok";
 
   } 
 
