@@ -2,7 +2,7 @@ window.arrayTipoMArca = [];
 
 window.onload = function() 
 {
-    //Para birncarse la pantalla de seleccionar tipo de marca
+    //Para brincarse la pantalla de seleccionar tipo de marca
     arrayTipoMArca = {tipoMarca_Id:3,
         tipoMarca_Descripcion:"Almuerzo"}; 
 

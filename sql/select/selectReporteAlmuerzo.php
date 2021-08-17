@@ -24,13 +24,15 @@ class SelectReporteAlmuerzo
 	 	    $fechaDesde = date_create($fecha)->format('Y-m-d');
 			
             $consultaSQL = "SELECT Estudiante_Nombre, Estudiante_Apellido1, 
-                                Estudiante_Apellido2, Estudiante_Seccion 
+                                Estudiante_Apellido2, seccion_Descripcion
                             FROM Estudiante INNER JOIN Marca
                             ON Estudiante.Estudiante_Id = Marca.Estudiante_Id 
+                            INNER JOIN seccion
+                            ON Estudiante.seccion_Id = seccion.seccion_Id
                             WHERE (Marca_Tipo = ".$intTipo.") 
                                 AND Marca.Marca_Fecha = '".$fechaDesde."' 
-                                ORDER BY Estudiante_Seccion, Estudiante_Apellido1,
-                                Estudiante_Apellido2,Estudiante_Nombre";
+                                ORDER BY seccion.seccion_Id, Estudiante_Apellido1,
+                                Estudiante_Apellido2,Estudiante_Nombre";                                
 
 			$sql = $this->pdo->query($consultaSQL);
 
@@ -41,10 +43,7 @@ class SelectReporteAlmuerzo
 						'Estudiante_Nombre' => $row['Estudiante_Nombre'],
                         'Estudiante_Apellido1' => $row['Estudiante_Apellido1'],
                         'Estudiante_Apellido2' => $row['Estudiante_Apellido2'],
-                        'Estudiante_Id' => $row['Estudiante_Id'],
-                        'Estudiante_Seccion' => $row['Estudiante_Seccion'],
-                        'Estudiante_Cedula' => $row['Estudiante_Cedula'],
-                        'seccion_Id' => $row['seccion_Id']						
+                        'seccion_Descripcion' => $row['seccion_Descripcion']                        
 					];
 			}
 

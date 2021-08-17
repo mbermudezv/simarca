@@ -1,14 +1,15 @@
 <?php
 
 require '../sql/conexion.php';
-require '../sql/select/selectEstudiante_por_Seccion.php';
+require '../sql/select/selectReporteAlmuerzo.php';
 
 try {
 
-	$seccion_Id = $_GET['seccion_Id'];
-    
-	$Select = new SelectEstudianteSeccion();
-	$rs = $Select->selectEstudianteSeccion($seccion_Id);        
+ 	$getfecDesde = $_GET['fecha'];
+    $getmarcaTipo = $_GET['tipo'];
+
+	$Select = new SelectReporteAlmuerzo();
+	$rs = $Select->selectReporteAlmuerzo($getfecDesde, $getmarcaTipo);        
 	
     echo json_encode($rs);
     
