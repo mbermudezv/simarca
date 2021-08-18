@@ -3,13 +3,15 @@
 require '../conexion/conexionEmail.php';
 require '../php/email_Almuerzos.php';
 
+header('Access-Control-Allow-Origin: *');
+
 try {
 
-    /* $fecha = $_GET['fecha'];
-    $JSON_Datos = $_GET['JSON_Datos']; */
+    /* $fecha = $_POST['fecha'];
+    $JSON_Datos = $_POST['JSON_Datos']; */
 
-    $fecha = "17-08-2021";
-    $JSON_Datos = [];
+    $fecha = '11-08-2021';
+    $JSON_Datos = 1;
 
     $Email = new Email_Almuerzos();
     $rs = $Copias->email_Almuerzos($fecha, $JSON_Datos);

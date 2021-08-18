@@ -1,3 +1,6 @@
+
+window.arrayAlmuerzos = [];
+
 window.onload = function() 
 {
     $.datepicker.regional['es'] = {
@@ -53,6 +56,7 @@ function mostrar_Informacion() {
                     if (Object.keys(data).length>0) {
 
                         //console.log(data);
+                        arrayAlmuerzos=data;
                         cargaDatosPantalla(data);
                         
                     } else {
@@ -130,3 +134,160 @@ function cargaDatosPantalla(data)
     return true;
 
 }
+
+function enviar_email() {
+  
+    const formData = new FormData();
+    
+    let fecha = $('#fecha').val();
+    let jsonData = JSON.stringify(arrayAlmuerzos);
+
+    let btnIngresar = document.getElementById("btnEnviar");
+        
+    btnIngresar.disabled = true;
+    btnIngresar.innerHTML = '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    let spinner = document.getElementById("spinner");
+      
+    formData.append('fecha', fecha);
+    formData.append('JSON_Datos', jsonData);
+    //method: 'POST',   
+    //body: formData      
+    fetch('https://www.wappcom.net/servicopias/prueba.php',
+    {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json'}
+    })
+        .then(function(response) {
+  
+          if(response.ok) {
+  
+            response.json().then(function(data) 
+            {  
+                console.log(data);                
+                              
+            }).catch(function(error) {
+  
+                spinner.style.visibility = 'hidden';
+                btnIngresar.innerText="Enviar por Correo";
+                btnIngresar.disabled = false;
+  
+                let tituloMensaje = document.getElementById("tituloMensaje");
+                tituloMensaje.innerText='';
+            
+                let contenedorError = document.getElementById("mensajeModal");
+                contenedorError.innerText='';
+  
+                let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+                mensajeModalParrafo.innerText='';
+  
+                tituloMensaje.innerText = 'Hubo un inconveniente!';
+                contenedorError.innerText ='Intente de nuevo!';
+                mensajeModalParrafo.innerText ='No hubo respuesta del servidor.';
+              
+                $('#modalMensaje').modal('show');
+  
+            })
+  
+          } else {
+
+                console.log(response);
+  
+                  spinner.style.visibility = 'hidden';
+                  btnIngresar.innerText="Enviar por Correo";
+                  btnIngresar.disabled = false;
+  
+                  let tituloMensaje = document.getElementById("tituloMensaje");
+                  tituloMensaje.innerText='';
+              
+                  let contenedorError = document.getElementById("mensajeModal");
+                  contenedorError.innerText='';
+  
+                  let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+                  mensajeModalParrafo.innerText='';
+  
+                  tituloMensaje.innerText = 'Hubo un inconveniente!';
+                  contenedorError.innerText ='No hay respuesta del servidor!';
+                  mensajeModalParrafo.innerText ='Verifique su conexión de internet.';  
+                
+                  $('#modalMensaje').modal('show');
+          
+          }
+  
+      })
+      .catch(function(error) {
+  
+            spinner.style.visibility = 'hidden';
+            btnIngresar.innerText="Enviar por Correo";
+            btnIngresar.disabled = false;
+  
+            let tituloMensaje = document.getElementById("tituloMensaje");
+            tituloMensaje.innerText='';
+        
+            let contenedorError = document.getElementById("mensajeModal");
+            contenedorError.innerText='';
+  
+            let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+            mensajeModalParrafo.innerText='';
+  
+            tituloMensaje.innerText = 'Hubo un inconveniente!';
+            contenedorError.innerText ='Error al enviar la información!';
+            mensajeModalParrafo.innerText = error.message;
+            
+            $('#modalMensaje').modal('show');
+         
+      }).then();
+    
+    spinner.style.visibility = 'hidden';
+    btnIngresar.innerText="Enviar por Correo";
+  
+    let tituloMensaje = document.getElementById("tituloMensaje");
+    tituloMensaje.innerText='';
+  
+    let contenedorError = document.getElementById("mensajeModal");
+    contenedorError.innerText='';
+  
+    let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+    mensajeModalParrafo.innerText='Se le enviará una notificación a su correo institucional';
+  
+    tituloMensaje.innerText = 'Ok!';
+    contenedorError.innerText ='Se envió el correo!';      
+    
+    $('#modalMensaje').modal('show');  
+  
+    return true;
+  }
+
+  function prueba() {
+
+    fetch('https://wappcom.net/servicopias/test_email_Almuerzos.php', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json'}
+      }).then(function(response) {
+  
+       /*  if(response.ok) {
+
+          response.json().then(function(data) 
+          {  
+              console.log(data);                
+                            
+          }).catch(function(error) {
+
+                console.log(error);             
+
+          })
+
+        } else {
+
+              console.log(response);
+        
+        } */
+
+    }).catch(function(error) {
+
+        console.log(error);
+       
+    }).then();
+
+  }
