@@ -8,11 +8,16 @@ require 'vendor/autoload.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: text/html; charset=UTF-8');
-       
+
+$JSON_Datos = array();
+$JSON_Datos = json_decode($_POST['JSON_Datos'], true);
+
+$fecha = $_POST['fecha'];
+
 $mail = new PHPMailer(true);
 
 $correo = "lic.lasesperanzas@wappcom.net";
-$passemail = "4j?iJ.AiVqEG";
+$passemail = "liceoLE2021";
 
 try {
 
@@ -60,22 +65,45 @@ try {
                         </style>
                     </head>";            
     $mail->Body .=  "<h3> Reporte Almuerzos Comedor </h3>";	
-    $mail->Body .=  "<p> <b> El Sistema de Control de Marcas </b> le informa:</p>";    
+    $mail->Body .=  "<p> <b> El Sistema de Control de Marcas </b> le informa la lista de Almuerzos del Comedor:</p>";    
     $mail->Body .=  "<div id='container'> 
                         <table style='width:100%'>
                             <tbody>
                                 <tr style='width:50%'>
                                     <th scope='row'>Fecha:</th>
-                                    <td> 11-08/2021 </td>
+                                    <td>".$fecha."</td>
                                 </tr>
                             </tbody> 
                         </table> 
                     </div>
-                    <br/>";                               
+                    <br/>";
+    
+    $mail->Body .=  "<div id='container'> 
+        <table style='width:100%'>
+            <tbody>"; 
+
+    if(!empty($JSON_Datos)) 
+    { 
+        foreach($JSON_Datos as $key => $value) 
+        {
+            $nombre = $value['Estudiante_Nombre'] . " ". $value['Estudiante_Apellido1'] . " ". $value['Estudiante_Apellido2'];
+            $seccion_Descripcion = $value['seccion_Descripcion'];
+
+            $mail->Body .= "<tr style='width:80%'>                                    
+                                <td>".$nombre."</td>
+                                <td>".$seccion_Descripcion."</td>
+                            </tr>";
+                                
+        }
+    }
+
+    $mail->Body .= "</tbody> 
+                </table> 
+            </div>
+            <br/>";
+
     $mail->IsHTML(true);
-    $mail->Send();
- 
-    echo "ok";
+    $mail->Send();    
 
 } catch (\Throwable $th) {
     //throw $th;

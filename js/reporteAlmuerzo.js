@@ -136,7 +136,7 @@ function cargaDatosPantalla(data)
 }
 
 function enviar_email() {
-  
+
     const formData = new FormData();
     
     let fecha = $('#fecha').val();
@@ -150,96 +150,24 @@ function enviar_email() {
       
     formData.append('fecha', fecha);
     formData.append('JSON_Datos', jsonData);
-    //method: 'POST',   
-    //body: formData      
-    fetch('https://www.wappcom.net/servicopias/prueba.php',
-    {
+
+    fetch('https://wappcom.net/comedor/test_email_Almuerzos.php', {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json'}
-    })
-        .then(function(response) {
+        headers: { 'Content-Type': 'application/json'},
+        body: formData
+      }).then(function(response) {
   
-          if(response.ok) {
-  
-            response.json().then(function(data) 
-            {  
-                console.log(data);                
-                              
-            }).catch(function(error) {
-  
-                spinner.style.visibility = 'hidden';
-                btnIngresar.innerText="Enviar por Correo";
-                btnIngresar.disabled = false;
-  
-                let tituloMensaje = document.getElementById("tituloMensaje");
-                tituloMensaje.innerText='';
-            
-                let contenedorError = document.getElementById("mensajeModal");
-                contenedorError.innerText='';
-  
-                let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-                mensajeModalParrafo.innerText='';
-  
-                tituloMensaje.innerText = 'Hubo un inconveniente!';
-                contenedorError.innerText ='Intente de nuevo!';
-                mensajeModalParrafo.innerText ='No hubo respuesta del servidor.';
-              
-                $('#modalMensaje').modal('show');
-  
-            })
-  
-          } else {
 
-                console.log(response);
-  
-                  spinner.style.visibility = 'hidden';
-                  btnIngresar.innerText="Enviar por Correo";
-                  btnIngresar.disabled = false;
-  
-                  let tituloMensaje = document.getElementById("tituloMensaje");
-                  tituloMensaje.innerText='';
-              
-                  let contenedorError = document.getElementById("mensajeModal");
-                  contenedorError.innerText='';
-  
-                  let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-                  mensajeModalParrafo.innerText='';
-  
-                  tituloMensaje.innerText = 'Hubo un inconveniente!';
-                  contenedorError.innerText ='No hay respuesta del servidor!';
-                  mensajeModalParrafo.innerText ='Verifique su conexión de internet.';  
-                
-                  $('#modalMensaje').modal('show');
-          
-          }
-  
-      })
-      .catch(function(error) {
-  
-            spinner.style.visibility = 'hidden';
-            btnIngresar.innerText="Enviar por Correo";
-            btnIngresar.disabled = false;
-  
-            let tituloMensaje = document.getElementById("tituloMensaje");
-            tituloMensaje.innerText='';
-        
-            let contenedorError = document.getElementById("mensajeModal");
-            contenedorError.innerText='';
-  
-            let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-            mensajeModalParrafo.innerText='';
-  
-            tituloMensaje.innerText = 'Hubo un inconveniente!';
-            contenedorError.innerText ='Error al enviar la información!';
-            mensajeModalParrafo.innerText = error.message;
-            
-            $('#modalMensaje').modal('show');
-         
-      }).then();
-    
+    }).catch(function(error) {
+
+        console.log(error);
+       
+    }).then();
+
     spinner.style.visibility = 'hidden';
     btnIngresar.innerText="Enviar por Correo";
+    btnIngresar.disabled = false;
   
     let tituloMensaje = document.getElementById("tituloMensaje");
     tituloMensaje.innerText='';
@@ -253,22 +181,47 @@ function enviar_email() {
     tituloMensaje.innerText = 'Ok!';
     contenedorError.innerText ='Se envió el correo!';      
     
-    $('#modalMensaje').modal('show');  
+    $('#modalMensaje').modal('show');
   
     return true;
+
   }
 
-  function prueba() {
+  function test_array() {
 
-    fetch('https://wappcom.net/servicopias/test_email_Almuerzos.php', {
+    let json_lista = new Array();
+
+    for (let i = 0; i < arrayAlmuerzos.length; i++) {
+        
+        let json_detalle = new Array();
+
+        let nombre = arrayAlmuerzos[i]["Estudiante_Nombre"];
+        let seccion = arrayAlmuerzos[i]["seccion_Descripcion"];
+
+        json_detalle = {
+                        "Estudiante_Nombre":nombre,
+                        "seccion_Descripcion":seccion
+                        };
+        
+        json_lista.push(json_detalle);
+    }    
+
+    const formData = new FormData();
+    
+    let fecha = $('#fecha').val();
+    let jsonData = JSON.stringify(arrayAlmuerzos);
+  
+    formData.append('fecha', fecha);
+    formData.append('JSON_Datos', jsonData);
+
+    fetch('../test_array.php', {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json'}
+        body: formData
       }).then(function(response) {
   
-       /*  if(response.ok) {
+       if(response.ok) {
 
-          response.json().then(function(data) 
+          response.text().then(function(data) 
           {  
               console.log(data);                
                             
@@ -282,12 +235,14 @@ function enviar_email() {
 
               console.log(response);
         
-        } */
+        }
 
     }).catch(function(error) {
 
         console.log(error);
        
     }).then();
+
+    return true;
 
   }
