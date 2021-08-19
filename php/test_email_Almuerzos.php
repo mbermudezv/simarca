@@ -31,7 +31,8 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    $mail->AddAddress("mauricio.bermudez.vargas@mep.go.cr");
+    $mail->AddAddress("lic.lasesperanzas@mep.go.cr");
+    $mail->AddCC("rvindas@lasesperanzas.ed.cr");
     $mail->Subject = "Reporte de Almuerzos Comedor";
 
     $mail->Body .= "<head>
