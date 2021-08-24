@@ -28,7 +28,7 @@ class SelectSQLMarcaContador
 			
             $consultaSQL = "SELECT count(*) AS Total FROM Marca 
                             WHERE Marca_Tipo = ".$intTipo." AND 
-                            Marca_Fecha = '".$fecha."'";
+                            Marca_Fecha = '$fecha'";
 
 			$sql = $this->pdo->query($consultaSQL);			
 
