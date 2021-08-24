@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <link rel="stylesheet" type="text/css" href="../css/css_estudianteMantenimiento.css">        
+    <title>Estudiante</title>       
+</head>
+<body>
+   
+    <div id="mainArea">
+        <div id="menu">
+            <a id="salir" class="menuBoton" href="../index.html"></a>
+            <a id="buscar" class="menuBoton" href="busca_Estudiante.html"></a>	
+        </div>
+
+        <div class="container-sm container-md container-lg">
+            <div class="row justify-content-center"> 
+              <div id="mensaje" class="form-group row"></div>
+            </div>
+        </div>
+        
+        <div id="tabla">
+           
+            <div id="fila">
+                <div id="Col1">Nombre:</div>
+                <div id="Col2">
+                    <input type="text" id="txtNombre" class="txtDescripcion" maxlength="50">
+                </div>
+            </div>            
+             <div id="fila">
+                <div id="Col1">Primer Apellido:</div>
+                <div id="Col2">
+                    <input type="text" id="txtApellido1" class="txtDescripcion" maxlength="50">
+                </div>
+            </div>    
+            <div id="fila">
+                <div id="Col1">Segundo Apellido:</div>
+                <div id="Col2">
+                    <input type="text" id="txtApellido2" class="txtDescripcion" maxlength="50">
+                </div>
+            </div>
+            <div id="fila">
+                <div id="Col1">Cédula:</div>
+                <div id="Col2">                    
+                    <input type="text" id="txtCedula" class="txtDescripcion" maxlength="50">                    
+                </div>
+            </div>     
+            <div id="fila">
+                <div id="Col1">Sección:</div>
+                <div id="Col1">                    
+                    <select id="cboSeccion" class="txtDescripcionCombo">
+                        <option value="0">Seleccione..</option>
+                    </select>                
+
+                </div>
+            </div>
+                                        
+        </div>
+               
+        <div id="tabla">
+            <div id="fila">
+                <div id="guardar" onclick="guardar()"></div>
+            </div>
+        </div>
+    </div>    
+    <div id="statusBar">
+        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
+        <a id="linkWappcom" href="https://www.wappcom.net">wappcom.net</a>                                         
+    </div>
+
+    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../js/estudianteMantenimiento.js"></script>
+
+</body>
+</html>

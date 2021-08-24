@@ -137,6 +137,18 @@ function cargaDatosPantalla(data)
 
 function enviar_email() {
 
+    let contenedorMensaje = document.getElementById("mensaje");         
+    contenedorMensaje.innerHTML="";
+
+    if (arrayAlmuerzos.length===0) {
+        
+        contenedorMensaje.innerHTML='<div class="alert alert-danger">' +
+                                    '<strong>Error! </strong>' +
+                                        'No hay datos para enviar'
+                                    '</div>';
+        return false
+    }
+
     const formData = new FormData();
     
     let fecha = $('#fecha').val();
@@ -157,7 +169,6 @@ function enviar_email() {
         headers: { 'Content-Type': 'application/json'},
         body: formData
       }).then(function(response) {
-  
 
     }).catch(function(error) {
 
@@ -176,12 +187,14 @@ function enviar_email() {
     contenedorError.innerText='';
   
     let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-    mensajeModalParrafo.innerText='Se le enviará una notificación a su correo institucional';
+    mensajeModalParrafo.innerText='';
   
     tituloMensaje.innerText = 'Ok!';
     contenedorError.innerText ='Se envió el correo!';      
     
     $('#modalMensaje').modal('show');
+
+    arrayAlmuerzos=[];
   
     return true;
 
