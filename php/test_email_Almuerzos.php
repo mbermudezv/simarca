@@ -32,7 +32,7 @@ try {
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
     $mail->AddAddress("lic.lasesperanzas@mep.go.cr");
-    $mail->AddCC("rvindas@lasesperanzas.ed.cr");
+    $mail->AddCC("rvindas@lasesperanzas.ed.cr");    
     $mail->Subject = "Reporte de Almuerzos Comedor";
 
     $mail->Body .= "<head>
@@ -64,9 +64,10 @@ try {
                                 border-collapse: collapse;
                                 }
                         </style>
-                    </head>";            
+                    </head>";
+    $mail->Body .=  "<h3> Liceo Las Esperanzas </h3>";	                    
     $mail->Body .=  "<h3> Reporte Almuerzos Comedor </h3>";	
-    $mail->Body .=  "<p> <b> El Sistema de Control de Marcas </b> le informa la lista de Almuerzos del Comedor:</p>";    
+    $mail->Body .=  "<p> El Sistema de Control de Marcas [SiMarca] le informa la lista de Almuerzos del Comedor:</p>";
     $mail->Body .=  "<div id='container'> 
                         <table style='width:100%'>
                             <tbody>
@@ -102,6 +103,22 @@ try {
                 </table> 
             </div>
             <br/>";
+
+    $mail->Body .= "<br/>";
+
+
+    $mail->Body .= "<div>
+                        <div>------------------------------</div>
+                        <div>MSc. Henry Navarro Zuniga</div>
+                        <div>Director Institucional</div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div>------------------------------</div>
+                        <div>MSc. Raquel Vindas Quiros</div>                        
+                        <div>Coordinadora Comite Nutricion</div>
+                    </div>";
 
     $mail->IsHTML(true);
     $mail->Send();    
