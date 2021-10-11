@@ -66,9 +66,7 @@ function guardar() {
     let contenedorError = document.getElementById("mensaje");
     contenedorError.innerHTML='';
 
-    if ( estudiante_Id != 'null' && typeof(estudiante_Id) != 'undefined'){
-        
-        console.log("entro nuevo");
+    if ( estudiante_Id == 'null' || typeof(estudiante_Id) == 'undefined'){              
 
         $('#guardar').html('<img src="../img/cargando.gif">');	
 
@@ -97,10 +95,6 @@ function guardar() {
             });
 
         } else	{                                
-
-
-            console.log("entro viejo");
-            console.log(estudiante_Id);
 
             $('#guardar').html('<img src="../img/cargando.gif">');
 
