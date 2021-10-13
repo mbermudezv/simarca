@@ -140,7 +140,7 @@ function enviar_email() {
     let contenedorMensaje = document.getElementById("mensaje");         
     contenedorMensaje.innerHTML="";
 
-    if (arrayAlmuerzos.length===0) {
+    if (arrayAlmuerzos.length==0) {
         
         contenedorMensaje.innerHTML='<div class="alert alert-danger">' +
                                     '<strong>Error! </strong>' +
@@ -163,10 +163,10 @@ function enviar_email() {
     formData.append('fecha', fecha);
     formData.append('JSON_Datos', jsonData);
 
-    fetch('https://wappcom.net/comedor/test_email_Almuerzos.php', {
+    fetch('https://wappcom.net/comedor/email_Almuerzos.php', {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: formData
       }).then(function(response) {
 
