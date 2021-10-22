@@ -35,8 +35,7 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    $mail->AddAddress("mauricio.bermudez.vargas@mep.go.cr");
-    //$mail->AddCC("rvindas@lasesperanzas.ed.cr");
+    $mail->AddAddress("rvindas@lasesperanzas.ed.cr");
 
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
@@ -46,8 +45,14 @@ try {
     $mail->Body .= "<head>
                         <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>           
                     </head>";
-    $mail->Body .=  "<img src=".$srcImagen." width='50' height='60'>";                                   
-    $mail->Body .=  "<h3> Liceo Las Esperanzas </h3>";	                    
+    $mail->Body .= "<table style='width:40%'>
+                        <tbody>
+                            <tr>
+                                <td><img src=".$srcImagen." width='50' height='60'></td>
+                                <td><h3> Liceo Las Esperanzas </h3></td>
+                            </tr>
+                        </tbody>
+                    </table>";
     $mail->Body .=  "<h3> Reporte Almuerzos Comedor </h3>";	
     $mail->Body .=  "<p> El Sistema de Control de Marcas [SiMarca] le informa la lista de Almuerzos del Comedor:</p>";
     $mail->Body .=  "<div id='container'> 
@@ -63,7 +68,7 @@ try {
                     <br/>";
     
     $mail->Body .=  "<div id='container'> 
-        <table style='width:80%'>
+        <table style='width:60%'>
             <tbody>"; 
 
     if(!empty($JSON_Datos)) 
@@ -73,7 +78,7 @@ try {
             $nombre = $value['Estudiante_Nombre'] . " ". $value['Estudiante_Apellido1'] . " ". $value['Estudiante_Apellido2'];
             $seccion_Descripcion = $value['seccion_Descripcion'];
 
-            $mail->Body .= "<tr style='width:60%'>                                    
+            $mail->Body .= "<tr style='width:50%'>                                    
                                 <td>".$nombre."</td>
                                 <td>".$seccion_Descripcion."</td>
                             </tr>";
@@ -90,9 +95,22 @@ try {
 
 
     $mail->Body .= "<div>
-                        <div>------------------------------   ------------------------------</div>
-                        <div>MSc. Henry Navarro Zuniga        MSc. Raquel Vindas Quiros </div>
-                        <div>Director Institucional           Coordinadora Comite Nutricion</div>
+                        <table style='width:70%'>
+                            <tbody>
+                                <tr>
+                                    <td>------------------------------</td>
+                                    <td>------------------------------</td>                
+                                </tr>
+                                <tr>
+                                    <td>MSc. Henry Navarro Zu&ntilde;iga</td>
+                                    <td>MSc. Raquel Vindas Quiros</td>
+                                </tr>
+                                <tr>
+                                    <td>Director Institucional</td>
+                                    <td>Coordinadora Comite Nutrici&oacute;n</td>                
+                                </tr>
+                            </tbody>
+                        </table> 
                     </div>";
 
     $mail->IsHTML(true);
