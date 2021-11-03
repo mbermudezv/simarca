@@ -13,7 +13,47 @@
     <title>Menú Profesores</title>
 </head>
 <body>
+    <div id="encabezadoBar" class="d-flex flex-row justify-content-around bg-info
+                                py-3 py-sm-4 py-md-4 py-lg-3
+                                py-xl-2">
+            <span id="tituloMarca">Menú de Profesores</span>
+    </div>
+
+    <a id="atras" href="../index.html">Volver al Inicio</a>
+
+    <div id="mainArea" class="container-fluid justify-content-center">
+
+    </div>    
+
+    <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
+
+        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
+        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
+
+    </div>
+
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-select.min.js"></script>
+    <script src="../js/menu_profesores.js"></script>
+
+    <script>       
+
+        if ('serviceWorker' in navigator) {
+            
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../service-worker.js')
+                    .then((reg) => {
+                    console.log('Registrando el Service worker.', reg);
+                    }, function(err) {
+                            // registration failed :(
+                            console.log('Error al registrar el ServiceWorker: ', err);
+                        });
+            });
     
+        }
     
+    </script> 
 </body>
 </html>
