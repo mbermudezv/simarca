@@ -1,0 +1,155 @@
+@viewport {
+    width: device-width;
+  }
+    
+  html {
+  overflow-y: auto;
+  }
+  
+  img
+  {
+    max-width: 100%;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0%;
+    display: flex;
+    flex-direction: column;    
+  }
+  
+  #mainArea {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;      
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+
+  a:active {
+      text-decoration: underline;
+  }
+  
+  .item{
+    
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 5px;
+    border-style:groove;
+    border-bottom: 0.5vw solid #707070;
+    
+  }
+
+  #tituloMarca {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;    
+  }
+
+  #statusBar {          
+
+    font-family: "Lucida Console", Monaco, monospace;
+  }
+
+  #linkHogar, #linkWappcom {
+
+    background-color: transparent;
+    font-weight: bold;
+    color:white;
+
+  }
+
+  @mixin sm {
+      @media (max-width: 576px) { @content; }
+  }
+ 
+  @mixin md {
+      @media (min-width: 768px) { @content; }
+  }
+  
+  @mixin lg {
+      @media (min-width: 992px) { @content; }
+  }
+  
+  @mixin xl {
+      @media (min-width: 1200px) { @content; }
+  }
+  
+  @include sm {
+
+      .item, #tituloMarca {
+        font-size: 1.4rem;
+      }
+
+      #btnIngresar{
+        font-size: 1.4rem;
+      }
+      
+      #statusBar {
+
+        font-size: 1.1rem;
+
+      }
+
+    }
+      
+    @include md {
+
+      .item, #tituloMarca {
+        font-size: 1.4rem;
+      }
+
+      #btnIngresar{
+        font-size: 1.4rem;
+      }
+
+      #statusBar {
+        font-size: 1.1rem;
+      }
+  
+    }
+  
+    @include lg {
+
+      .item, #tituloMarca {
+        font-size: 1.2rem;
+      }
+
+      #btnIngresar{
+        font-size: 1.1rem;
+      }
+
+      #statusBar {
+        font-size: 1.2rem;
+      }
+  
+    }
+  
+    @include xl {
+
+      .item, #tituloMarca{
+        font-size: 1.5rem;
+      }
+
+      #btnIngresar{
+        font-size: 1.1rem;
+      }
+
+      #statusBar {
+        font-size: 1.5rem;
+      }
+  
+    }
+
