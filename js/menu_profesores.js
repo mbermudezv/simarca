@@ -1,7 +1,7 @@
 window.onload = function() 
 {
     
-  //cargaComboUsuario();
+  cargaComboUsuario();
    
   return true;
 }
@@ -26,9 +26,9 @@ function login()
       response.json().then(function(data) 
       {
         
-        //console.log(data);
-        window.sessionStorage.setItem('sesion', JSON.stringify(data));
-        window.location.href = 'vistas/menu.html';
+        console.log(data);
+        //window.sessionStorage.setItem('sesion', JSON.stringify(data));
+        //window.location.href = 'vistas/menu.html';
                      
       });
   
@@ -43,7 +43,7 @@ function login()
 function cargaComboUsuario() 
 {
   
-  fetch('gestor/gestorUsuario.php')
+  fetch('../gestor/gestorProfesores.php')
   .then(function(response) 
   {
           
@@ -53,9 +53,9 @@ function cargaComboUsuario()
       response.json().then(function(data) 
       {
         
-        //console.log(data);
+        console.log(data);
               
-        data.forEach(element => 
+       /*  data.forEach(element => 
           {
 
             let cboSoftware = document.getElementById("cboUsuario"); 
@@ -66,9 +66,9 @@ function cargaComboUsuario()
                             element.profesor_segundo_apellido;        
             cboSoftware.append(opt);            
 
-          });
+          }); */
           
-          $("#cboUsuario").selectpicker("refresh");
+          //$("#cboUsuario").selectpicker("refresh");
     
       });
   
