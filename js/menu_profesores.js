@@ -1,7 +1,7 @@
 window.onload = function() 
 {
     
-  cargaComboUsuario();
+  cargaComboUsuario();  
    
   return true;
 }
@@ -15,7 +15,7 @@ function login()
                   .filter((x) => x.selected)
                   .map((x)=>x.value);   
 
-  fetch('gestor/gestorUsuario_x_Id.php?'
+  fetch('../gestor/gestorProfesor_x_Id.php?'
     + new URLSearchParams({id: profesor_Id}))
   .then(function(response) 
   {
@@ -53,9 +53,9 @@ function cargaComboUsuario()
       response.json().then(function(data) 
       {
         
-        console.log(data);
+        //console.log(data);
               
-       /*  data.forEach(element => 
+        data.forEach(element => 
           {
 
             let cboSoftware = document.getElementById("cboUsuario"); 
@@ -66,9 +66,9 @@ function cargaComboUsuario()
                             element.profesor_segundo_apellido;        
             cboSoftware.append(opt);            
 
-          }); */
+          });
           
-          //$("#cboUsuario").selectpicker("refresh");
+          $("#cboUsuario").selectpicker("refresh");
     
       });
   

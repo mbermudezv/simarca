@@ -31,8 +31,32 @@
       
         </div>
 
+        <div class="row justify-content-center">
+                               
+            <select class="selectpicker"
+                  id="cboUsuario" 
+                  data-show-subtext="true" 
+                  data-live-search="true"
+                  required="required">
+                  <option value=""></option>                         
+            </select>                         
+             
+          </div>
 
-
+        <div class="row justify-content-center" style="padding-top: 1em;"> 
+            <div class="form-group row">   
+                <div class="d-flex flex-nowrap">              
+                <button onclick="login();" 
+                        id="btnIngresar" 
+                        type="button" 
+                        class="btn btn-dark"
+                        >
+                    Aceptar
+                </button>
+                </div>
+            </div>
+        </div>            
+          
     </div>    
 
     <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
