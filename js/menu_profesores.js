@@ -6,7 +6,7 @@ window.onload = function()
   return true;
 }
 
-function login() 
+function cuenta_profesor() 
 {
 
   let cboUsuario = document.getElementById("cboUsuario");
@@ -15,27 +15,8 @@ function login()
                   .filter((x) => x.selected)
                   .map((x)=>x.value);   
 
-  fetch('../gestor/gestorProfesor_x_Id.php?'
-    + new URLSearchParams({id: profesor_Id}))
-  .then(function(response) 
-  {
-          
-    if(response.ok) 
-    {
+  window.location.href = '../vistas/cuenta_profesor.html?profesor_Id=' + profesor_Id;
 
-      response.json().then(function(data) 
-      {
-        
-        console.log(data);
-        //window.sessionStorage.setItem('sesion', JSON.stringify(data));
-        //window.location.href = 'vistas/menu.html';
-                     
-      });
-  
-    }
-
-  }).then();
-  
   return true;
   
 }
