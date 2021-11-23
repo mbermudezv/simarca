@@ -18,7 +18,7 @@ function mostrar_Informacion() {
     let urlParams = new URLSearchParams(window.location.search);
     let estudiante_Id = urlParams.get('estudiante');
     
-    if (estudiante_Id===0) {
+    if (estudiante_Id==0) {
     
         return false;
 

@@ -1,0 +1,144 @@
+@-ms-viewport {
+  width: device-width;
+}
+
+@-o-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+html {
+  overflow-y: auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+#menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.5vw;
+  padding: 0.5vw;
+  border-radius: 5px;
+  background-color: #499bea;
+}
+
+#menu * {
+  width: 3em;
+  height: 3em;
+  background: white;
+  border-radius: 50%;
+}
+
+#mainArea {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+#nombre {
+  margin: 1vw 2vw;
+  padding: 2vw;
+  text-overflow: ellipsis;
+  background-color: transparent;
+  font-family: "Lucida Console", Monaco, monospace;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 10px;
+}
+
+.cell {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 80%;
+          flex: 1 0 80%;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 5px;
+  border-style: groove;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+.cellBotonBorrar * {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  background: red;
+}
+
+.item {
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px;
+  border-style: groove;
+  border-bottom: 0.5vw solid #707070;
+}
+
+.ui-datepicker {
+  background: #333;
+  border: 1px solid #555;
+  color: #EEE;
+}
+
+#statusBar {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+#linkHogar, #linkWappcom {
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+}
+/*# sourceMappingURL=css_cuenta_profesor.css.map */
