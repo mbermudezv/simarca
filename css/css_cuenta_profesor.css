@@ -49,7 +49,6 @@ a:active {
   text-decoration: underline;
 }
 
-<<<<<<< HEAD
 #menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -74,8 +73,6 @@ a:active {
   border-radius: 50%;
 }
 
-=======
->>>>>>> 01a4f72f0be79da4e6dc87f51ef0f76b0f47a3b6
 #mainArea {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -115,13 +112,8 @@ a:active {
 }
 
 .cellBotonBorrar * {
-<<<<<<< HEAD
   width: 1.2em;
   height: 1.2em;
-=======
-  width: 1em;
-  height: 1em;
->>>>>>> 01a4f72f0be79da4e6dc87f51ef0f76b0f47a3b6
   border-radius: 50%;
   background: red;
 }
@@ -134,15 +126,12 @@ a:active {
   border-bottom: 0.5vw solid #707070;
 }
 
-<<<<<<< HEAD
 .ui-datepicker {
   background: #333;
   border: 1px solid #555;
   color: #EEE;
 }
 
-=======
->>>>>>> 01a4f72f0be79da4e6dc87f51ef0f76b0f47a3b6
 #statusBar {
   font-family: "Lucida Console", Monaco, monospace;
 }
