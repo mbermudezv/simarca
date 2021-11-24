@@ -250,6 +250,9 @@ function guardar() {
   let inputMonto = document.getElementById("monto").value;
 
   const formData = new FormData();
+  formData.append('Cliente_id', intProfesor);
+  formData.append('Monto', inputMonto);
+  formData.append('Fecha', inputFecha);
 
   spinner.style.visibility = 'hidden';
   btnIngresar.innerText="Guardar";
