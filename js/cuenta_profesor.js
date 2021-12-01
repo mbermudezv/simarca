@@ -1,3 +1,5 @@
+let Cuenta_id = 0;
+
 window.onload = function() 
 {
 
@@ -96,7 +98,9 @@ function  carga_pantalla(datosProfesor) {
     //console.log(obj.Fecha)
 
     let fila = document.createElement('div');
-    fila.className = "d-flex flex-nowrap";
+    fila.className = "d-flex flex-nowrap filaCuenta";
+    fila.id = obj.Cuenta_id;
+    fila.setAttribute('data-id',obj.Cuenta_id);
 
     let colFecha = document.createElement('div');
     colFecha.className = "col-8 form-control";
@@ -110,8 +114,11 @@ function  carga_pantalla(datosProfesor) {
 
     let colBorrar = document.createElement('div');
     colBorrar.className = "d-flex align-items-center col-4 cellBotonBorrar";
+    colBorrar.onclick = new Function("botonQuitar(" + JSON.stringify(obj) + ");");
+
     let elemImg = document.createElement("img");
     elemImg.src = "../img/borrar.png";
+    
     colBorrar.appendChild(elemImg);
 
     fila.appendChild(colFecha);
@@ -348,4 +355,45 @@ function guardar() {
   document.getElementById("monto").value = '';
   
   return true;
+}
+
+function botonQuitar(arrayArticulo) {
+
+  let tituloMensaje = document.getElementById("tituloMensajeSiNo");
+  tituloMensaje.innerText='';
+
+  let contenedorError = document.getElementById("mensajeModalSiNo");
+  contenedorError.innerText='';
+  
+  tituloMensaje.innerText = 'Aviso importante!' ;
+  contenedorError.innerText = 'Realmente desea eliminar el ' + arrayArticulo["Fecha"] + ' Monto: ' + arrayArticulo["Monto"] + ' ?' ;
+  Cuenta_id = arrayArticulo["Cuenta_id"];   
+
+  $("#modalMensajeSiNo").modal('show');
+
+  return false;
+
+}
+
+function quitarElementoArray() {
+
+  let fila = document.getElementsByClassName('filaCuenta')
+  
+  for (let i = 0; i < fila.length; i++) {
+    
+    let dataCuenta_id = fila[i].getAttribute('data-id');
+    
+    if (dataCuenta_id == Cuenta_id) {
+    
+      let elem = document.getElementById(dataCuenta_id);
+      elem.parentElement.removeChild(elem);               
+      
+    }
+
+  }
+
+  $("#modalMensajeSiNo").modal('hide');
+    
+  return false;
+
 }
