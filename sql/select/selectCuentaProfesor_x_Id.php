@@ -35,7 +35,8 @@ class SelectCuentaProfesor
                 $fecha = date_create($row['Fecha'])->format('d-m-Y');
 
                 $rs[] = [
-                    'Cuenta_id' => $row['Cuenta_id'],						
+                    'Cuenta_id' => $row['Cuenta_id'],
+                    'Cliente_id' => $row['Cliente_id'],						
                     'Monto' => $row['Monto'],
                     'Fecha' => $fecha
                 ];

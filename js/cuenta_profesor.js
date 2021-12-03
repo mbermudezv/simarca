@@ -1,4 +1,5 @@
 let Cuenta_id = 0;
+let Cliente_id = 0;
 
 window.onload = function() 
 {
@@ -78,7 +79,7 @@ function carga_datos(profesor_Id) {
   
       }).then();
   
-    }else {
+    } else {
 
       let contenedorError = document.getElementById("mensaje");
       contenedorError.innerHTML='<div class="alert alert-danger">' +
@@ -367,7 +368,9 @@ function botonQuitar(arrayArticulo) {
   
   tituloMensaje.innerText = 'Aviso importante!' ;
   contenedorError.innerText = 'Realmente desea eliminar el ' + arrayArticulo["Fecha"] + ' Monto: ' + arrayArticulo["Monto"] + ' ?' ;
-  Cuenta_id = arrayArticulo["Cuenta_id"];   
+  
+  Cuenta_id = arrayArticulo["Cuenta_id"];
+  Cliente_id = arrayArticulo["Cliente_id"];
 
   $("#modalMensajeSiNo").modal('show');
 
@@ -386,7 +389,9 @@ function quitarElementoArray() {
     if (dataCuenta_id == Cuenta_id) {
     
       let elem = document.getElementById(dataCuenta_id);
-      elem.parentElement.removeChild(elem);               
+      elem.parentElement.removeChild(elem);
+      
+      borrarCuenta();
       
     }
 
@@ -395,5 +400,103 @@ function quitarElementoArray() {
   $("#modalMensajeSiNo").modal('hide');
     
   return false;
+
+}
+
+function borrarCuenta() {
+   
+  const formData = new FormData();
+  formData.append('cuenta', Cuenta_id);
+
+  fetch('../gestor/gestorCuentaProfesorDelete.php',{
+    method: 'POST', 
+    body: formData,     
+    }).then(function(response) {
+
+        if(response.ok) {
+
+          response.text().then(function(data) 
+          { 
+              //console.log(data);
+              carga_datos(Cliente_id);             
+                                          
+          }).catch(function(error) {
+
+              spinner.style.visibility = 'hidden';
+              btnIngresar.innerText="Guardar";
+              btnIngresar.disabled = false;
+
+              let tituloMensaje = document.getElementById("tituloMensaje");
+              tituloMensaje.innerText='';
+          
+              let contenedorError = document.getElementById("mensajeModal");
+              contenedorError.innerText='';
+
+              let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+              mensajeModalParrafo.innerText='';
+
+              tituloMensaje.innerText = 'Hubo un inconveniente!';
+              contenedorError.innerText ='Intente de nuevo!';
+              mensajeModalParrafo.innerText ='No hubo respuesta del servidor MEP.';
+            
+              $('#modalMensaje').modal('show');
+
+              return false;
+
+          })
+
+        } else {
+
+                spinner.style.visibility = 'hidden';
+                btnIngresar.innerText="Guardar";
+                btnIngresar.disabled = false;
+
+                let tituloMensaje = document.getElementById("tituloMensaje");
+                tituloMensaje.innerText='';
+            
+                let contenedorError = document.getElementById("mensajeModal");
+                contenedorError.innerText='';
+
+                let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+                mensajeModalParrafo.innerText='';
+
+                tituloMensaje.innerText = 'Hubo un inconveniente!';
+                contenedorError.innerText ='No hay respuesta del servidor MEP!';
+                mensajeModalParrafo.innerText ='Verifique su conexión de internet.';  
+              
+                $('#modalMensaje').modal('show');
+
+                return false;
+        }
+
+    })
+    .catch(function(error) {
+
+          spinner.style.visibility = 'hidden';
+          btnIngresar.innerText="Guardar";
+          btnIngresar.disabled = false;
+
+          let tituloMensaje = document.getElementById("tituloMensaje");
+          tituloMensaje.innerText='';
+      
+          let contenedorError = document.getElementById("mensajeModal");
+          contenedorError.innerText='';
+
+          let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
+          mensajeModalParrafo.innerText='';
+
+          tituloMensaje.innerText = 'Hubo un inconveniente!';
+          contenedorError.innerText ='Error al guardar la información!';
+          mensajeModalParrafo.innerText = error.message;
+          
+          $('#modalMensaje').modal('show');
+
+          return false;
+       
+    }).then();
+
+    
+
+    return true;
 
 }
