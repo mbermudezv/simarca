@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SiMarca">
+    <meta name="theme-color" content="#499bea" />
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css_index.css">      
+    <title>Reportes</title>
+</head>
+<body>
+
+    <div id="encabezadoBar" class="d-flex flex-row bg-info">
+
+        <a href="../index.html" class="m-1">
+            <img src="../img/salir.png">
+        </a>       
+                                     
+    </div>
+
+   <!--  <div id="encabezadoBar" 
+        class="d-flex flex-row 
+            justify-content-center bg-info">
+
+        <span id="tituloMarca">Reportes</span>
+
+    </div> -->
+
+
+    <div id="mainArea" class="container-fluid justify-content-center">
+
+        <div class="row flex-column align-items-center">
+
+            <div class="col-10 col-sm-6 col-md-6 
+                        col-lg-4 col-xl-4">
+ 
+                <nav class="nav nav-pills flex-column 
+                            nav-justified bg-dark">
+                    <a class="item nav-item nav-link 
+                              py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
+                              href="#">Solicitud de Almuerzos</a>
+                    <a class="item nav-item nav-link 
+                              py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
+                              href="reporteAlmuerzo.html">Registro de Almuerzos</a>
+                    <a class="item nav-item nav-link 
+                              py-3 py-sm-4 py-md-4 py-lg-4 py-xl-3" 
+                              href="#">Profesores Almuerzos</a>
+                </nav>
+            
+            </div> 
+
+        </div>                 
+
+    </div>
+
+    <script>       
+
+        if ('serviceWorker' in navigator) {
+            
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../service-worker.js')
+                    .then((reg) => {
+                    console.log('Registrando el Service worker.', reg);
+                    }, function(err) {
+                            // registration failed :(
+                            console.log('Error al registrar el ServiceWorker: ', err);
+                        });
+            });
+
+        }
+
+    </script> 
+
+</body>
+</html>
