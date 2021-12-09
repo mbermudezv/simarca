@@ -1,0 +1,114 @@
+@-ms-viewport {
+  width: device-width;
+}
+
+@-o-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+html {
+  overflow-y: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+body {
+  margin: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#encabezadoBar * {
+  width: 3em;
+  height: 3em;
+  background: white;
+  border-radius: 50%;
+}
+
+#mainArea {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+.item {
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px;
+  border-style: groove;
+  border-bottom: 0.5vw solid #707070;
+}
+
+#tituloMarca {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .item, #tituloMarca {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .item, #tituloMarca {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .item, #tituloMarca {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .item, #tituloMarca {
+    font-size: 1.5rem;
+  }
+}
+/*# sourceMappingURL=reportes.css.map */

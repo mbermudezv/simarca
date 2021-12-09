@@ -27,14 +27,23 @@
     <div id="mainArea" class="container-fluid"> 
                     
         <div class="input-group pt-2 justify-content-center">
+
             <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
-                <input id="fecha" type="text"  
+                <input id="fechaDesde" type="text"  
                     maxlength="10" autocomplete="off" 
-                    class="form-control datepicker" placeholder="Seleccione la Fecha" 
+                    class="form-control datepicker" placeholder="Desde" 
                     readonly="readonly">
             </div>
-        </div>
 
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
+                <input id="fechaHasta" type="text"  
+                    maxlength="10" autocomplete="off" 
+                    class="form-control datepicker" placeholder="Hasta" 
+                    readonly="readonly">
+            </div>
+
+        </div>
+        
         <div class="row pt-2 pb-2 justify-content-center">
 
             <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2"> 
@@ -56,12 +65,12 @@
             </div>
         
         </div>
-
+      
         <div class="container-sm container-md container-lg">
             <div class="row justify-content-center"> 
               <div id="mensaje" class="form-group row"></div>
             </div>
-        </div>       
+        </div>
         
         <div class="form-group" id="lista">            
 
@@ -80,12 +89,7 @@
         </div>
                                     
     </div>
-    
-    <!-- <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
-        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
-        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
-    </div> -->
-
+       
     <div class="modal" id="modalMensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTipo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">       
@@ -129,7 +133,7 @@
     <script src="../js/jquery-ui.js"></script>
     
     <!-- js del formulario -->         
-    <script src="../js/reporteAlmuerzo.js"></script>
+    <script src="../js/reporteAlmuerzoProfesor.js"></script>
 
     <script>           
        
