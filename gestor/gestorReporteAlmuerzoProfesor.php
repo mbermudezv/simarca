@@ -1,15 +1,14 @@
 <?php
 
 require '../sql/conexion.php';
-require '../sql/select/selectReporteAlmuerzo.php';
+require '../sql/select/selectReporteAlmuerzoProfesor.php';
 
 try {
 
  	$getfecDesde = $_GET['fecha'];
-    $getmarcaTipo = $_GET['tipo'];
 
-	$Select = new SelectReporteAlmuerzo();
-	$rs = $Select->selectReporteAlmuerzo($getfecDesde, $getmarcaTipo);        
+	$Select = new SelectReporteAlmuerzoProfesor();
+	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde);        
 	
     echo json_encode($rs);
     
