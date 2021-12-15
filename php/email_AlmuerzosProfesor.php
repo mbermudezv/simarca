@@ -5,13 +5,12 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
-require ''
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: text/html; charset=UTF-8');
 
-// $JSON_Datos = array();
-// $JSON_Datos = json_decode($_POST['JSON_Datos'], true);
+$JSON_Datos = array();
+$JSON_Datos = json_decode($_POST['JSON_Datos'], true);
 
 $fechaDesde = $_POST['fechaDesde'];
 $fechaHasta = $_POST['fechaHasta'];
@@ -88,9 +87,13 @@ try {
                 <tbody>";
         
         
-
         if(!empty($JSON_Datos)) 
         { 
+
+            $output = array_filter($JSON_Datos, function($value) {
+                return $value % 2 == 0;  
+              });
+
             foreach($JSON_Datos as $key => $value) 
             {
                 $nombre = $value['Estudiante_Nombre'] . " ". $value['Estudiante_Apellido1'] . " ". $value['Estudiante_Apellido2'];

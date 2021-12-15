@@ -5,13 +5,23 @@ require '../sql/select/selectReporteAlmuerzoProfesor.php';
 
 try {
 
- 	$getfecDesde = $_GET['fecha'];
+ 	// $getfecDesde = $_GET['fechaDesde'];
+    // $getfecHasta = $_GET['fechaHasta'];
 
-	$Select = new SelectReporteAlmuerzoProfesor();
-	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde);        
-	
-    echo json_encode($rs);
+    $getfecDesde = '01-11-2021';
+    $getfecHasta = '30-12-2021';
     
+	$Select = new SelectReporteAlmuerzoProfesor();
+	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde, $getfecHasta);
+	
+    //echo json_encode($rs);
+    
+    $output = array_filter($rs, function($value, $key) {
+        return $value == '2021-11-04' && $key ;  
+      });
+
+    echo json_encode($output);  
+
     $Select = null;
     $rs = null;
     

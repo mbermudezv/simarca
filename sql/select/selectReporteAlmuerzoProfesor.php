@@ -15,19 +15,20 @@ class SelectReporteAlmuerzoProfesor
         
     }
 
-    function selectReporteAlmuerzoProfesor($fechaDesde)
+    function selectReporteAlmuerzoProfesor($fechaDesde, $fechaHasta)
     {        
 
         if ($this->pdo != null) {
             
             date_default_timezone_set('America/Costa_Rica');
-	 	    $fechaDesde = date_create($fechaDesde)->format('Y-m-d');
+	 	    $fechaDesdeYMD = date_create($fechaDesde)->format('Y-m-d');
+            $fechaHastaYMD = date_create($fechaHasta)->format('Y-m-d');
 		                                
             $consultaSQL = "SELECT profesor_cedula, profesor_primer_apellido,
                             profesor_segundo_apellido, profesor_nombre,
-                            Monto FROM Cuenta INNER JOIN
+                            Monto, Fecha FROM Cuenta INNER JOIN
                             profesor ON Cuenta.Cliente_id = profesor.profesor_Id
-                            WHERE Fecha = '".$fechaDesde."'";     
+                            WHERE Fecha BETWEEN '".$fechaDesdeYMD."' AND '".$fechaHastaYMD."'";
 
 
 			$sql = $this->pdo->query($consultaSQL);
@@ -40,7 +41,8 @@ class SelectReporteAlmuerzoProfesor
                         'profesor_primer_apellido' => $row['profesor_primer_apellido'],
                         'profesor_segundo_apellido' => $row['profesor_segundo_apellido'],
                         'profesor_nombre' => $row['profesor_nombre'],
-                        'Monto' => $row['Monto']                        
+                        'Monto' => $row['Monto'],
+                        'Fecha' => $row['Fecha']                       
 					];
 			}
 
