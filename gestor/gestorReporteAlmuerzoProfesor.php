@@ -1,5 +1,9 @@
 <?php
 
+ini_set("display_errors", 1);
+ini_set("display_startup_errors", 1);
+error_reporting(-1);
+
 require '../sql/conexion.php';
 require '../sql/select/selectReporteAlmuerzoProfesor.php';
 
@@ -14,13 +18,13 @@ try {
 	$Select = new SelectReporteAlmuerzoProfesor();
 	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde, $getfecHasta);
 	
-    //echo json_encode($rs);
+    echo json_encode($rs);
     
-    $output = array_filter($rs, function($value, $key) {
-        return $value == '2021-11-04' && $key ;  
+    /* $output = array_filter($rs, function($value) {
+        return $value == '2021-11-04';  
       });
 
-    echo json_encode($output);  
+    echo json_encode($output);   */
 
     $Select = null;
     $rs = null;
