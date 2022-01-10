@@ -1,36 +1,29 @@
 <?php
-function searchForId($search_value, $array) {
 
-	// Iterating over main array
-	foreach ($array as $key1 => $val1) {
+function multiSearch(array $array, array $pairs)
+{
 
-		$temp_path = array();
-        array_push($temp_path, $key1);
-		
-		// Check if this value is an array
-		// with atleast one element
-		if(is_array($val1) and count($val1)) {
+	$found = array();
 
-			// Iterating over the nested array
-			foreach ($val1 as $key2 => $val2) {
+	foreach ($array as $aKey => $aVal) {
 
-				if($val2 == $search_value) {
-						
-					// Adding current key to search path
-					//array_push($temp_path, $key2);
-						
-				}
+		$coincidences = 0;
+
+		foreach ($pairs as $pKey => $pVal) {
+
+			if (array_key_exists($pKey, $aVal) && $aVal[$pKey] == $pVal) {
+				$coincidences++;
 			}
+
 		}
-		
-		elseif($val1 == $search_value) {
-            //array_push($temp_path, $key1);
+
+		if ($coincidences == count($pairs)) {
+			$found[$aKey] = $aVal;
 		}
 	}
-	
-	//return null;
-    return $temp_path;
-}
+
+	return $found;
+}  
 
 // Multidimensional array
 $gfg_array = array(
@@ -51,7 +44,7 @@ $gfg_array = array(
 	)
 );
 
-$search_path = searchForId('Distributed Computing', $gfg_array);
+$search_path = multiSearch($gfg_array, array('subject' => 'Distributed Computing'));
 
 print_r($search_path);
 
