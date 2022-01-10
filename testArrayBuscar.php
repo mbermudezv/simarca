@@ -35,7 +35,7 @@ $gfg_array = array(
 	array(
 		'score' => '50',
 		'name' => 'Tanya',
-		'subject' => 'Advanced Algorithms'
+		'subject' => 'Distributed Computing'
 	),
 	array(
 		'score' => '75',

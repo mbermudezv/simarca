@@ -18,13 +18,15 @@ try {
 	$Select = new SelectReporteAlmuerzoProfesor();
 	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde, $getfecHasta);
 	
-    echo json_encode($rs);
+    //echo json_encode($rs);
     
-    /* $output = array_filter($rs, function($value) {
-        return $value == '2021-11-04';  
-      });
+    date_default_timezone_set('America/Costa_Rica');
+	$fechaDesdeYMD = date_create($fechaDesde)->format('Y-m-d');
+    $fechaHastaYMD = date_create($fechaHasta)->format('Y-m-d');
 
-    echo json_encode($output);   */
+    $begin = new DateTime($fechaDesdeYMD);
+    $end   = new DateTime($fechaHastaYMD);
+   
 
     $Select = null;
     $rs = null;
