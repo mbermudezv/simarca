@@ -41,7 +41,7 @@ try {
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
 
-    $mail->Subject = "Asistencia funcionarios comedor";
+    $mail->Subject = "Asistencia de funcionarios al comedor";
 
     $mail->Body .= "<head>
                         <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>           
@@ -87,24 +87,26 @@ try {
                 <tbody>";
         
         
-        if(!empty($JSON_Datos)) 
-        { 
+        if(!empty($rs)) 
+        {
 
-            $output = array_filter($JSON_Datos, function($value) {
-                return $value % 2 == 0;  
-              });
+            $search_path = multiSearch($rs, array('Fecha' => $fechaRegistro));
 
-            foreach($JSON_Datos as $key => $value) 
+            if(!empty($search_path))
             {
-                $nombre = $value['Estudiante_Nombre'] . " ". $value['Estudiante_Apellido1'] . " ". $value['Estudiante_Apellido2'];
-                $seccion_Descripcion = $value['seccion_Descripcion'];
 
-                $mail->Body .= "<tr style='width:50%'>                                    
-                                    <td>".$nombre."</td>
-                                    <td>".$seccion_Descripcion."</td>
-                                </tr>";
-                                    
-            }
+                foreach($search_path as $key => $value) 
+                {
+                    $nombre = $value['profesor_nombre'] . " ". $value['profesor_primer_apellido'] . " ". $value['profesor_segundo_apellido'];
+                    $monto = $value['Monto'];
+
+                    $mail->Body .= "<tr style='width:50%'>                                    
+                                        <td>".$nombre."</td>
+                                        <td>".$monto."</td>
+                                    </tr>";
+                                        
+                }
+            }    
         }
 
         $mail->Body .= "</tbody> 
@@ -124,11 +126,11 @@ try {
                                 </tr>
                                 <tr>
                                     <td>MSc. Henry Navarro Zu&ntilde;iga</td>
-                                    <td>MSc. Raquel Vindas Quiros</td>
+                                    <td>Ana Patricia Monge Monge</td>
                                 </tr>
                                 <tr>
                                     <td>Director Institucional</td>
-                                    <td>Coordinadora Comite Nutrici&oacute;n</td>                
+                                    <td>Comit&eacute; de Nutrici&oacute;n</td>                
                                 </tr>
                             </tbody>
                         </table> 
@@ -140,6 +142,31 @@ try {
 } catch (\Throwable $th) {
     //throw $th;
     echo $th;
+}
+
+function multiSearch(array $array, array $pairs)
+{
+
+	$found = array();
+
+	foreach ($array as $aKey => $aVal) {
+
+		$coincidences = 0;
+
+		foreach ($pairs as $pKey => $pVal) {
+
+			if (array_key_exists($pKey, $aVal) && $aVal[$pKey] == $pVal) {
+				$coincidences++;
+			}
+
+		}
+
+		if ($coincidences == count($pairs)) {
+			$found[$aKey] = $aVal;
+		}
+	}
+
+	return $found;
 }
 
 ?>

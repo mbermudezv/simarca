@@ -1,13 +1,13 @@
 <?php
 
-ini_set("display_errors", 1);
+/* ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(-1);
-
+ */
 require '../sql/conexion.php';
 require '../sql/select/selectReporteAlmuerzoProfesor.php';
 
-function multiSearch(array $array, array $pairs)
+/* function multiSearch(array $array, array $pairs)
 {
 
 	$found = array();
@@ -31,21 +31,22 @@ function multiSearch(array $array, array $pairs)
 
 	return $found;
 }
+ */
 
 try {
 
- 	// $getfecDesde = $_GET['fechaDesde'];
-    // $getfecHasta = $_GET['fechaHasta'];
+ 	$getfecDesde = $_GET['fechaDesde'];
+    $getfecHasta = $_GET['fechaHasta'];
 
-    $getfecDesde = '04-11-2021';
-    $getfecHasta = '05-11-2021';
+    //$getfecDesde = '04-11-2021';
+    //$getfecHasta = '05-11-2021';
     
 	$Select = new SelectReporteAlmuerzoProfesor();
 	$rs = $Select->selectReporteAlmuerzoProfesor($getfecDesde, $getfecHasta);
 	
     echo json_encode($rs);
     
-    date_default_timezone_set('America/Costa_Rica');
+/*     date_default_timezone_set('America/Costa_Rica');
 	$fechaDesdeYMD = date_create($getfecDesde)->format('Y-m-d');
     $fechaHastaYMD = date_create($getfecHasta)->format('Y-m-d');
 
@@ -81,17 +82,17 @@ try {
         {
             $search_path = multiSearch($rs, array('Fecha' => $fechaRegistro));
 
-            if(!empty($rs))
+            if(!empty($search_path))
             {
 
                 foreach($search_path as $key => $value) 
                 {
-                    $nombre = $value['Estudiante_Nombre'] . " ". $value['Estudiante_Apellido1'] . " ". $value['Estudiante_Apellido2'];
-                    $seccion_Descripcion = $value['seccion_Descripcion'];
+                    $nombre = $value['profesor_nombre'] . " ". $value['profesor_primer_apellido'] . " ". $value['profesor_segundo_apellido'];
+                    $monto = $value['Monto'];
 
-                    $mail->Body .= "<tr style='width:50%'>                                    
+                    $mail .= "<tr style='width:50%'>                                    
                                         <td>".$nombre."</td>
-                                        <td>".$seccion_Descripcion."</td>
+                                        <td>".$monto."</td>
                                     </tr>";
                                         
                 }
@@ -106,10 +107,11 @@ try {
                 <br/>";
     }
 
+    echo $mail;
+ */
+
     $Select = null;
     $rs = null;
-
-    echo $mail;
     
 } 
 
