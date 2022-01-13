@@ -87,10 +87,10 @@ try {
                 <tbody>";
         
         
-        if(!empty($rs)) 
+        if(!empty($JSON_Datos)) 
         {
 
-            $search_path = multiSearch($rs, array('Fecha' => $fechaRegistro));
+            $search_path = multiSearch($JSON_Datos, array('Fecha' => $fechaRegistro));
 
             if(!empty($search_path))
             {

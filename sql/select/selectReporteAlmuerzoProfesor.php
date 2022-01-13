@@ -28,7 +28,8 @@ class SelectReporteAlmuerzoProfesor
                             profesor_segundo_apellido, profesor_nombre,
                             Monto, Fecha FROM Cuenta INNER JOIN
                             profesor ON Cuenta.Cliente_id = profesor.profesor_Id
-                            WHERE Fecha BETWEEN '".$fechaDesdeYMD."' AND '".$fechaHastaYMD."'";
+                            WHERE Fecha BETWEEN '".$fechaDesdeYMD."' AND '".$fechaHastaYMD."'
+                            ORDER BY Fecha";
 
 
 			$sql = $this->pdo->query($consultaSQL);

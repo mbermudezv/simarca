@@ -35,13 +35,11 @@ function mostrar_Informacion() {
     
     $('#lista').empty();
     
-    //Para brincarse la pantalla de seleccionar tipo de marca 3
-    //que es Almuerzo
-    let tipo = 3;
-    let fecha = $('#fecha').val();
+    let fechaDesde = $('#fechaDesde').val();
+    let fechaHasta = $('#fechaHasta').val();
 
-    fetch('../gestor/gestorReporteAlmuerzo.php?'
-    + new URLSearchParams({fecha: fecha, tipo: tipo}))
+    fetch('../gestor/gestorReporteAlmuerzoProfesor.php?'
+    + new URLSearchParams({fechaDesde: fechaDesde, fechaHasta: fechaHasta}))
     .then(function(response) {
 
         if(response.ok) {
@@ -108,7 +106,7 @@ function cargaDatosPantalla(data)
         fila.id = "fila";
         fila.className = "form-group row justify-content-center";
         
-        let nombre = obj.Estudiante_Nombre + " " + obj.Estudiante_Apellido1 + " " + obj.Estudiante_Apellido2;
+        let nombre = obj.profesor_nombre + " " + obj.profesor_primer_apellido + " " + obj.profesor_segundo_apellido;
 
         let colNombre = document.createElement('div');
         colNombre.id = "nombre";
@@ -116,16 +114,32 @@ function cargaDatosPantalla(data)
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
 
-        let seccion = obj.seccion_Descripcion;
+        let fecha = obj.Fecha;
+        let monto = obj.Monto;
 
-        let colSeccion = document.createElement('div');
-        colSeccion.id = "seccion";
-        colSeccion.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
-        let createATextSeccion = document.createTextNode(seccion);
-        colSeccion.appendChild(createATextSeccion);
+        let date = new Date(obj.Fecha);
+        let day = `${(date.getDate())}`.padStart(2,'0');
+        let month = `${(date.getMonth()+1)}`.padStart(2,'0');
+        let year = date.getFullYear();
+        
+        //console.log(`${day}-${month}-${year}`);
+        let fechaFormato = `${day}-${month}-${year}`;
+
+        let colFecha = document.createElement('div');
+        colFecha.id = "fecha";
+        colFecha.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
+        let createATextFecha = document.createTextNode(fechaFormato);
+        colFecha.appendChild(createATextFecha);
+
+        let colMonto = document.createElement('div');
+        colMonto.id = "monto";
+        colMonto.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
+        let createATextMonto = document.createTextNode(monto);
+        colMonto.appendChild(createATextMonto);        
         
         fila.appendChild(colNombre);
-        fila.appendChild(colSeccion);
+        fila.appendChild(colFecha);
+        fila.appendChild(colMonto);
 
         document.getElementById('lista').appendChild(fila);        
 
@@ -151,7 +165,8 @@ function enviar_email() {
 
     const formData = new FormData();
     
-    let fecha = $('#fecha').val();
+    let fechaDesde = $('#fechaDesde').val();
+    let fechaHasta = $('#fechaHasta').val();
     let jsonData = JSON.stringify(arrayAlmuerzos);
 
     let btnIngresar = document.getElementById("btnEnviar");
@@ -160,10 +175,11 @@ function enviar_email() {
     btnIngresar.innerHTML = '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
     let spinner = document.getElementById("spinner");
       
-    formData.append('fecha', fecha);
+    formData.append('fechaDesde', fechaDesde);
+    formData.append('fechaHasta', fechaHasta);
     formData.append('JSON_Datos', jsonData);
 
-    fetch('https://wappcom.net/comedor/email_Almuerzos.php', {
+    fetch('https://wappcom.net/comedor/email_AlmuerzosProfesor.php', {
         method: 'POST',
         mode: 'no-cors',
         headers: {'Content-Type': 'application/json'},
