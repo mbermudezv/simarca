@@ -17,10 +17,6 @@ $fechaHasta = $_POST['fechaHasta'];
 
 $mail = new PHPMailer(true);
 
-/* $correo = "lic.lasesperanzas@wappcom.net";
-$passemail = "liceoLE2021";
- */
-
 $correo = "comedor@wappcom.net";
 $passemail = "liceoLE2021";
 
@@ -36,8 +32,8 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    //$mail->AddAddress("rvindas@lasesperanzas.ed.cr");
-    $mail->AddAddress("mauricio.bermudez.vargas@mep.go.cr");
+    $mail->AddAddress("rvindas@lasesperanzas.ed.cr");
+    //$mail->AddAddress("mauricio.bermudez.vargas@mep.go.cr");
 
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
@@ -67,34 +63,34 @@ try {
 
     for($i = $begin; $i <= $end; $i->modify('+1 day'))
     {
-
-        $fechaRegistro = $i->format("Y-m-d");
-        $fecha = date_create($fechaRegistro)->format('m-d-Y');
-
-        $mail->Body .=  "<div id='container'> 
-                            <table style='width:50%'>
-                                <tbody>
-                                    <tr style='width:30%'>
-                                        <th scope='row'>Fecha:</th>
-                                        <td>".$fecha."</td>
-                                    </tr>
-                                </tbody> 
-                            </table> 
-                        </div>
-                        <br/>";
-        
-        $mail->Body .=  "<div id='container'> 
-            <table style='width:60%'>
-                <tbody>";
-        
-        
+                       
         if(!empty($JSON_Datos)) 
         {
+
+            $fechaRegistro = $i->format("Y-m-d");
 
             $search_path = multiSearch($JSON_Datos, array('Fecha' => $fechaRegistro));
 
             if(!empty($search_path))
             {
+                
+                $fecha = date_create($fechaRegistro)->format('m-d-Y');
+        
+                $mail->Body .=  "<div id='container'> 
+                                    <table style='width:50%'>
+                                        <tbody>
+                                            <tr style='width:30%'>
+                                                <th scope='row'>Fecha:</th>
+                                                <td>".$fecha."</td>
+                                            </tr>
+                                        </tbody> 
+                                    </table> 
+                                </div>
+                                <br/>";
+                
+                $mail->Body .=  "<div id='container'> 
+                    <table style='width:60%'>
+                        <tbody>";                
 
                 foreach($search_path as $key => $value) 
                 {
@@ -107,13 +103,15 @@ try {
                                     </tr>";
                                         
                 }
+
+                $mail->Body .= "</tbody> 
+                </table> 
+            </div>
+            <br/>";
+
             }    
         }
-
-        $mail->Body .= "</tbody> 
-                    </table> 
-                </div>
-                <br/>";
+       
     }
 
     $mail->Body .= "<br/>";
