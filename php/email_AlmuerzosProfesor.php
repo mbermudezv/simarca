@@ -120,16 +120,13 @@ try {
                         <table style='width:70%'>
                             <tbody>
                                 <tr>
-                                    <td>------------------------------</td>
-                                    <td>------------------------------</td>                
+                                    <td>------------------------------</td>                                    
                                 </tr>
                                 <tr>
                                     <td>MSc. Henry Navarro Zu&ntilde;iga</td>
-                                    <td>Ana Patricia Monge Monge</td>
                                 </tr>
                                 <tr>
                                     <td>Director Institucional</td>
-                                    <td>Comit&eacute; de Nutrici&oacute;n</td>                
                                 </tr>
                             </tbody>
                         </table> 
