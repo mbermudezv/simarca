@@ -18,8 +18,8 @@ function mostrar_Informacion() {
     let urlParams = new URLSearchParams(window.location.search);
     let estudiante_Id = urlParams.get('estudiante');
     
-    if (estudiante_Id==0) {
-    
+    if (estudiante_Id==null) {
+
         return false;
 
     }
@@ -50,11 +50,10 @@ function mostrar_Informacion() {
 }
 
 function guardar() {
-
     
     let urlParams = new URLSearchParams(window.location.search);
     let estudiante_Id = urlParams.get('estudiante');
-    
+        
     let estudiante_Cedula = $('#txtCedula').val();
     let estudiante_Nombre = $('#txtNombre').val();
     let estudiante_PrimerApellido = $('#txtApellido1').val();
@@ -66,10 +65,22 @@ function guardar() {
     let contenedorError = document.getElementById("mensaje");
     contenedorError.innerHTML='';
 
-    if ( estudiante_Id == 'null' || typeof(estudiante_Id) == 'undefined'){              
+    if (estudiante_Cedula == "" ||
+        estudiante_Nombre == "" ||
+        estudiante_PrimerApellido == "" ||
+        estudiante_SegundoApellido == "" ||
+        estudiante_Seccion == 0) {
+            
+            alert("Atención !!! Debe completar todos los datos");
+
+            return false;
+
+    }
+
+    if (estudiante_Id == null || typeof(estudiante_Id) == 'undefined'){              
 
         $('#guardar').html('<img src="../img/cargando.gif">');	
-
+                
         $.post("../gestor/gestorEstudianteGuardar.php", 
             {
                 estudiante_Cedula: estudiante_Cedula,
@@ -89,12 +100,12 @@ function guardar() {
                 
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
                                         '<strong>Error! </strong>' +
-                                        'Error al conectar con la base de datos </div>';                                                        
+                                        'Error al conectar con la base de datos </div>';
 
 
             });
 
-        } else	{                                
+        } else	{                                            
 
             $('#guardar').html('<img src="../img/cargando.gif">');
 
