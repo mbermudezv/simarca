@@ -1,4 +1,6 @@
 
+let seccion=0;
+
 window.onload = function() 
 {
 
@@ -48,11 +50,13 @@ function selectEstudianteGestor(seccion_Id)
         
     if (seccion_Id > 0) 
     {
-        
+      
+        seccion = seccion_Id; //Para ser usado en el reload.
+
         $('#lista').empty(); 
 
-        fetch('../gestor/gestorEstudianteSeccion.php?'
-        + new URLSearchParams({seccion_Id: seccion_Id}))
+        fetch('../gestor/gestorSinMarcaEstudianteSeccion.php?'
+        + new URLSearchParams({seccion_Id: seccion_Id, Marca_Tipo:3}))//seleccion: 3 es Registro de Almuerzo
         .then(function(response) {
 
             if(response.ok) {
@@ -156,30 +160,16 @@ function cargaDatosPantalla(data)
 
 function guardar(estudiante_Id) 
 {
-    let btnIngresar = document.getElementById("btnGuardar");
-    btnIngresar.disabled = true;
-    btnIngresar.innerHTML = '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
-    let spinner = document.getElementById("spinner");
-
-    let arrayEstudiantes = [];
-    let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-
-    for (let i = 0; i < checkboxes.length; i++) 
-    {    
-        arrayEstudiantes.push(checkboxes[i].getAttribute('data-id'));
-        
-    }
-
-    if (arrayEstudiantes && arrayEstudiantes.length>0) 
+    
+    if (estudiante_Id>0) 
     {
         
         const formData = new FormData();    
-        const jsonEstudiantes = JSON.stringify(arrayEstudiantes);
-
-        formData.append('arrayEstudiantes', jsonEstudiantes);
-        formData.append('seleccion', 4); //seleccion: 4 es Solicitud de Almuerzo
+        
+        formData.append('Estudiante_Id', estudiante_Id);
+        formData.append('seleccion', 3); //seleccion: 3 es Marca de Almuerzo
           
-        fetch('../gestor/gestorEstudiante_Solicitud.php',{
+        fetch('../gestor/gestorEstudiante_Marca.php',{
         method: 'POST', 
         body: formData,})
         .then(function(response) {
@@ -193,7 +183,8 @@ function guardar(estudiante_Id)
             .then(function(data) 
             {
             
-                console.log(data);
+                //console.log(data);
+                cargar_de_nuevo();
                                                     
             }).catch(function(error) {
 
@@ -201,11 +192,7 @@ function guardar(estudiante_Id)
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
                                         '<strong>Error! </strong>' +
                                         'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
-                                        '</div>';
-
-                spinner.style.visibility = 'hidden';
-                btnIngresar.innerText="Registrar Solicitud";
-                btnIngresar.disabled = false;
+                                        '</div>';               
 
             });              
 
@@ -217,18 +204,11 @@ function guardar(estudiante_Id)
                                     '<strong>Error! </strong>' +
                                         'No se pudo conectar con el servidor. Intente de nuevo.' +
                                     '</div>';
-
-            spinner.style.visibility = 'hidden';
-            btnIngresar.innerText="Registrar Solicitud";
-            btnIngresar.disabled = false;                                        
+                                                
         }
 
         }).catch(function(error) {
-
-            spinner.style.visibility = 'hidden';
-            btnIngresar.innerText="Registrar Solicitud";
-            btnIngresar.disabled = false;
-    
+               
             let contenedorError = document.getElementById("mensaje");         
             contenedorError.innerHTML='<div class="alert alert-danger">' +
                                     '<strong>Error! </strong>' +
@@ -236,59 +216,15 @@ function guardar(estudiante_Id)
                                     '</div>';        
         }).then();
 
-    } else {
-
-        spinner.style.visibility = 'hidden';
-        btnIngresar.innerText="Registrar Solicitud";
-        btnIngresar.disabled = false;
-            
-        let tituloMensaje = document.getElementById("tituloMensaje");
-        tituloMensaje.innerText='';
+    } 
     
-        let contenedorError = document.getElementById("mensajeModal");
-        contenedorError.innerText='';
-    
-        let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-        mensajeModalParrafo.innerText='';
-    
-        tituloMensaje.innerText = 'Hubo un inconveniente!';
-        contenedorError.innerText ='Al parecer no hay estudiantes seleccionados!';
-        mensajeModalParrafo.innerText = 'Marca los estudiantes que solicitan almuerzo ' + 
-                                        'haciendo click en el cuadro pequeño junto al nombre del estudiante';
-        
-        $('#modalMensaje').modal('show');
-        
-    
-        return false;   
-      }
-    
-      spinner.style.visibility = 'hidden';
-      btnIngresar.innerText="Registrar Solicitud";
-      btnIngresar.disabled = false;
-
-      let tituloMensaje = document.getElementById("tituloMensaje");
-      tituloMensaje.innerText='';
-  
-      let contenedorError = document.getElementById("mensajeModal");
-      contenedorError.innerText='';
-
-      let mensajeModalParrafo = document.getElementById("mensajeModalParrafo");
-      mensajeModalParrafo.innerText='';
-
-      tituloMensaje.innerText = 'Ok!';
-      contenedorError.innerText ='Se Registró la Solicitud de Almuerzo!';      
-      
-      $('#modalMensaje').modal('show');
-
     return true;
 }
 
 function cargar_de_nuevo() {    
 
-    if(!window.location.hash) {
-        window.location = window.location + 'marcaSinCodigoBarra.html';
-        window.location.reload();
-    }
+    mostrarMarcaContador();
+    selectEstudianteGestor(seccion);
 
   }
 
