@@ -20,8 +20,12 @@ $mail = new PHPMailer(true);
 $passemail = "liceoLE2021";
  */
 
-$correo = "comedor@wappcom.net";
+/* $correo = "comedor@wappcom.net";
 $passemail = "liceoLE2021";
+ */
+
+$correo = "gaoydnxo@wappcom.net";
+$passemail = "jq69s9ObU6";
 
 try {
 
