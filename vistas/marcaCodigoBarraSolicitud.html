@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="SiMarca">
+    <meta name="theme-color" content="#499bea" />
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css_marcaCodigoBarra.css">    
+    <title>SiMarca</title>  
+</head>
+
+<body>
+
+    <div id="encabezadoBar" class="d-flex flex-row 
+                                    justify-content-between bg-info">
+
+        <a href="../index.html" class="m-1">
+            <img src="../img/salir.png">
+        </a>
+      
+                                                                    
+    </div>
+
+    <div id="mainArea" class="container-fluid">               
+                
+        <div class="row flex-column align-items-center">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 pt-3">                 
+                <div id="tipoMarca_Descripcion" class="m-1 p-1">
+                    <span id="tipoMarca" class="font-weight-bold"></span>
+                    <span id="contador" class="badge badge-pill badge-primary"></span>
+                    <span id="tipoMarcaSolicitud" class="font-weight-bold">Solicitud</span>
+                    <span id="contadorSolicitud" class="badge badge-pill badge-primary"></span>
+
+                </div>
+                              
+            </div>
+
+        </div>
+
+        <div class="row flex-column align-items-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pt-2">
+                <div id="divNombre" class="m-1 p-1"></div>
+            </div>          
+        </div>
+
+        <div class="row flex-column align-items-center">
+
+            <div id="tabla" class="pt-2 pt-lg-3 pt-xl-3">
+                <div id="fila">                              
+                    <div id="Col">
+                        <input type="text" id="txtMarca" maxlength="50">
+                    </div>                               
+                </div>
+            </div>         
+            
+        </div>
+                       
+    </div>
+
+  <div id="fila" class="pt-2"> 
+        
+        <div class="row flex-column align-items-center">
+            <div class="col-11 col-sm-7 col-md-7 col-lg-7 col-xl-5">
+                <img id="imagenMarca">
+            </div>
+        </div>                   
+        
+    </div>
+ 
+    <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
+
+        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
+        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
+
+    </div>
+    
+    <script src="../js/marcaCodigoBarraSolicitud.js"></script>
+   
+</body>
+
+</html>
