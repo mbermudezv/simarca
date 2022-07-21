@@ -9,15 +9,15 @@ try {
 
 	$cedula = $_GET['cedula'];
     $intSeleccion = $_GET['seleccion'];
-
+   
 	$Select = new SelectSQL();
 	$rs = $Select->selectEstudiante_por_Cedula($cedula);
     
     if (count($rs)>0) {
 
         $intId = $rs[0]["Estudiante_Id"];
+        
         $rsMarcaRegistrada = [];
-
         $selectMarcaRegistrada = new SelectSQLMarcaRegistrada();
         $rsMarcaRegistrada = $selectMarcaRegistrada->selectMarcaRegistrada($intId, $intSeleccion);
 
@@ -27,16 +27,15 @@ try {
             $insert = $Insert-> insertMarca($intId, $intSeleccion);
             
             $Insert = null;
-            $insert = null;
-    
+            $insert = null;                
         }
+
+        echo json_encode($rs);
         
     }
-	
-    echo json_encode($rs);
-    
+	         
     $Select = null;
-    $rs = null;
+    $rs = null;    
     
 } 
 
