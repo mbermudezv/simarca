@@ -148,9 +148,24 @@ function guadar(strCedula) {
                         
                 if (Object.keys(data).length>0) {
 
+                    console.log(Object.keys(data));
+
+                    if (Object.keys(data) == "error") {
+
+                        let contenedorError = document.getElementById("divNombre");
+                        
+                        contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                                '<strong>' +
+                                                'No Existe la Solicitud de Almuerzo' +
+                                                '</strong></div>';
+                        
+                        return false;
+                            
+                    }
+
                     cargaDatosPantalla(data);
                     mostrarMarcaContador();
-                    //mostrarImagen();                    
+                    
 
                 } else {
 
@@ -163,17 +178,17 @@ function guadar(strCedula) {
          
             }).catch(function(error) {
 
-                  let contenedorError = document.getElementById("tipoMarca_Descripcion");
+                  let contenedorError = document.getElementById("divNombre");
                   contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                          '<strong>Error! </strong>' +
-                                          'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
+                                          '<strong>Intente de Nuevo! </strong>' +
+                                          'No se encontró el estudiante ' + 
                                           '</div>';
             });              
 
 
     } else {
             
-            let contenedorError = document.getElementById("tipoMarca_Descripcion");           
+            let contenedorError = document.getElementById("divNombre");           
             contenedorError.innerHTML='<div class="alert alert-danger">' +
                                     '<strong>Error! </strong>' +
                                         'No se pudo conectar con el servidor. Intente de nuevo.' +
@@ -182,7 +197,7 @@ function guadar(strCedula) {
 
   }).catch(function(error) {
     
-          let contenedorError = document.getElementById("tipoMarca_Descripcion");         
+          let contenedorError = document.getElementById("divNombre");         
           contenedorError.innerHTML='<div class="alert alert-danger">' +
                                   '<strong>Error! </strong>' +
                                       'Hubo un problema al conectar con el servidor: ' + error.message +
@@ -196,62 +211,8 @@ function guadar(strCedula) {
 
 function selectEstudianteGestor(strCedula) 
 {
-
-    fetch('../sql/select/selectSolicitudRegistrada.php?'
-    + new URLSearchParams({cedula: strCedula, seleccion: 4}))
-    .then(function(response) {
-
-    if(response.ok) {
-
-      response.text().then(
-          function(data) 
-          {
-      
-              console.log(data);
-              if (data=="0") {
-
-                let contenedorError = document.getElementById("tipoMarca_Descripcion");
-                contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                        '<strong>Atención! </strong>' +
-                                        'No Existe la Solicitud de Almuerzo'  +
-                                        '</div>';
-                
-
-                return false;
-                                                      
-              } else {
-
-                guadar(strCedula);                        
-
-              } 
-       
-          }).catch(function(error) {
-
-                let contenedorError = document.getElementById("tipoMarca_Descripcion");
-                contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                        '<strong>Error! </strong>' +
-                                        'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
-                                        '</div>';
-          });              
-
-
-    } else {
-          
-          let contenedorError = document.getElementById("tipoMarca_Descripcion");           
-          contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                  '<strong>Error! </strong>' +
-                                      'No se pudo conectar con el servidor. Intente de nuevo.' +
-                                  '</div>';
-    }
-
-    }).catch(function(error) {
-  
-        let contenedorError = document.getElementById("tipoMarca_Descripcion");         
-        contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                '<strong>Error! </strong>' +
-                                    'Hubo un problema al conectar con el servidor: ' + error.message +
-                                '</div>';        
-    }).then();
+   
+    guadar(strCedula);
 
     document.getElementById('txtMarca').value = '';
 

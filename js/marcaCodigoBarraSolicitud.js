@@ -111,17 +111,17 @@ function selectEstudianteGestor(strCedula)
          
             }).catch(function(error) {
 
-                  let contenedorError = document.getElementById("tipoMarca_Descripcion");
-                  contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                          '<strong>Error! </strong>' +
-                                          'No hay respuesta del servidor . Verifique su conexión de internet ' + error.message +
-                                          '</div>';
+                let contenedorError = document.getElementById("divNombre");
+                contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                        '<strong>Intente de Nuevo! </strong>' +
+                                        'No se encontró el estudiante ' + 
+                                        '</div>';
             });              
 
 
     } else {
             
-            let contenedorError = document.getElementById("tipoMarca_Descripcion");           
+            let contenedorError = document.getElementById("divNombre");           
             contenedorError.innerHTML='<div class="alert alert-danger">' +
                                     '<strong>Error! </strong>' +
                                         'No se pudo conectar con el servidor. Intente de nuevo.' +
@@ -130,7 +130,7 @@ function selectEstudianteGestor(strCedula)
 
   }).catch(function(error) {
     
-          let contenedorError = document.getElementById("tipoMarca_Descripcion");         
+          let contenedorError = document.getElementById("divNombre");         
           contenedorError.innerHTML='<div class="alert alert-danger">' +
                                   '<strong>Error! </strong>' +
                                       'Hubo un problema al conectar con el servidor: ' + error.message +
