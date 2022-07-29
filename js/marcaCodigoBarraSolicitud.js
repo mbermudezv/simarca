@@ -1,6 +1,8 @@
 
 window.onload = function() 
 {
+
+    document.getElementById("txtMarca").focus();
     
     mostrarMarcaContadorSolicitud();
 
@@ -104,38 +106,37 @@ function selectEstudianteGestor(strCedula)
 
                     let contenedorError = document.getElementById("divNombre");
                     contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                            '<strong>Error! </strong>' +
-                                            'No se encontró el estudiante </div>';
-                
+                                            '<strong>Intente de Nuevo! </strong>' +
+                                            '</div>';                
                 }
          
             }).catch(function(error) {
 
-                let contenedorError = document.getElementById("divNombre");
+                let contenedorError = document.getElementById("divNombre");         
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                        '<strong>Intente de Nuevo! </strong>' +
-                                        'No se encontró el estudiante ' + 
-                                        '</div>';
+                                  '<strong>Intente de Nuevo! </strong>' +
+                                  '</div>';       
             });              
 
 
     } else {
             
-            let contenedorError = document.getElementById("divNombre");           
-            contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                    '<strong>Error! </strong>' +
-                                        'No se pudo conectar con el servidor. Intente de nuevo.' +
-                                    '</div>';
+        let contenedorError = document.getElementById("divNombre");           
+        contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                '<strong>Intente de Nuevo!</strong>' +
+                                '</div>';
     }
 
   }).catch(function(error) {
     
-          let contenedorError = document.getElementById("divNombre");         
-          contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                  '<strong>Error! </strong>' +
-                                      'Hubo un problema al conectar con el servidor: ' + error.message +
-                                  '</div>';        
+    let contenedorError = document.getElementById("divNombre");         
+    contenedorError.innerHTML='<div class="alert alert-danger">' +
+                      '<strong>Intente de Nuevo! </strong>' +
+                      '</div>'; 
+
   }).then();
+
+  document.getElementById("txtMarca").focus();
 
   document.getElementById('txtMarca').value = '';
 
