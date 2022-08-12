@@ -1,15 +1,12 @@
 @-ms-viewport {
   width: device-width;
 }
-
 @-o-viewport {
   width: device-width;
 }
-
 @viewport {
   width: device-width;
 }
-
 html {
   overflow-y: auto;
 }
@@ -40,13 +37,8 @@ a:active {
 
 body {
   margin: 0%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 #encabezadoBar * {
@@ -57,16 +49,9 @@ body {
 }
 
 #mainArea {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  flex-grow: 1;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  flex-flow: column nowrap;
 }
 
 .item {
@@ -78,12 +63,8 @@ body {
 }
 
 #tituloMarca {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   font-family: "Lucida Console", Monaco, monospace;
   font-weight: bold;
 }
@@ -93,22 +74,18 @@ body {
     font-size: 1.4rem;
   }
 }
-
 @media (min-width: 768px) {
   .item, #tituloMarca {
     font-size: 1.4rem;
   }
 }
-
 @media (min-width: 992px) {
   .item, #tituloMarca {
     font-size: 1.2rem;
   }
 }
-
 @media (min-width: 1200px) {
   .item, #tituloMarca {
     font-size: 1.5rem;
   }
-}
-/*# sourceMappingURL=reportes.css.map */
+}/*# sourceMappingURL=reportes.css.map */
