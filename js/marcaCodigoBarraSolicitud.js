@@ -5,6 +5,7 @@ window.onload = function()
     document.getElementById("txtMarca").focus();
     
     mostrarMarcaContadorSolicitud();
+    mostrarMenu();
 
     return true;
 
@@ -177,6 +178,41 @@ function mostrarMarcaContadorSolicitud()
                     } else {
 
                         document.getElementById("contadorSolicitud").innerHTML ='0';
+                    
+                    }
+       
+                });
+
+        } 
+
+    }).then();
+
+    return true;
+
+}
+
+function mostrarMenu() 
+{
+
+
+    fetch('../gestor/gestorMenu.php?'
+            + new URLSearchParams({menu: 1}))
+    .then(function(response) 
+    {
+
+        if(response.ok) {                    
+
+            response.text().then(
+                function(data) 
+                {      
+                    //console.log(data);
+                    if (Object.keys(data).length>0) {
+
+                        document.getElementById("menuHoy").innerHTML = data;
+
+                    } else {
+
+                        document.getElementById("menuHoy").innerHTML ='No hay Menú';
                     
                     }
        

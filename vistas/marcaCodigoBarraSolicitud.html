@@ -29,28 +29,26 @@
                 
         <div class="row flex-column align-items-center">
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 pt-3">                 
-                <div id="tipoMarca_Descripcion" class="m-1 p-1">
-                    <span id="tipoMarca" class="font-weight-bold"></span>
-                    <span id="contador" class="badge badge-pill badge-primary"></span>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 pt-1">                 
+                <div id="tipoMarca_Descripcion">
                     <span id="tipoMarcaSolicitud" class="font-weight-bold">Solicitud</span>
                     <span id="contadorSolicitud" class="badge badge-pill badge-primary"></span>
-
                 </div>
                               
             </div>
 
         </div>
 
+        
         <div class="row flex-column align-items-center">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pt-2">
+            <div class="pt-1">
                 <div id="divNombre" class="m-1 p-1"></div>
             </div>          
         </div>
 
         <div class="row flex-column align-items-center">
 
-            <div id="tabla" class="pt-2 pt-lg-3 pt-xl-3">
+            <div id="tabla" class="pt-1">
                 <div id="fila">                              
                     <div id="Col">
                         <input type="text" id="txtMarca" maxlength="50">
@@ -62,23 +60,29 @@
                        
     </div>
 
-  <div id="fila" class="pt-2"> 
+    <div class="row flex-column align-items-center pt-1">                    
+        <div class="col-md-3 col-form-label">                       
+              <img class="card-img-top border-light"                     
+                    src="" loading="lazy">                               
+        </div>
+    </div>
+
+    <div class="row flex-column align-items-center">
         
-        <div class="row flex-column align-items-center">
-            <div class="col-11 col-sm-7 col-md-7 col-lg-7 col-xl-5">
-                <img id="imagenMarca">
+        <div class="pt-1">                 
+
+            <div id="tipoMarca_Descripcion">                
+                <span class="font-weight-bold">Menú para hoy</span>
             </div>
-        </div>                   
-        
-    </div>
- 
-    <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
+            
+            <div id="divNombre" class="pt-1">                
+                <span id="menuHoy" class="font-weight-bold"></span>
+            </div>
+                          
+        </div>
 
-        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
-        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
-
-    </div>
-    
+    </div>    
+     
     <script src="../js/marcaCodigoBarraSolicitud.js?version=1"></script>
    
 </body>
