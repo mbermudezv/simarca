@@ -101,7 +101,7 @@ function selectEstudianteGestor(strCedula)
 
                     cargaDatosPantalla(data);
                     mostrarMarcaContadorSolicitud();
-                    
+                    muestraImagen();                    
 
                 } else {
 
@@ -202,13 +202,13 @@ function mostrarMenu()
 
         if(response.ok) {                    
 
-            response.text().then(
+            response.json().then(
                 function(data) 
                 {      
                     //console.log(data);
                     if (Object.keys(data).length>0) {
 
-                        document.getElementById("menuHoy").innerHTML = data;
+                        document.getElementById("menuHoy").innerHTML = data[0].Menu_Descripcion;
 
                     } else {
 
@@ -225,3 +225,13 @@ function mostrarMenu()
     return true;
 
 }
+
+function muestraImagen() {    
+    $.get("../php/selectImg.php").done(function(data){		
+        document.getElementById("imagenMarca").src = "../img/marca/" + data;
+    }).fail(function(jqXHR, textStatus, error) {
+        console.log("Error de la aplicación: " + error);
+    });
+
+    return false;
+};
