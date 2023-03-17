@@ -17,10 +17,10 @@ $fechaHasta = $_POST['fechaHasta'];
 
 $mail = new PHPMailer(true);
 
-/* $correo = "comedor@wappcom.net";
-$passemail = "liceoLE2021"; */
+/*$correo = "comedor@wappcom.net";
+$passemail = "liceoLE2021";*/
 
-$correo = "gaoydnxo@wappcom.net";
+$correo = "gaoydnxo@lake-9070.banahosting.com";
 $passemail = "jq69s9ObU6";
 
 try {
@@ -35,8 +35,7 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    //$mail->AddAddress("rvindas@lasesperanzas.ed.cr");
-    $mail->AddAddress("mauricio.bermudez.vargas@mep.go.cr");
+    $mail->AddAddress("rvindas@lasesperanzas.ed.cr");
 
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
@@ -126,7 +125,7 @@ try {
                                     <td>------------------------------</td>                                    
                                 </tr>
                                 <tr>
-                                    <td>MSc. Henry Navarro Zu&ntilde;iga</td>
+                                    <td>MSc. Patricia God&iacute;nez S&aacute;nchez</td>
                                 </tr>
                                 <tr>
                                     <td>Director Institucional</td>

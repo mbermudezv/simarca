@@ -7,12 +7,13 @@ try {
 
     $Cliente_id = $_POST['Cliente_id'];
     $Monto = $_POST['Monto'];
-    $Fecha = $_POST['Fecha'];    
+    $Fecha = $_POST['Fecha'];
+    $Sinpe = $_POST['Sinpe'];    
 
     $Insert = new InsertProfesorCuenta();
-    $rs = $Insert->insertProfesorCuenta($Cliente_id, $Monto, $Fecha);
-        
-    echo $rs;
+    $rs = $Insert->insertProfesorCuenta($Cliente_id, $Monto, $Fecha, $Sinpe);
+    
+    return $Sinpe;
     
     $Insert = null;
     $rs = null;

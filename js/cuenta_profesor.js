@@ -255,12 +255,20 @@ function guardar() {
                   .map((x)=>x.value);
 
   let inputFecha = document.getElementById("fecha").value;
-  let inputMonto = document.getElementById("monto").value;
+  let inputMonto = document.getElementById("monto").value;  
+  let sinpe = $("#sinpe").is(":checked");
 
+  let booSinpe = 0;
+  
+  if (sinpe) {
+    booSinpe=1; 
+  }
+        
   const formData = new FormData();
   formData.append('Cliente_id', intProfesor);
   formData.append('Monto', inputMonto);
   formData.append('Fecha', inputFecha);
+  formData.append('Sinpe', booSinpe);
 
   fetch('../gestor/gestorProfesorCuenta.php',{
     method: 'POST', 
@@ -271,7 +279,7 @@ function guardar() {
 
           response.text().then(function(data) 
           {  
-              //console.log(data);
+              console.log(data);
               carga_datos(intProfesor);
                             
           }).catch(function(error) {
@@ -354,7 +362,9 @@ function guardar() {
   document.getElementById("fecha").value = '';
 
   document.getElementById("monto").value = '';
-  
+
+  document.getElementById("sinpe").checked = false;
+    
   return true;
 }
 

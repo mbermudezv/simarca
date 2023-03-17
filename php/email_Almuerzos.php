@@ -20,11 +20,10 @@ $mail = new PHPMailer(true);
 $passemail = "liceoLE2021";
  */
 
-/* $correo = "comedor@wappcom.net";
-$passemail = "liceoLE2021";
- */
+/*$correo = "comedor@wappcom.net";
+$passemail = "liceoLE2021";*/
 
-$correo = "gaoydnxo@wappcom.net";
+$correo = "gaoydnxo@lake-9070.banahosting.com";
 $passemail = "jq69s9ObU6";
 
 try {
@@ -106,7 +105,7 @@ try {
                                     <td>------------------------------</td>                
                                 </tr>
                                 <tr>
-                                    <td>MSc. Henry Navarro Zu&ntilde;iga</td>
+                                    <td>MSc. Patricia God&iacute;nez S&aacute;nchez</td>
                                     <td>MSc. Raquel Vindas Quiros</td>
                                 </tr>
                                 <tr>
