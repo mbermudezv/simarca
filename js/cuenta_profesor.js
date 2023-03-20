@@ -279,7 +279,7 @@ function guardar() {
 
           response.text().then(function(data) 
           {  
-              console.log(data);
+              //console.log(data);
               carga_datos(intProfesor);
                             
           }).catch(function(error) {

@@ -113,16 +113,14 @@ function cargaDatosPantalla(data)
         colNombre.className = "col-8 col-sm-8 col-md-8 col-lg-4 col-xl-4";
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
-
-        let fecha = obj.Fecha;
+        
         let monto = obj.Monto;
 
         let date = new Date(obj.Fecha);
         let day = `${(date.getDate())}`.padStart(2,'0');
         let month = `${(date.getMonth()+1)}`.padStart(2,'0');
         let year = date.getFullYear();
-        
-        //console.log(`${day}-${month}-${year}`);
+               
         let fechaFormato = `${day}-${month}-${year}`;
 
         let colFecha = document.createElement('div');
@@ -135,11 +133,18 @@ function cargaDatosPantalla(data)
         colMonto.id = "monto";
         colMonto.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
         let createATextMonto = document.createTextNode(monto);
-        colMonto.appendChild(createATextMonto);        
+        colMonto.appendChild(createATextMonto);
+        
+        let colSinpe = document.createElement('div');
+        colSinpe.id = "Sinpe";
+        colSinpe.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
+        let createATextSinpe = document.createTextNode(Sinpe(obj.Sinpe));
+        colSinpe.appendChild(createATextSinpe);  
         
         fila.appendChild(colNombre);
         fila.appendChild(colFecha);
         fila.appendChild(colMonto);
+        fila.appendChild(colSinpe);
 
         document.getElementById('lista').appendChild(fila);        
 
@@ -147,6 +152,18 @@ function cargaDatosPantalla(data)
 
     return true;
 
+}
+
+function Sinpe(params) {        
+
+    if (params=="1") {
+        
+        return "Sinpe"
+        
+    }
+
+    return "En efectivo"
+    
 }
 
 function enviar_email() {

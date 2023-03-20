@@ -12,11 +12,11 @@ try {
 
     $Insert = new InsertProfesorCuenta();
     $rs = $Insert->insertProfesorCuenta($Cliente_id, $Monto, $Fecha, $Sinpe);
-    
-    return $Sinpe;
-    
+            
     $Insert = null;
     $rs = null;
+
+    return "Ok";
     
 } 
 catch (PDOException $e) 

@@ -17,9 +17,6 @@ $fechaHasta = $_POST['fechaHasta'];
 
 $mail = new PHPMailer(true);
 
-/*$correo = "comedor@wappcom.net";
-$passemail = "liceoLE2021";*/
-
 $correo = "gaoydnxo@lake-9070.banahosting.com";
 $passemail = "jq69s9ObU6";
 
@@ -35,7 +32,8 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    $mail->AddAddress("rvindas@lasesperanzas.ed.cr");
+    //$mail->AddAddress("rvindas@lasesperanzas.ed.cr");
+    $mail->AddAddress("mauriciobermudez@hotmail.com");
 
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
@@ -96,12 +94,18 @@ try {
 
                 foreach($search_path as $key => $value) 
                 {
+                    $sinpe = "En efectivo";
                     $nombre = $value['profesor_nombre'] . " ". $value['profesor_primer_apellido'] . " ". $value['profesor_segundo_apellido'];
                     $monto = $value['Monto'];
+
+                    if ($value['Sinpe']==1) {
+                        $sinpe="Sinpe";
+                    }
 
                     $mail->Body .= "<tr style='width:50%'>                                    
                                         <td>".$nombre."</td>
                                         <td>".$monto."</td>
+                                        <td>".$sinpe."</td>
                                     </tr>";
                                         
                 }
@@ -125,10 +129,10 @@ try {
                                     <td>------------------------------</td>                                    
                                 </tr>
                                 <tr>
-                                    <td>MSc. Patricia God&iacute;nez S&aacute;nchez</td>
+                                    <td>MSc. ___________________________________</td>
                                 </tr>
                                 <tr>
-                                    <td>Director Institucional</td>
+                                    <td>Director(a) Institucional</td>
                                 </tr>
                             </tbody>
                         </table> 

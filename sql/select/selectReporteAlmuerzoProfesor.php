@@ -26,7 +26,7 @@ class SelectReporteAlmuerzoProfesor
 		                                
             $consultaSQL = "SELECT profesor_cedula, profesor_primer_apellido,
                             profesor_segundo_apellido, profesor_nombre,
-                            Monto, Fecha FROM Cuenta INNER JOIN
+                            Monto, Fecha, Sinpe FROM Cuenta INNER JOIN
                             profesor ON Cuenta.Cliente_id = profesor.profesor_Id
                             WHERE Fecha BETWEEN '".$fechaDesdeYMD."' AND '".$fechaHastaYMD."'
                             ORDER BY Fecha";
@@ -43,7 +43,8 @@ class SelectReporteAlmuerzoProfesor
                         'profesor_segundo_apellido' => $row['profesor_segundo_apellido'],
                         'profesor_nombre' => $row['profesor_nombre'],
                         'Monto' => $row['Monto'],
-                        'Fecha' => $row['Fecha']                       
+                        'Fecha' => $row['Fecha'],
+                        'Sinpe' => $row['Sinpe']                        
 					];
 			}
 
