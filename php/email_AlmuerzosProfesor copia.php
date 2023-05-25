@@ -12,8 +12,8 @@ header('Content-Type: text/html; charset=UTF-8');
 $JSON_Datos = array();
 $JSON_Datos = json_decode($_POST['JSON_Datos'], true);
 
-$fechaDesde = $_GET['fechaDesde'];
-$fechaHasta = $_GET['fechaHasta'];
+$fechaDesde = $_POST['fechaDesde'];
+$fechaHasta = $_POST['fechaHasta'];
 
 $mail = new PHPMailer(true);
 
@@ -25,16 +25,16 @@ try {
     $mail->Username = $correo;
     $mail->Password = $passemail;
 
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Host = "mail.wappcom.net";
-    $mail->Port = 465;
+    $mail->Port = 587;
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    /* $mail->AddAddress("rvindas@lasesperanzas.ed.cr"); */
+    //$mail->AddAddress("rvindas@lasesperanzas.ed.cr");
     $mail->AddAddress("mauriciobermudez@hotmail.com");
-    
+
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
     $srcImagen = "cid:escudo";    
 
@@ -129,10 +129,10 @@ try {
                                     <td>------------------------------</td>                                    
                                 </tr>
                                 <tr>
-                                    <td>Dr. Fernando Gonz&aacute;lez Chac&oacute;n</td>
+                                    <td>MSc. ___________________________________</td>
                                 </tr>
                                 <tr>
-                                    <td>Director Institucional</td>
+                                    <td>Director(a) Institucional</td>
                                 </tr>
                             </tbody>
                         </table> 

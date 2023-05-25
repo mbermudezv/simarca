@@ -203,12 +203,14 @@ function enviar_email() {
         body: formData
       }).then(function(response) {
 
+        console.log(response);
+
     }).catch(function(error) {
 
         console.log(error);
        
     }).then();
-
+ 
     spinner.style.visibility = 'hidden';
     btnIngresar.innerText="Enviar por Correo";
     btnIngresar.disabled = false;

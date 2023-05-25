@@ -11,11 +11,8 @@ header('Content-Type: text/html; charset=UTF-8');
 
 $mail = new PHPMailer(true);
 
-/* $correo = "comedor@wappcom.net";
-$passemail = "liceoLE2021"; */
-
-$correo = "gaoydnxo@wappcom.net";
-$passemail = "jq69s9ObU6";
+$correo = "mauriciobermudez@wappcom.net";
+$passemail = "{cqa4G&UJEt6";
 
 try {
 
@@ -29,7 +26,6 @@ try {
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->setFrom($mail->Username,"Liceo Las Esperanzas");
-    //$mail->AddAddress("rvindas@lasesperanzas.ed.cr");
     $mail->AddAddress("mauriciobermudez@hotmail.com");
 
     $mail->AddEmbeddedImage('escudo.png', 'escudo', 'escudo.png');
