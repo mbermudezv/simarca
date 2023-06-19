@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="SiMarca">
+    <meta name="theme-color" content="#499bea" />    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css_marcaCocineros.css">    
+    <title>SiMarca</title>  
+</head>
+<body>
+
+    <div id="encabezadoBar" class="d-flex flex-row 
+                                    justify-content-between bg-info">
+        <a href="../index.html" class="m-1">
+            <img src="../img/salir.png">
+        </a>                                                                    
+    </div>
+
+    <div id="mainArea" class="container-fluid">
+                       
+        <div class="form-group row flex-column align-items-center">
+
+            <div class="col-md-4">                 
+                <div id="tipoMarca_Descripcion">
+                    <span id="tipoMarca" class="font-weight-bold">
+                        Registro de Asistencia</span>                    
+                </div>
+                              
+            </div>
+
+        </div>      
+
+        <div class="form-group row justify-content-center mt-3">            
+            <select id="cboPersona" class="col-md-3 txtDescripcionCombo cbo" 
+                    onchange="selectEstudianteGestor(this.value);">
+                    <option value="0">Funcionario...</option>
+            </select>                
+        </div>
+
+        <div class="form-group row justify-content-center mt-3">            
+            <select id="cboTipo" class="col-md-3 txtDescripcionCombo cbo" 
+                    onchange="selectEstudianteGestor(this.value);">
+                    <option value="0">Tipo de Marca...</option>
+            </select>                
+        </div>
+
+        <span class="navbar justify-content-center" style="padding-bottom: 1em;"> 
+            <div class="form-group row">
+                <div class="col-md-4">  
+                    <button id="btnGuardar" onclick="guardar();" 
+                            type="button" class="btn btn-primary">
+                            Registrar Marca
+                    </button>
+                </div>                   
+            </div>        
+        </span>    
+
+        <div class="container-sm container-md container-lg">
+            <div class="row justify-content-center"> 
+              <div id="mensaje" class="form-group row"></div>
+            </div>
+        </div>       
+                
+    </div>
+    
+    <div id="statusBar" class="d-flex flex-row justify-content-between bg-info" >
+
+        <a id="linkHogar" href="https://www.lasesperanzas.ed.cr">lasesperanzas.ed.cr</a>
+        <a id="linkWappcom"href="https://www.wappcom.net">wappcom.net</a>
+
+    </div>
+       
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/marcaCocineros.js"></script>
+    
+</body>
+
+</html>

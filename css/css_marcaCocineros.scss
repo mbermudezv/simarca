@@ -1,0 +1,191 @@
+@viewport {
+    width: device-width;
+  }
+    
+  html {
+  overflow-y: auto;
+  }
+
+  html, body {
+    height: 100%;
+  }
+  
+  img
+  {
+    max-width: 100%;
+  }
+  
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+
+  a:active {
+      text-decoration: underline;
+  }
+
+  body {
+
+    margin: 0%;
+    display: flex;
+    flex-direction: column;    
+    
+  }
+
+  #encabezadoBar * {
+
+    width: 3em;
+    height: 3em;    
+    background: white;
+    border-radius: 50%;	
+
+  }
+  
+  #mainArea {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+
+  }  
+
+  #tipoMarca_Descripcion  {
+
+    font-family: "Lucida Console", Monaco, monospace;	
+    font-size: 1.5em;
+    color: yellow;
+    font-weight: bold;
+    background-color: gray;   
+    text-align: center;
+    border-radius: 5px;
+
+  }
+
+  .txtDescripcionCombo 
+  {
+    flex-grow: 0;
+    align-self: center;
+    background-color: black;
+    color: white;	
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 1.2em;    
+  }
+
+  .cbo
+  {    
+      flex-basis: 50%;
+      text-align-last:center;
+  }
+
+  .contenedor_Fila 
+  {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;    
+      
+  }
+
+  #tabla{    
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+  #fila{   
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;       
+  }
+  
+  #Col{       
+    flex: 1;
+    display: flex; 
+    background-color: transparent;
+    justify-content: center;
+  }
+
+  #statusBar {          
+
+    font-family: "Lucida Console", Monaco, monospace;
+  }
+
+  #linkHogar, #linkWappcom {
+
+    background-color: transparent;
+    font-weight: bold;
+    color:white;
+
+  }
+
+  @mixin sm {
+      @media (max-width: 576px) { @content; }
+  }
+ 
+  @mixin md {
+      @media (min-width: 768px) { @content; }
+  }
+  
+  @mixin lg {
+      @media (min-width: 992px) { @content; }
+  }
+  
+  @mixin xl {
+      @media (min-width: 1200px) { @content; }
+  }
+  
+  @include sm {
+
+    #tituloMarca {
+        font-size: 1.4rem;
+      }     
+
+      #statusBar {
+
+        font-size: 1.1rem;
+      }
+  
+
+   }
+
+  
+    @include md {
+
+    #tituloMarca {
+        font-size: 1.4rem;
+      }
+
+      #statusBar {
+        font-size: 1.1rem;
+      }
+  
+    }
+  
+    @include lg {
+
+      #tituloMarca {
+        font-size: 1.2rem;
+      }
+      #statusBar {
+        font-size: 1.2rem;
+      }
+  
+    }
+  
+    @include xl {
+
+      #tituloMarca{
+        font-size: 1.5rem;
+      }
+
+      #statusBar {
+        font-size: 1rem;
+      }
+  
+    }
+
