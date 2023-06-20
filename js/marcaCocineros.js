@@ -1,5 +1,5 @@
 
-let persona_id=0;
+let persona={};
 
 window.onload = function() 
 {
@@ -19,19 +19,15 @@ function cargaComboPersona() {
         {
   
             response.json().then(function(data) 
-            {
-          
-                //console.log(data);
+            {          
                 
                 let cboPersona = document.getElementById("cboPersona");
                 
-                data.forEach(element => {
-                    //console.log(element.seccion_Id)
+                data.forEach(element => {                    
                     let opt = document.createElement("option");
                     opt.value = element.persona_id;
                     opt.innerHTML = element.persona_nombre; 
                     cboPersona.append(opt);
-
                 });                
                       
             });
@@ -44,18 +40,14 @@ function cargaComboPersona() {
 }
 
 
-function selectEstudianteGestor(seccion_Id) 
+function selectPersonaGestor(persona_id) 
 {
         
-    if (seccion_Id > 0) 
+    if (persona_id > 0) 
     {
-      
-        seccion = seccion_Id; //Para ser usado en el reload.
-
-        $('#lista').empty(); 
-
-        fetch('../gestor/gestorSinMarcaEstudianteSeccion.php?'
-        + new URLSearchParams({seccion_Id: seccion_Id, Marca_Tipo:3}))//seleccion: 3 es Registro de Almuerzo
+                 
+        fetch('../gestor/gestorCargaPersona_Id.php?'
+        + new URLSearchParams({persona_id: persona_id}))
         .then(function(response) {
 
             if(response.ok) {
@@ -67,11 +59,12 @@ function selectEstudianteGestor(seccion_Id)
                         let contenedorError = document.getElementById("mensaje");
                         contenedorError.innerHTML='';
                                                        
-                        //console.log(data);
+                       
                         if (Object.keys(data).length>0) {
 
-                            cargaDatosPantalla(data);
-                            //mostrarMarcaContador();                    
+                            //console.log(data);
+                            cargaDatosPersona(data);
+                                             
 
                         } else {
 
@@ -110,10 +103,6 @@ function selectEstudianteGestor(seccion_Id)
                                         '</div>';        
         }).then();
 
-    } else {
-
-        $('#lista').empty();
-
     }
   
 
@@ -121,54 +110,32 @@ function selectEstudianteGestor(seccion_Id)
 
 }
 
-function cargaDatosPantalla(data) 
+function cargaDatosPersona(data) 
 {    
-        
     data.forEach(obj => {       
-
-        let fila = document.createElement('div');
-        fila.id = "fila";
-        fila.className = "form-group row justify-content-center";
-        
-        let nombre = obj.Estudiante_Nombre + " " + obj.Estudiante_Apellido1 + " " + obj.Estudiante_Apellido2;
-                      
-        let colNombre = document.createElement('div');
-        colNombre.id = "nombre";
-        colNombre.className = "col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4";
-        let createATextNombre = document.createTextNode(nombre);
-        colNombre.appendChild(createATextNombre);
-
-        let colCheck = document.createElement('div');
-        colCheck.id = "check";
-        colCheck.className = "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 d-flex align-items-center justify-content-center";
-        colCheck.innerHTML='<button id="btnGuardar" onclick="guardar(' + obj.Estudiante_Id +');" ' +
-                                'type="button" class="btn btn-primary"> ' +
-                                'Marcar' +
-                            '</button>';
-
-        fila.appendChild(colNombre);
-        fila.appendChild(colCheck);
-
-        document.getElementById('lista').appendChild(fila);        
-
+        //Para ser usado en Guardar. 
+        persona.int_persona_id = obj.persona_id;    
+        persona.persona_nombre = obj.persona_nombre;
+        persona.persona_apellido1 = obj.persona_apellido1;
+        persona.persona_apellido2 = obj.persona_apellido1;
     }); 
 
     return true;
-
 }
 
-function guardar(estudiante_Id) 
+function guardar() 
 {
     
-    if (estudiante_Id>0) 
+    if (Object.keys(persona).length>0) 
     {
         
-        const formData = new FormData();    
+        const formData = new FormData();
+
+        const json = JSON.stringify(persona);            
         
-        formData.append('Estudiante_Id', estudiante_Id);
-        formData.append('seleccion', 3); //seleccion: 3 es Marca de Almuerzo
+        formData.append('jsonDatos', json);
           
-        fetch('../gestor/gestorEstudiante_Marca.php',{
+        fetch('../gestor/gestorAsistencia_Marca.php',{
         method: 'POST', 
         body: formData,})
         .then(function(response) {
@@ -182,8 +149,8 @@ function guardar(estudiante_Id)
             .then(function(data) 
             {
             
-                //console.log(data);
-                cargar_de_nuevo();
+                console.log(data);
+                //cargar_de_nuevo();
                                                     
             }).catch(function(error) {
 
@@ -226,39 +193,4 @@ function cargar_de_nuevo() {
     selectEstudianteGestor(seccion);
 
   }
-
-function mostrarMarcaContador() 
-{
-      
-    //seleccion: 3 es Almuerzo
-    fetch('../gestor/gestorMarcaContador.php?'
-            + new URLSearchParams({seleccion: 3}))
-    .then(function(response) 
-    {
-
-        if(response.ok) {                    
-
-            response.text().then(
-                function(data) 
-                {      
-                    //console.log(data);
-                    if (Object.keys(data).length>0) {
-
-                        document.getElementById("contador").innerHTML = data;
-
-                    } else {
-
-                        document.getElementById("contador").innerHTML ='0';
-                    
-                    }
-       
-                });
-
-        } 
-
-    }).then();
-
-    return 1;
-
-}
 
