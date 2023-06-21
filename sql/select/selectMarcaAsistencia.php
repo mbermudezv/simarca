@@ -22,6 +22,7 @@ class SelectMarcaAsistencia
         if ($this->pdo != null) {
             
             date_default_timezone_set('America/Costa_Rica');
+            
 		    $fecha = date_create('now')->format('Y-m-d');	
 			
             $consultaSQL = "SELECT Marca_Asistencia_Id FROM Marca_Asistencia 
@@ -31,10 +32,10 @@ class SelectMarcaAsistencia
 
 			$sql = $this->pdo->query($consultaSQL);			
 
-			while ($row = $sql->fetch(\PDO::FETCH_ASSOC)) 
+			 while ($row = $sql->fetch(\PDO::FETCH_ASSOC)) 
             {
                 $rs[] = ['Marca_Asistencia_Id' => $row['Marca_Asistencia_Id']];
-			}            
+			}           
 
 		}   
 

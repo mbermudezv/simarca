@@ -16,47 +16,51 @@ class InsertMarcaAsistencia
 		
 		date_default_timezone_set('America/Costa_Rica');
 
-		$fecha = date_create('now')->format('Y-m-d H:i:s');		
+		$fecha = date_create('now')->format('Y-m-d');
+        $hora =	date_create('now')->format('H:i:s');	
 		
         if(!empty($arrayPersonaMarca)) {
+                                                                           
+            $selectMarcaRegistrada = new SelectMarcaAsistencia();                
+
+            $rsMarcaRegistrada = $selectMarcaRegistrada
+                                    ->selectMarcaAsistencia(
+                                        $arrayPersonaMarca["persona_id"],
+                                        $arrayPersonaMarca["tipoMarcaAsistencia_id"]);
+        
+            if (count($rsMarcaRegistrada)==0) {
+                
+                $sql = 'INSERT INTO Marca_Asistencia 
+                        (persona_id, tipoMarcaAsistencia_id, 
+                        Marca_Asistencia_Fecha, Marca_Asistencia_Hora) 
+                        VALUES 
+                        (:persona_id, :tipoMarcaAsistencia_id, 
+                        :Marca_Asistencia_Fecha, :Marca_Asistencia_Hora)';
+
+                $this->pdo->beginTransaction();
+                
+                $stmt = $this->pdo->prepare($sql);
+
+                $stmt->execute([
+                    ':persona_id' => $arrayPersonaMarca["persona_id"],
+                    ':tipoMarcaAsistencia_id' => $arrayPersonaMarca["tipoMarcaAsistencia_id"],
+                    ':Marca_Asistencia_Fecha' => $fecha,
+                    ':Marca_Asistencia_Hora' => $hora
+                    ]);
+
+                $this->pdo->commit();
+
+                return "ok";
+
+            }        
             
-            $this->pdo->beginTransaction();
-            
-            foreach($arrayPersonaMarca as $key => $arrayPersonaMarca_key) {
-                                       
-                $selectMarcaRegistrada = new SelectMarcaAsistencia();
-                $rsMarcaRegistrada = $selectMarcaRegistrada
-                                        ->selectMarcaAsistencia(
-                                                $arrayPersonaMarca_key["persona_id"],
-                                                $arrayPersonaMarca_key["tipoMarcaAsistencia_id"]);
-            
-                if (count($rsMarcaRegistrada)==0) {
-            
-                    $sql = 'INSERT INTO Marca_Asistencia 
-                    (persona_id, tipoMarcaAsistencia_id, Marca_Asistencia_Fecha) 
-                    VALUES 
-                    (:persona_id, :tipoMarcaAsistencia_id, :Marca_Asistencia_Fecha)';
-
-                    $stmt = $this->pdo->prepare($sql);
-
-                    $stmt->execute([
-                        ':persona_id' => $arrayPersonaMarca_key["persona_id"],
-                        ':tipoMarcaAsistencia_id' => $arrayPersonaMarca_key["tipoMarcaAsistencia_id"],
-                        ':Marca_Asistencia_Fecha' => $fecha
-                        ]);
-
-                }        
-
-            }
-
-            $this->pdo->commit(); 
         }
 											
 		$stmt = null;
 
 		$this->pdo = null;
 
-		return true;
+		return false;
       
 	}
 
