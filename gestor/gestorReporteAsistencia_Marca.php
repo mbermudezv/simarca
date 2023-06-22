@@ -1,15 +1,15 @@
 <?php
 
 require '../sql/conexion.php';
-require '../sql/select/selectReporteSolicitud_sin_Almuerzo.php';
+require '../sql/select/selectReporteMarcaAsistencia.php';
 
 try {
 
  	$getfechaDesde = $_GET['fechaDesde'];
     $getfechaHasta = $_GET['fechaHasta'];
 
-	$Select = new SelectReporteSolicitud_sin_Almuerzo();
-	$rs = $Select->selectReporteSolicitud_sin_Almuerzo($getfechaDesde, $getfechaHasta);        
+	$Select = new SelectReporteMarcaAsistencia();
+	$rs = $Select->selectReporteMarcaAsistencia($getfechaDesde, $getfechaHasta);        
 	
     echo json_encode($rs);
     

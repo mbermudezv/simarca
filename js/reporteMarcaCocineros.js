@@ -1,6 +1,4 @@
 
-window.arrayAlmuerzos = [];
-
 window.onload = function() 
 {
     $.datepicker.regional['es'] = {
@@ -67,8 +65,7 @@ function mostrar_Informacion() {
                                                                         
                     if (Object.keys(data).length>0) {
 
-                        //console.log(data);
-                        arrayAlmuerzos=data;
+                        //console.log(data);                        
                         cargaDatosPantalla(data);
                         
                     } else {
@@ -119,16 +116,8 @@ function cargaDatosPantalla(data)
         let fila = document.createElement('div');
         fila.id = "fila";
         fila.className = "form-group row justify-content-center";
-
-        let fecha = obj.Marca_Fecha;
-
-        let colFecha = document.createElement('div');
-        colFecha.id = "fecha";
-        colFecha.className = "col-md-2";
-        let createATextFecha = document.createTextNode(fecha);
-        colFecha.appendChild(createATextFecha);
-        
-        let nombre = obj.Estudiante_Nombre + " " + obj.Estudiante_Apellido1 + " " + obj.Estudiante_Apellido2;
+                
+        let nombre = obj.persona_nombre + " " + obj.persona_apellido1 + " " + obj.persona_apellido2;
 
         let colNombre = document.createElement('div');
         colNombre.id = "nombre";
@@ -136,17 +125,34 @@ function cargaDatosPantalla(data)
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
 
-        let seccion = obj.seccion_Descripcion;
+        let tipoMarcaAsistencia_Descripcion = obj.tipoMarcaAsistencia_Descripcion;
 
-        let colSeccion = document.createElement('div');
-        colSeccion.id = "seccion";
-        colSeccion.className = "col-md-2";
-        let createATextSeccion = document.createTextNode(seccion);
-        colSeccion.appendChild(createATextSeccion);
+        let coltipoMarcaAsistencia_Descripcion = document.createElement('div');
+        coltipoMarcaAsistencia_Descripcion.id = "tipoMarcaAsistencia_Descripcion";
+        coltipoMarcaAsistencia_Descripcion.className = "col-md-3";
+        let createATexttipoMarcaAsistencia_Descripcion = document.createTextNode(tipoMarcaAsistencia_Descripcion);
+        coltipoMarcaAsistencia_Descripcion.appendChild(createATexttipoMarcaAsistencia_Descripcion);        
+
+        let fecha = obj.Marca_Asistencia_Fecha;
+
+        let colFecha = document.createElement('div');
+        colFecha.id = "fecha";
+        colFecha.className = "col-md-2";
+        let createATextFecha = document.createTextNode(fecha);
+        colFecha.appendChild(createATextFecha);
+
+        let Marca_Asistencia_Hora = obj.Marca_Asistencia_Hora;
+
+        let colMarca_Asistencia_Hora = document.createElement('div');
+        colMarca_Asistencia_Hora.id = "hora";
+        colMarca_Asistencia_Hora.className = "col-md-2";
+        let createATextMarca_Asistencia_Hora = document.createTextNode(Marca_Asistencia_Hora);
+        colMarca_Asistencia_Hora.appendChild(createATextMarca_Asistencia_Hora);
         
-        fila.appendChild(colFecha);
         fila.appendChild(colNombre);
-        fila.appendChild(colSeccion);
+        fila.appendChild(coltipoMarcaAsistencia_Descripcion);
+        fila.appendChild(colFecha);
+        fila.appendChild(colMarca_Asistencia_Hora);
 
         document.getElementById('lista').appendChild(fila);        
 
