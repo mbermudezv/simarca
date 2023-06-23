@@ -53,6 +53,7 @@
     flex-grow: 1;
     display: flex;
     flex-flow: column nowrap;
+    background-color: white;
 
   }  
 
@@ -64,6 +65,12 @@
   }
 
   #titulo {
+
+    background-color: white; 
+    color: black;
+  }
+
+  .TituloDesdeHasta {
 
     background-color: white; 
     color: black;

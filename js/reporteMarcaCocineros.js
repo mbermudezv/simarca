@@ -33,10 +33,10 @@ function imprimir() {
         
     $('#encabezadoBar').hide();
     $('#logo').hide();
-    $('#TituloFecha').hide();
+    //$('#TituloFecha').hide();
     $('#TituloBotones').hide();
     window.print();
-    $('#TituloFecha').show();
+    //$('#TituloFecha').show();
     $('#TituloBotones').show();
     $('#logo').show();
     $('#encabezadoBar').show();
