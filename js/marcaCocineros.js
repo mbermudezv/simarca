@@ -27,7 +27,7 @@ function cargaComboPersona() {
                 data.forEach(element => {                    
                     let opt = document.createElement("option");
                     opt.value = element.persona_id;
-                    opt.innerHTML = element.persona_nombre; 
+                    opt.innerHTML = element.persona_nombre + " " + element.persona_apellido1 + " " + element.persona_apellido2; 
                     cboPersona.append(opt);
                 });                
                       
