@@ -135,6 +135,20 @@ function cargaDatosPantalla(data)
 
 }
 
+function imprimir() {
+        
+    $('#encabezadoBar').hide();
+    //$('#logo').hide();
+    $('#botones').hide();
+    //$('#TituloBotones').hide();
+    window.print();
+    //$('#TituloFecha').show();
+    $('#botones').show();
+    //$('#logo').show();
+    $('#encabezadoBar').show();
+
+}
+
 function enviar_email() {
 
     let contenedorMensaje = document.getElementById("mensaje");         
