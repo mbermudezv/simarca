@@ -26,27 +26,33 @@
 
     <div id="mainArea" class="container-fluid"> 
                     
-        <div class="input-group pt-2 justify-content-center">
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
+        <div class="row pt-2 pb-2 justify-content-center">
+            
+            <div class="col-2">
+                <span class="TituloDesdeHasta font-weight-bold">Fecha: </span>            
+            </div>
+
+            <div class="col-2">
                 <input id="fecha" type="text"  
                     maxlength="10" autocomplete="off" 
                     class="form-control datepicker" placeholder="Seleccione la Fecha" 
                     readonly="readonly">
             </div>
+
         </div>
 
         <div id="botones" class="row pt-2 pb-2 justify-content-center">
 
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2"> 
+            <div class="col-2"> 
 
                 <button onclick="mostrar_Informacion();" 
                         type="button" class="btn btn-primary">
-                        Mostrar Información
+                        Mostrar
                 </button>
 
             </div>
 
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2"> 
+            <div class="col-2"> 
 
                 <button onclick="imprimir();"
                         id="btnEnviar"
@@ -57,6 +63,21 @@
             </div>
         
         </div>
+
+        <div class="container-sm container-md container-lg mt-3">
+            
+            <div class="row justify-content-center"> 
+                <div class="form-group row">
+                     <h4 id="titulo">Liceo Las Esperanzas</h4> 
+                </div>
+            </div>
+
+            <div class="row justify-content-center"> 
+              <div class="form-group row">
+                   <h4 id="titulo">Informe Asistencia Comedor</h4> 
+              </div>
+            </div>
+        </div>         
 
         <div class="container-sm container-md container-lg">
             <div class="row justify-content-center"> 

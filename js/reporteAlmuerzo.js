@@ -137,14 +137,10 @@ function cargaDatosPantalla(data)
 
 function imprimir() {
         
-    $('#encabezadoBar').hide();
-    //$('#logo').hide();
-    $('#botones').hide();
-    //$('#TituloBotones').hide();
-    window.print();
-    //$('#TituloFecha').show();
+    $('#encabezadoBar').hide();    
+    $('#botones').hide();    
+    window.print();    
     $('#botones').show();
-    //$('#logo').show();
     $('#encabezadoBar').show();
 
 }
