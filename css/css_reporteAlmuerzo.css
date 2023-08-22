@@ -52,6 +52,21 @@ body {
   background: white;
 }
 
+#titulo {
+  background-color: white;
+  color: black;
+}
+
+.TituloDesdeHasta {
+  background-color: white;
+  color: black;
+}
+
+#lista {
+  background-color: white;
+  color: black;
+}
+
 #tipoMarca_Descripcion {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 2em;
