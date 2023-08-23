@@ -98,7 +98,9 @@ function mostrar_Informacion() {
 }
 
 function cargaDatosPantalla(data) 
-{    
+{   
+    let totalSinpe = 0; 
+    let totalEfectivo = 0;
         
     data.forEach(obj => {       
 
@@ -110,7 +112,7 @@ function cargaDatosPantalla(data)
 
         let colNombre = document.createElement('div');
         colNombre.id = "nombre";
-        colNombre.className = "col-8 col-sm-8 col-md-8 col-lg-4 col-xl-4";
+        colNombre.className = "col-4";
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
         
@@ -125,22 +127,29 @@ function cargaDatosPantalla(data)
 
         let colFecha = document.createElement('div');
         colFecha.id = "fecha";
-        colFecha.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
+        colFecha.className = "col-2";
         let createATextFecha = document.createTextNode(fechaFormato);
         colFecha.appendChild(createATextFecha);
 
         let colMonto = document.createElement('div');
         colMonto.id = "monto";
-        colMonto.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
+        colMonto.className = "col-2";
         let createATextMonto = document.createTextNode(monto);
         colMonto.appendChild(createATextMonto);
         
-        let colSinpe = document.createElement('div');
+        let strSinpeEfectivo = Sinpe(obj.Sinpe);
+        let colSinpe = document.createElement('div');        
         colSinpe.id = "Sinpe";
-        colSinpe.className = "col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2";
-        let createATextSinpe = document.createTextNode(Sinpe(obj.Sinpe));
-        colSinpe.appendChild(createATextSinpe);  
-        
+        colSinpe.className = "col-2";
+        let createATextSinpe = document.createTextNode(strSinpeEfectivo);
+        colSinpe.appendChild(createATextSinpe);
+                       
+        if (strSinpeEfectivo === "Sinpe") {
+            totalSinpe = totalSinpe + Number(monto);            
+        } else {
+            totalEfectivo = totalEfectivo + Number(monto);
+        }
+
         fila.appendChild(colNombre);
         fila.appendChild(colFecha);
         fila.appendChild(colMonto);
@@ -148,7 +157,28 @@ function cargaDatosPantalla(data)
 
         document.getElementById('lista').appendChild(fila);        
 
-    }); 
+    });
+
+    let filaTotal = document.createElement('div');
+    filaTotal.id = "filaTotal";
+    filaTotal.className = "form-group row";
+    
+    let colTotalSinpe = document.createElement('div');
+    colTotalSinpe.id = "totalSinpe";
+    colTotalSinpe.className = "col-3";
+    let createATextTotalSinpe = document.createTextNode("Total Sinpe: " + totalSinpe.toLocaleString("en-US"));
+    colTotalSinpe.appendChild(createATextTotalSinpe);
+
+    let colTotalEfectivo = document.createElement('div');
+    colTotalEfectivo.id = "totalEfectivo";
+    colTotalEfectivo.className = "col-3";
+    let createATextTotalEfectivo = document.createTextNode("Total Efectivo: " + totalEfectivo.toLocaleString("en-US"));
+    colTotalEfectivo.appendChild(createATextTotalEfectivo);
+
+    filaTotal.appendChild(colTotalEfectivo);
+    filaTotal.appendChild(colTotalSinpe);
+    
+    document.getElementById('lista').appendChild(filaTotal);
 
     return true;
 
@@ -164,6 +194,16 @@ function Sinpe(params) {
 
     return "En efectivo"
     
+}
+
+function imprimir() {
+        
+    $('#encabezadoBar').hide();    
+    $('#botones').hide();    
+    window.print();    
+    $('#botones').show();
+    $('#encabezadoBar').show();
+
 }
 
 function enviar_email() {
