@@ -199,10 +199,12 @@ function Sinpe(params) {
 function imprimir() {
         
     $('#encabezadoBar').hide();    
-    $('#botones').hide();    
+    $('#botones').hide();
+    $('#logo').hide();    
     window.print();    
     $('#botones').show();
     $('#encabezadoBar').show();
+    $('#logo').show();
 
 }
 

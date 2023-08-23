@@ -34,14 +34,12 @@ window.onload = function()
 function imprimir() {
         
     $('#encabezadoBar').hide();
-    $('#logo').hide();
-    $('#TituloFecha').hide();
     $('#TituloBotones').hide();
+    $('#logo').hide();
     window.print();
-    $('#TituloFecha').show();
     $('#TituloBotones').show();
-    $('#logo').show();
     $('#encabezadoBar').show();
+    $('#logo').show();
 
 }
 

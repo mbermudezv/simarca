@@ -32,11 +32,9 @@ window.onload = function()
 function imprimir() {
         
     $('#encabezadoBar').hide();
-    $('#logo').hide();
-    //$('#TituloFecha').hide();
+    $('#logo').hide();    
     $('#TituloBotones').hide();
     window.print();
-    //$('#TituloFecha').show();
     $('#TituloBotones').show();
     $('#logo').show();
     $('#encabezadoBar').show();
@@ -121,7 +119,7 @@ function cargaDatosPantalla(data)
 
         let colNombre = document.createElement('div');
         colNombre.id = "nombre";
-        colNombre.className = "col-md-4";
+        colNombre.className = "col-3";
         let createATextNombre = document.createTextNode(nombre);
         colNombre.appendChild(createATextNombre);
 
@@ -129,7 +127,7 @@ function cargaDatosPantalla(data)
 
         let coltipoMarcaAsistencia_Descripcion = document.createElement('div');
         coltipoMarcaAsistencia_Descripcion.id = "tipoMarcaAsistencia_Descripcion";
-        coltipoMarcaAsistencia_Descripcion.className = "col-md-3";
+        coltipoMarcaAsistencia_Descripcion.className = "col-3";
         let createATexttipoMarcaAsistencia_Descripcion = document.createTextNode(tipoMarcaAsistencia_Descripcion);
         coltipoMarcaAsistencia_Descripcion.appendChild(createATexttipoMarcaAsistencia_Descripcion);        
 
@@ -137,7 +135,7 @@ function cargaDatosPantalla(data)
 
         let colFecha = document.createElement('div');
         colFecha.id = "fecha";
-        colFecha.className = "col-md-2";
+        colFecha.className = "col-2";
         let createATextFecha = document.createTextNode(fecha);
         colFecha.appendChild(createATextFecha);
 
@@ -145,7 +143,7 @@ function cargaDatosPantalla(data)
 
         let colMarca_Asistencia_Hora = document.createElement('div');
         colMarca_Asistencia_Hora.id = "hora";
-        colMarca_Asistencia_Hora.className = "col-md-2";
+        colMarca_Asistencia_Hora.className = "col-1";
         let createATextMarca_Asistencia_Hora = document.createTextNode(Marca_Asistencia_Hora);
         colMarca_Asistencia_Hora.appendChild(createATextMarca_Asistencia_Hora);
         

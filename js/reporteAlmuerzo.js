@@ -138,7 +138,7 @@ function cargaDatosPantalla(data)
 function imprimir() {
         
     $('#encabezadoBar').hide();    
-    $('#botones').hide();    
+    $('#botones').hide();        
     window.print();    
     $('#botones').show();
     $('#encabezadoBar').show();

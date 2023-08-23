@@ -17,7 +17,7 @@
 
     <div id="encabezadoBar" class="d-flex flex-row 
                                    bg-info">
-
+ 
         <a id="logo" href="../vistas/reportes.html" class="m-1">
             <img src="../img/salir.png">
         </a>       
@@ -27,18 +27,23 @@
     <div id="mainArea" class="container-fluid"> 
                     
         <div id="TituloFecha" class="input-group pt-2 justify-content-center">
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
+
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <span class="TituloDesdeHasta font-weight-bold">Desde:</span>            
                 <input id="fechaDesde" type="text"  
                     maxlength="10" autocomplete="off" 
                     class="form-control datepicker" placeholder="Seleccione la Fecha Desde" 
                     readonly="readonly">
             </div>
-            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">            
+
+            <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <span class="TituloDesdeHasta font-weight-bold">Hasta:</span>            
                 <input id="fechaHasta" type="text"  
                     maxlength="10" autocomplete="off" 
                     class="form-control datepicker" placeholder="Seleccione la Fecha Hasta" 
                     readonly="readonly">
-            </div>            
+            </div>
+                        
         </div>
 
         <div id="TituloBotones" class="row pt-2 pb-2 justify-content-center">
@@ -46,7 +51,8 @@
             <div class="col-6 col-sm-3 col-md-3 col-lg-2 col-xl-2"> 
 
                 <button onclick="mostrar_Informacion();" 
-                        type="button" class="btn btn-primary">
+                        type="button" 
+                        class="btn btn-primary btn-block">
                         Mostrar
                 </button>
 
@@ -56,7 +62,8 @@
 
                 <button onclick="imprimir()"
                         id="btnImprimir"
-                        type="button" class="btn btn-primary">
+                        type="button" 
+                        class="btn btn-primary btn-block">
                         Imprimir
                 </button>
 
@@ -64,7 +71,14 @@
         
         </div>
 
-        <div class="container-sm container-md container-lg">
+        <div class="container-sm container-md container-lg pt-2">
+
+            <div class="row justify-content-center"> 
+                <div class="form-group row">
+                     <h4 id="titulo">Liceo Las Esperanzas</h4> 
+                </div>
+            </div>
+
             <div class="row justify-content-center"> 
               <div class="form-group row">
                    <h4 id="titulo">Lista de Estudiantes que Solicitaron y no Registraron Almuerzo</h4> 
