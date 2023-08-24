@@ -161,7 +161,7 @@ function cargaDatosPantalla(data)
 
     let filaTotal = document.createElement('div');
     filaTotal.id = "filaTotal";
-    filaTotal.className = "form-group row";
+    filaTotal.className = "form-group row justify-content-center pt-2";
     
     let colTotalSinpe = document.createElement('div');
     colTotalSinpe.id = "totalSinpe";
