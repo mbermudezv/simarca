@@ -58,7 +58,7 @@ function carga_datos(profesor_Id) {
               response.json().then(function(data) 
               {
                                                                                   
-                //console.log(data);
+                console.log(data);
   
                 if (Object.keys(data).length>0) {
   
