@@ -34,7 +34,7 @@ try {
             }
     
         }
-        
+                
         $rsMarcaRegistrada = [];
         $selectMarcaRegistrada = new SelectSQLMarcaRegistrada();
         $rsMarcaRegistrada = $selectMarcaRegistrada->selectMarcaRegistrada($intId, $intSeleccion);
@@ -45,7 +45,12 @@ try {
             $insert = $Insert-> insertMarca($intId, $intSeleccion);
             
             $Insert = null;
-            $insert = null;                
+            $insert = null;
+
+        } else {
+
+            echo json_encode(array("existe" => "No puede ingresar. Usted ya registró su marca."));
+            exit;
         }
 
        
