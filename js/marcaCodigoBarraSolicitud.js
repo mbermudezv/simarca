@@ -107,7 +107,7 @@ function selectEstudianteGestor(strCedula)
 
                     let contenedorError = document.getElementById("divNombre");
                     contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                            '<strong>Intente de Nuevo! </strong>' +
+                                            '<strong>Error! No se registró su Solicitud! </strong>' +
                                             '</div>';                
                 }
          
@@ -115,7 +115,7 @@ function selectEstudianteGestor(strCedula)
 
                 let contenedorError = document.getElementById("divNombre");         
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
-                                  '<strong>Intente de Nuevo! </strong>' +
+                                  '<strong>Error! No se registró su Solicitud! </strong>' +
                                   '</div>';       
             });              
 

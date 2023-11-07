@@ -53,7 +53,7 @@ function mostrar_Informacion() {
                                                                         
                     if (Object.keys(data).length>0) {
 
-                        //console.log(data);
+                        console.log(data);
                         arrayAlmuerzos=data;
                         cargaDatosPantalla(data);
                         
@@ -119,11 +119,11 @@ function cargaDatosPantalla(data)
         let monto = obj.Monto;
 
         let date = new Date(obj.Fecha);
-        let day = `${(date.getUTCDate())}`.padStart(2,'0');
-        let month = `${(date.getUTCMonth()+1)}`.padStart(2,'0');
+        let day = `${(date.getDate())}`.padStart(2,'0');
+        let month = `${(date.getMonth()+1)}`.padStart(2,'0');
         let year = date.getFullYear();
                
-        let fechaFormato = `${day}-${month}-${year}`;
+        let fechaFormato = `${day   }-${month}-${year}`;
 
         let colFecha = document.createElement('div');
         colFecha.id = "fecha";

@@ -149,7 +149,7 @@ function guadar(strCedula) {
                         
                 if (Object.keys(data).length>0) {
 
-                    console.log(Object.keys(data));
+                    
 
                     if (Object.keys(data) == "error") {
 
@@ -162,6 +162,21 @@ function guadar(strCedula) {
                         
                         return false;
                             
+                    }
+
+                    if (Object.keys(data) == "existe") {
+
+                        //console.log(Object.keys(data));
+                    
+                        let contenedorError = document.getElementById("divNombre");
+                        
+                        contenedorError.innerHTML='<div class="alert alert-danger">' +
+                                                '<strong>' +
+                                                'No puede ingresar. Usted ya registró su marca.' +
+                                                '</strong></div>';
+                        
+                        return false;                        
+                    
                     }
 
                     cargaDatosPantalla(data);
