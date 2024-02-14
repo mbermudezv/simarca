@@ -113,10 +113,12 @@ function selectEstudianteGestor(strCedula)
          
             }).catch(function(error) {
 
-                let contenedorError = document.getElementById("divNombre");         
+                /* let contenedorError = document.getElementById("divNombre");         
                 contenedorError.innerHTML='<div class="alert alert-danger">' +
                                   '<strong>Error! No se registró su Solicitud! </strong>' +
-                                  '</div>';       
+                                  '</div>'; */
+                console.log(error);                  
+                
             });              
 
 
